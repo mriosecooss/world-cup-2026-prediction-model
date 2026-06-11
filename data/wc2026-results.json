@@ -1,4 +1,20 @@
 {
- "updated": "2026-06-11T17:08:13.859Z",
- "matches": []
+ "updated": "2026-06-11T21:22:32.827Z",
+ "matches": [
+  {
+   "date": "2026-06-11",
+   "round": "Matchday 1",
+   "group": "Group A",
+   "team1": "Mexico",
+   "team2": "South Africa",
+   "t1": "mexico",
+   "t2": "south-africa",
+   "g1": 2,
+   "g2": 0,
+   "pens1": null,
+   "pens2": null,
+   "status": "FT",
+   "winner": null
+  }
+ ]
 }

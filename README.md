@@ -69,7 +69,13 @@ well-calibrated estimates, and we make **no claim to beat the betting market**.
 The model's call on **every finished match** of the tournament, updated as it happens:
 
 <!-- TRACK-RECORD:START -->
-_The tournament kicked off **Jun 11** — this table fills in automatically as matches finish. Check back after the first matchday._
+**1/1 correct picks (100%) · avg RPS 0.046** (coin-flip ≈ 0.245) · updated 2026-06-11
+
+| Date | Result | Model's pick | |
+|---|---|---|---|
+| 2026-06-11 | Mexico 2–0 South Africa | Mexico 71% | ✅ |
+
+_Every call is listed — hits and misses. Probabilities are the model's frozen pre-match numbers (ratings don't re-fit mid-tournament), so nothing here is retro-fitted. Reproduce with `node track-record.mjs`._
 <!-- TRACK-RECORD:END -->
 
 ## Quick start
