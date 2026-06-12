@@ -1,5 +1,5 @@
 {
- "updated": "2026-06-12T04:14:05.934Z",
+ "updated": "2026-06-12T21:07:23.681Z",
  "matches": [
   {
    "date": "2026-06-11",
@@ -25,6 +25,21 @@
    "t1": "south-korea",
    "t2": "czech-republic",
    "g1": 2,
+   "g2": 1,
+   "pens1": null,
+   "pens2": null,
+   "status": "FT",
+   "winner": null
+  },
+  {
+   "date": "2026-06-12",
+   "round": "Matchday 2",
+   "group": "Group B",
+   "team1": "Canada",
+   "team2": "Bosnia & Herzegovina",
+   "t1": "canada",
+   "t2": "bosnia-and-herzegovina",
+   "g1": 1,
    "g2": 1,
    "pens1": null,
    "pens2": null,

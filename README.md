@@ -69,10 +69,11 @@ well-calibrated estimates, and we make **no claim to beat the betting market**.
 The model's call on **every finished match** of the tournament, updated as it happens:
 
 <!-- TRACK-RECORD:START -->
-**2/2 correct picks (100%) · avg RPS 0.103** (coin-flip ≈ 0.245) · updated 2026-06-12
+**2/3 correct picks (67%) · avg RPS 0.131** (coin-flip ≈ 0.245) · updated 2026-06-12
 
 | Date | Result | Model's pick | |
 |---|---|---|---|
+| 2026-06-12 | Canada 1–1 Bosnia & Herzegovina | Canada 59% | ❌ |
 | 2026-06-11 | South Korea 2–1 Czech Republic | South Korea 49% | ✅ |
 | 2026-06-11 | Mexico 2–0 South Africa | Mexico 71% | ✅ |
 
