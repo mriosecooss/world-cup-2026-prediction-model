@@ -78,6 +78,27 @@ The model's call on **every finished match** of the tournament, updated as it ha
 _Every call is listed — hits and misses. Probabilities are the model's frozen pre-match numbers (ratings don't re-fit mid-tournament), so nothing here is retro-fitted. Reproduce with `node track-record.mjs`._
 <!-- TRACK-RECORD:END -->
 
+## 🧩 Embeddable widgets & open data
+
+Run a blog, forum or fan site? The live model is embeddable — free, auto-updating all tournament:
+
+```html
+<!-- Live title-race board (top-10 championship odds, 50k sims) -->
+<iframe src="https://cup26matches.com/embed/title-race/" width="100%" height="430"
+  style="border:0;border-radius:12px" loading="lazy" title="World Cup 2026 title odds"></iframe>
+
+<!-- Real-time next-match strip (live W/D/L, rotates at kickoff) -->
+<iframe src="https://cup26matches.com/embed/next-match/" width="100%" height="92"
+  style="border:0;border-radius:10px" loading="lazy" title="Next World Cup 2026 match"></iframe>
+```
+
+More widgets + copy-paste snippets: **[cup26matches.com/en/widgets](https://cup26matches.com/en/widgets/)**
+
+**Open data** (CC BY 4.0 — free to use/quote/chart with a link back): the full per-team tournament
+probabilities, regenerated after every match —
+[probabilities.json](https://cup26matches.com/data/probabilities.json) ·
+[probabilities.csv](https://cup26matches.com/data/probabilities.csv)
+
 ## Quick start
 
 No dependencies. Node 18+.
