@@ -74,7 +74,7 @@ Backtest usa el modelo blended real (igual que predict.mjs). Half-life diferenci
 | 2 | Backtest corregido | ✅ | Reescrito para usar `matchProbBlended` igual que `predict.mjs` |
 | 3 | Blend weight optimizado | ✅ | Grid search RPS: 0.45 → 0.65, mejora 59 basis points |
 | 9 | Actualización diaria resultados | ✅ | `add-result.mjs` — registrar partidos en lenguaje natural vía Claude o CLI |
-| 4 | Squad adjustment sobre SPI | Pendiente | Bajas solo bajan Elo, no tocan `attack` SPI (65% del blend). Aplicar `ratio` de plantel al SPI |
+| 4 | Squad adjustment sobre SPI | ✅ | Ya implementado en predict.mjs líneas 56-63: `sA.attack * sqA.ratio`. Estaba desde v3 |
 | 7 | `halftime.mjs` genérico | Pendiente | Hardcodeado USA-PAR 3-0. Convertir a `node halftime.mjs brasil marruecos 1 0 38` |
 | 8 | Flag `--odds` en predict.mjs | Pendiente | `--odds "2.20 3.40 3.90"` para imprimir EV por outcome directo en consola |
 | 6 | `elo-live.json` incremental | Pendiente (octavos) | Elo actualizado K=20 con resultados WC2026. Sin tocar el congelado. Flag `--live` en predict |
