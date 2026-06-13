@@ -29,6 +29,7 @@ EV  = (prob_modelo × cuota) − 1
 | `fixture.mjs` | Calendario + predicción próximos partidos: `node fixture.mjs --next=8 / --group=C / --all / --live` |
 | `test.mjs` | Suite de 42 invariantes — `npm test` |
 | `bet-ev.mjs` | Tracker V1: calcula EV de las apuestas en data/bets.json (mercados de goles + split por tiempo) |
+| `bankroll.mjs` | Reconcilia abonos (data/deposits.json) + apuestas → saldo, P&L y ROI sobre capital propio (distingue reinversión) |
 | `predict.mjs` | CLI principal: `node predict.mjs <a> <b> [--venue=X] [--phase=X] [--live]` |
 | `calibrate.mjs` | Genera `elo-calibrated.json` desde `results-full.json` |
 | `calibrate-spi.mjs` | Genera `spi-ratings.json` |
@@ -52,6 +53,8 @@ EV  = (prob_modelo × cuota) − 1
 | `data/results-full.json` | 25,345 partidos históricos post-2000 (fuente: martj42) |
 | `data/results.json` | Dataset reducido original (913 partidos) |
 | `data/wc2026-results.json` | Resultados WC2026 ya jugados — actualizar con `add-result.mjs` |
+| `data/bets.json` | Apuestas reales (open/won/lost) con payout neto — tracker V1 |
+| `data/deposits.json` | Abonos de capital propio + snapshot de saldo de la casa |
 | `data/players.json` | Plantel con impacto Elo por jugador (solo usa/paraguay) |
 | `data/model-backtest.json` | Últimas métricas del backtest |
 
@@ -101,7 +104,7 @@ SEED unificado (63 equipos desde data/seed-ratings.json). Calibración bin 40-50
 | F2 | Fixture WC2026 | ✅ | `data/fixture-wc2026.json` (104 partidos, 12 grupos) + `fixture.mjs` para próximos |
 | F3 | Venue automático | ✅ | predict.mjs resuelve la sede del fixture solo → altitud aplicada (ej. Azteca ×1.18) |
 | F1 | players.json completo | ⏳ usuario | Necesita datos de jugadores por equipo (escala crack/importante/normal) |
-| V1 | Rentabilidad / tracker ROI | 🔄 en curso | `bet-ev.mjs` + `data/bets.json`. 8 apuestas Qatar-Suiza registradas. Falta Brasil-Marruecos (confirmar qué es cada *V*) y resolver al cerrar partidos |
+| V1 | Rentabilidad / tracker ROI | 🔄 en curso | `bet-ev.mjs` + `bankroll.mjs` + `data/bets.json` + `data/deposits.json`. 45 apuestas (Canadá-Bosnia, USA-Paraguay, Qatar-Suiza cerradas; Brasil-Marruecos abierta). Bankroll cuadra con saldo de la casa ($21.299). Capital propio $52.939, P&L realizado −$14.140 |
 | 5 | Calibración bin 40-50% (Platt) | 📅 3 julio | Ya mejoró a 45%→47% con SEED unificado. Reevaluar tras fase de grupos |
 
 ### Limitaciones del backtest (V3-V4, no resueltas — dependen de datos)

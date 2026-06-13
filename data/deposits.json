@@ -1,0 +1,15 @@
+{
+  "note": "Abonos (depósitos íntegros de capital propio) a la cuenta de apuestas. Fuente: historial de transacciones. ts en hora local. amount en pesos.",
+  "currency": "CLP",
+  "deposits": [
+    { "id": "10431044983", "datetime": "2026-06-12T03:33:31", "amount": 20000, "kind": "abono" },
+    { "id": "10431440133", "datetime": "2026-06-12T22:48:00", "amount": 5000, "kind": "abono" },
+    { "id": "10431685707", "datetime": "2026-06-13T16:52:36", "amount": 27939, "kind": "abono" }
+  ],
+  "account_snapshot": {
+    "as_of": "2026-06-13",
+    "saldo_disponible": 21299,
+    "disponible_para_retiro": 860,
+    "comment": "Saldo libre real reportado por la casa. Brasil-Marruecos ($17.500) sigue en apuestas abiertas, fuera de este saldo."
+  }
+}

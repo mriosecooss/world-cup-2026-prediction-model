@@ -6,9 +6,11 @@ _Actualizado: 13 de junio de 2026_
 
 | | Apostado | Cobrado | Resultado |
 |---|---|---|---|
+| USA–Paraguay (cerrado) | $18.550 | $21.860 | **+$3.310** |
+| Canadá–Bosnia (cerrado) | $20.000 | $10.550 | **−$9.450** |
 | Qatar–Suiza (cerrado) | $8.000 | $0 | **−$8.000** |
 | Brasil–Marruecos (en juego) | $17.500 | — | pendiente |
-| **TOTAL JORNADA** | **$25.500** | — | — |
+| **TOTAL JORNADA** | **$64.050** | — | — |
 
 ---
 
@@ -53,6 +55,52 @@ _Resultado: 1er tiempo 0-1, 2º tiempo 1-0. Total 2 goles._
 | ...0792 | Suiza 3+ goles en el 2º tiempo | 6,00 | $1.000 | ❌ Perdida |
 | ...0787 | Suiza anota en ambos tiempos | 1,85 | $1.000 | ❌ Perdida |
 | **TOTAL** | | | **$8.000** | **$0 cobrado · −$8.000** |
+
+---
+
+## 🟢 CERRADO — USA 4–1 Paraguay (12 jun)
+
+_Resultado: EEUU ganó 4-1. Total 5 goles, ambos equipos anotaron._
+
+| Cód. | Apuesta | Cuota | Stake | Resultado |
+|---|---|---|---|---|
+| ...0022 | Menos de 4.5 goles (partido) | 1,20 | $1.250 | ❌ Perdida |
+| ...0019 | Resto del partido - Empate | 1,15 | $1.250 | ❌ Perdida |
+| ...0017 | Par/Impar (partido) - Par | 1,10 | $1.250 | ❌ Perdida |
+| ...0015 | 1er/siguiente en anotar - Ninguno | 1,22 | $1.250 | ❌ Perdida |
+| ...9424 | Ambos equipos anotan - SI | 2,15 | $1.000 | ✅ Ganada · $2.110 |
+| ...9420 | Par/Impar (partido) - Par | 1,80 | $1.000 | ❌ Perdida |
+| ...9417 | 1er/siguiente en anotar - EEUU | 1,65 | $1.000 | ❌ Perdida |
+| ...4102 | Local anota en ambos tiempos - SI | 3,10 | $2.110 | ✅ Ganada · $6.410 |
+| ...4104 | Total de goles 2-3 (partido) | 1,60 | $2.110 | ❌ Perdida |
+| ...4101 | HandiGol 0-1 - EEUU (−1) | 3,25 | $2.110 | ✅ Ganada · $6.720 |
+| ...4103 | 1er/siguiente en anotar - EEUU | 1,45 | $2.110 | ✅ Ganada · $3.000 |
+| ...4100 | Resultado Final - EEUU gana | 1,75 | $2.110 | ✅ Ganada · $3.620 |
+| **TOTAL** | | | **$18.550** | **$21.860 cobrado · +$3.310** |
+
+_Montos cobrados netos tras impuestos. Nota: dos boletos "1er/siguiente en anotar - EEUU" con cuotas distintas (1,65 perdió / 1,45 ganó), tal como los liquidó la casa._
+
+---
+
+## 🔴 CERRADO — Canadá 1–1 Bosnia & Herzegovina (12 jun)
+
+_Resultado: 1er tiempo Bosnia 1-0, 2º tiempo Canadá 1-0. Total 2 goles._
+
+| Cód. | Apuesta | Cuota | Stake | Resultado |
+|---|---|---|---|---|
+| ...5431 | Resultado Final - Canadá gana | 1,58 | $2.000 | ❌ Perdida |
+| ...5432 | Total de goles 2-3 (partido) | 1,58 | $2.000 | ✅ Ganada · $3.100 |
+| ...5433 | 1er equipo / siguiente en anotar - Canadá | 1,38 | $2.000 | ❌ Perdida |
+| ...5434 | Resultado del 2º tiempo - Canadá gana | 1,95 | $2.000 | ✅ Ganada · $3.820 |
+| ...5435 | HT/FT Canadá/Canadá | 2,45 | $2.000 | ❌ Perdida |
+| ...5436 | Más de 2.5 goles (partido) | 1,85 | $2.000 | ❌ Perdida |
+| ...5437 | Local gana ambos tiempos - SI | 3,60 | $2.000 | ❌ Perdida |
+| ...5438 | Resultado del 1er tiempo - Canadá gana | 2,05 | $2.000 | ❌ Perdida |
+| ...5439 | Suma de goles exactamente 3 (partido) | 3,50 | $2.000 | ❌ Perdida |
+| ...5440 | Total goles Par/Impar 1er tiempo - Impar | 1,85 | $2.000 | ✅ Ganada · $3.630 |
+| **TOTAL** | | | **$20.000** | **$10.550 cobrado · −$9.450** |
+
+_Montos cobrados netos tras impuestos (bruto: $3.160 / $3.900 / $3.700)._
 
 ---
 
