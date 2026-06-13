@@ -28,7 +28,7 @@ EV  = (prob_modelo × cuota) − 1
 | `predict.mjs` | CLI principal: `node predict.mjs <a> <b> [--venue=X] [--phase=X] [--live]` |
 | `calibrate.mjs` | Genera `elo-calibrated.json` desde `results-full.json` |
 | `calibrate-spi.mjs` | Genera `spi-ratings.json` |
-| `backtest.mjs` | Walk-forward backtest (OJO: solo testea Elo puro, no el blended) |
+| `backtest.mjs` | Walk-forward backtest — modelo blended real (spiWeight=0.65) |
 | `track-record.mjs` | Mide aciertos en partidos WC2026 ya jugados |
 | `halftime.mjs` | Recálculo con score actual (hardcoded a USA-PAR, pendiente refactorizar) |
 | `squad-strength.mjs` | Ajuste Elo por bajas de jugadores |
@@ -44,7 +44,7 @@ EV  = (prob_modelo × cuota) − 1
 | `data/spi-ratings.json` | attack/defense/xg por equipo (calibrado sobre 676 partidos) |
 | `data/results-full.json` | 25,345 partidos históricos post-2000 (fuente: martj42) |
 | `data/results.json` | Dataset reducido original (913 partidos) |
-| `data/wc2026-results.json` | Resultados WC2026 ya jugados (actualizar manualmente cada día) |
+| `data/wc2026-results.json` | Resultados WC2026 ya jugados — actualizar con `add-result.mjs` |
 | `data/players.json` | Plantel con impacto Elo por jugador |
 | `data/venues-wc2026.json` | Venues con altitud y goalMult |
 | `data/model-backtest.json` | Últimas métricas del backtest |
@@ -66,23 +66,22 @@ EV  = (prob_modelo × cuota) − 1
 
 Backtest ahora usa el modelo blended real (igual que predict.mjs). Half-life diferenciado aplicado.
 
-## Problemas conocidos (bugs/limitaciones priorizados)
+## Tareas pendientes
 
-### P1 — Críticos ✅ RESUELTOS
-1. ~~**backtest.mjs testa Elo puro**~~ ✅ Resuelto — ahora usa `matchProbBlended` con SPI.
-2. ~~**Half-life uniforme destruye señal de torneos**~~ ✅ Resuelto — half-life por competición implementado.
-
-### P2 — Importantes
-3. ~~**Blend weight 0.45 no optimizado**~~ ✅ Resuelto — grid search ejecutado, nuevo peso 0.65 (RPS −59bp).
-4. **spi-ratings.json infla equipos CAF/AFC** — calibrado sobre 676 partidos que incluyen clasificatorias vs rivales débiles. EVs de goles exactos para estos equipos son artefactos. Solo confiar en mercados 1X2/HT-FT para CAF/AFC.
-5. **Squad adjustment no afecta SPI** — las bajas solo modifican Elo, pero el 45% del blend viene de SPI intacto.
-
-### P3 — Mejoras
-6. **halftime.mjs hardcodeado** — USA-PAR 3-0. Convertir a CLI: `node halftime.mjs usa paraguay 3 0 45`.
-7. **predict.mjs no calcula EV** — agregar `--odds "3.90 3.40 1.85"` para imprimir EV por outcome.
-8. **DC_RHO = -0.13 no calibrado** — valor del paper original de 1997. Debería calibrarse por MLE sobre results-full.json.
-9. **Calibración rota en bin 40-50%** — modelo dice 45% → ocurre 54%. Platt scaling post-hoc.
-10. **elo-live.json pendiente** — sistema de Elo incremental con K=20 para resultados WC2026, sin tocar el congelado.
+| # | Tarea | Estado | Descripción breve |
+|---|---|---|---|
+| 1 | Half-life diferenciado | ✅ | WC 30m / Cups 24m / NL 18m / Clasif 12m / Amistosos 6m. WC2022: peso 0.09 → 0.38 |
+| 2 | Backtest corregido | ✅ | Reescrito para usar `matchProbBlended` igual que `predict.mjs` |
+| 3 | Blend weight optimizado | ✅ | Grid search RPS: 0.45 → 0.65, mejora 59 basis points |
+| 9 | Actualización diaria resultados | ✅ | `add-result.mjs` — registrar partidos en lenguaje natural vía Claude o CLI |
+| 4 | Squad adjustment sobre SPI | Pendiente | Bajas solo bajan Elo, no tocan `attack` SPI (65% del blend). Aplicar `ratio` de plantel al SPI |
+| 7 | `halftime.mjs` genérico | Pendiente | Hardcodeado USA-PAR 3-0. Convertir a `node halftime.mjs brasil marruecos 1 0 38` |
+| 8 | Flag `--odds` en predict.mjs | Pendiente | `--odds "2.20 3.40 3.90"` para imprimir EV por outcome directo en consola |
+| 6 | `elo-live.json` incremental | Pendiente (octavos) | Elo actualizado K=20 con resultados WC2026. Sin tocar el congelado. Flag `--live` en predict |
+| 5 | Calibración bin 40-50% | Pendiente | Modelo dice 45% → ocurre 54%. Platt scaling post-proceso |
+| 12 | `track-record.mjs` usa Elo puro | Pendiente | Usa `matchProb()` en vez del blended — inconsistente con predict.mjs |
+| 11 | Filtrar clasificatorias débiles SPI | Pendiente | `spi-ratings.json` infla ataque CAF/AFC por partidos vs rivales ~1300 Elo |
+| 10 | Calibrar DC_RHO | Pendiente | −0.13 del paper 1997, no calibrado en este dataset. Afecta mercados de goles exactos |
 
 ## Reglas de apuestas derivadas del modelo
 - ✅ Confiar en EV de mercados **1X2, HT/FT, resultado por tiempo** para todos los equipos
