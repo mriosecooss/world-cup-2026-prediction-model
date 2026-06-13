@@ -45,6 +45,21 @@
    "pens2": null,
    "status": "FT",
    "winner": null
+  },
+  {
+   "date": "2026-06-12",
+   "round": "Matchday 1",
+   "group": "Group C",
+   "team1": "USA",
+   "team2": "Paraguay",
+   "t1": "usa",
+   "t2": "paraguay",
+   "g1": 4,
+   "g2": 1,
+   "pens1": null,
+   "pens2": null,
+   "status": "FT",
+   "winner": "usa"
   }
  ]
 }

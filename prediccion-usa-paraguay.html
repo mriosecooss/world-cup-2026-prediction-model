@@ -160,21 +160,21 @@
       <div class="tournament-name">FIFA World Cup 2026 — Fase de Grupos</div>
       <div class="match-date">12 de junio de 2026 · Sede neutral</div>
     </div>
-    <div class="ht-badge">⏱ DESCANSO · 45'</div>
+    <div class="ht-badge" style="background:rgba(52,211,153,.12);border-color:rgba(52,211,153,.35);color:#34d399">✓ FINAL · FT</div>
   </div>
 
   <!-- UPDATE BANNER -->
   <div class="update-banner">
     <div class="update-icon">📊</div>
     <div>
-      <div class="update-text">Actualizado al descanso — USA lidera 3 a 0 · Minuto 64' · Modelo v3 activo</div>
-      <div class="update-sub">Elo + SPI (ataque/defensa) + minuto multiplier + contexto de partido · 25,345 partidos calibrados</div>
+      <div class="update-text">Partido finalizado · USA 4 – 1 Paraguay · El modelo acertó el ganador</div>
+      <div class="update-sub">Probabilidad pre-partido USA: 42.6% (blended) · 53.0% (Elo) · P(4-1) desde HT 3-0: 11.6%</div>
     </div>
   </div>
 
   <!-- LIVE SCORE -->
   <div class="live-score">
-    <div class="ht-label">Marcador al descanso</div>
+    <div class="ht-label" style="color:#34d399">Resultado Final</div>
     <div class="score-row">
       <div class="score-team">
         <div class="flag">🇺🇸</div>
@@ -182,9 +182,9 @@
       </div>
       <div class="score-col">
         <div style="display:flex;align-items:center;gap:10px">
-          <div class="score-num score-usa">3</div>
+          <div class="score-num score-usa">4</div>
           <div class="score-dash">–</div>
-          <div class="score-num score-par">0</div>
+          <div class="score-num" style="color:#f87171">1</div>
         </div>
       </div>
       <div class="score-team">
@@ -192,20 +192,17 @@
         <div class="team-name" style="color:#6ee7b7">Paraguay</div>
       </div>
     </div>
-    <!-- Updated win probability bar -->
     <div class="win-prob-bar">
       <div class="win-bar-wrap">
-        <div class="win-bar-usa" style="width:98.8%"></div>
-        <div class="win-bar-draw" style="width:1.0%"></div>
-        <div class="win-bar-par" style="width:0.2%"></div>
+        <div class="win-bar-usa" style="width:100%"></div>
       </div>
       <div class="win-labels">
-        <div class="win-lbl wl-usa">USA 98.8%</div>
-        <div class="win-lbl wl-draw">Empate 1.0%</div>
-        <div class="win-lbl wl-par">Paraguay 0.2%</div>
+        <div class="win-lbl wl-usa">✓ USA ganó · 4-1</div>
+        <div class="win-lbl wl-draw" style="color:#34d399">Predicción acertada</div>
+        <div class="win-lbl wl-par" style="color:#475569">—</div>
       </div>
     </div>
-    <div class="ht-note">xG 2° tiempo (ponderado por minuto) → USA 0.755 · Paraguay 0.591</div>
+    <div class="ht-note" style="color:#34d399">Modelo Blended: USA 42.6% pre-partido · 98.8% desde HT 3-0 · P(4-1) exacto desde HT = 11.6%</div>
   </div>
 
   <!-- ROW: Probabilidades finales + Marcadores probables finales -->
@@ -586,7 +583,6 @@
       <div class="card-title">Forma Reciente — USA</div>
       <div class="form-team">
         <div class="form-dots">
-          <div class="fd fd-d">E</div>
           <div class="fd fd-w">G</div>
           <div class="fd fd-w">G</div>
           <div class="fd fd-w">G</div>
@@ -594,15 +590,16 @@
           <div class="fd fd-l">P</div>
           <div class="fd fd-w">G</div>
           <div class="fd fd-l">P</div>
+          <div class="fd fd-w" style="border-color:rgba(52,211,153,.5)">G</div>
         </div>
-        <div class="form-stat">4G · 1E · 3P</div>
+        <div class="form-stat">5G · 0E · 3P (últ. 8)</div>
       </div>
       <div class="match-list">
         <div class="match-item current">
-          <div class="live-tag">HT 3-0</div>
+          <div class="live-tag" style="background:rgba(52,211,153,.12);color:#34d399;border-color:rgba(52,211,153,.25)">FT</div>
           <div class="match-date-col">12 Jun 2026</div>
-          <div class="match-score-col" style="color:#fbbf24">3–0</div>
-          <div class="match-teams" style="color:#fbbf24">USA vs Paraguay ★</div>
+          <div class="match-score-col" style="color:#34d399">4–1</div>
+          <div class="match-teams" style="color:#34d399">USA vs Paraguay ★ WIN</div>
         </div>
         <div class="match-item">
           <div class="result-dot rd-l"></div>
@@ -635,7 +632,6 @@
       <div class="card-title">Forma Reciente — Paraguay</div>
       <div class="form-team">
         <div class="form-dots">
-          <div class="fd fd-w">G</div>
           <div class="fd fd-d">E</div>
           <div class="fd fd-l">P</div>
           <div class="fd fd-l">P</div>
@@ -643,15 +639,16 @@
           <div class="fd fd-w">G</div>
           <div class="fd fd-l">P</div>
           <div class="fd fd-w">G</div>
+          <div class="fd fd-l" style="border-color:rgba(239,68,68,.5)">P</div>
         </div>
-        <div class="form-stat">4G · 1E · 3P</div>
+        <div class="form-stat">3G · 1E · 4P (últ. 8)</div>
       </div>
       <div class="match-list">
         <div class="match-item current">
-          <div class="live-tag">HT 0-3</div>
+          <div class="live-tag" style="background:rgba(239,68,68,.1);color:#f87171;border-color:rgba(239,68,68,.25)">FT</div>
           <div class="match-date-col">12 Jun 2026</div>
-          <div class="match-score-col" style="color:#f87171">0–3</div>
-          <div class="match-teams" style="color:#f87171">USA vs Paraguay ★</div>
+          <div class="match-score-col" style="color:#f87171">1–4</div>
+          <div class="match-teams" style="color:#f87171">USA vs Paraguay ★ LOSS</div>
         </div>
         <div class="match-item">
           <div class="result-dot rd-w"></div>
@@ -721,7 +718,7 @@
 
   <!-- SIGUIENTE GOL MINUTO 64 -->
   <div class="card" style="background:linear-gradient(135deg,#0e1e38,#142444)">
-    <div class="card-title">Siguiente Gol — Minuto 64' (26 min restantes)</div>
+    <div class="card-title">Siguiente Gol — Snapshot Minuto 64' <span class="card-subtitle">EL GOL LLEGÓ: USA anotó el 4° en 2T</span></div>
     <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:14px">
       <div style="background:#07111f;border-radius:10px;padding:12px;text-align:center">
         <div style="font-size:9px;font-weight:700;color:#3a6090;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px">USA anota primero</div>
@@ -865,6 +862,58 @@
     </div>
   </div>
 
+  <!-- SECTION DIVIDER -->
+  <div class="section-divider">
+    <div class="div-line"></div>
+    <div class="div-label">Análisis Post-Partido</div>
+    <div class="div-line"></div>
+  </div>
+
+  <!-- POST-MATCH ACCURACY -->
+  <div class="card" style="background:linear-gradient(135deg,#071a0f,#0a2218);border-color:#1a4a28">
+    <div class="card-title" style="color:#34d399">Precisión del Modelo — USA 4-1 Paraguay</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px">
+      <div style="background:#07111f;border-radius:10px;padding:12px;text-align:center">
+        <div style="font-size:9px;font-weight:700;color:#34d399;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px">Ganador ✓</div>
+        <div style="font-size:20px;font-weight:900;color:#34d399">Acertado</div>
+        <div style="font-size:9px;color:#1a4a28;margin-top:4px">USA favorito en blended (42.6%)</div>
+      </div>
+      <div style="background:#07111f;border-radius:10px;padding:12px;text-align:center">
+        <div style="font-size:9px;font-weight:700;color:#fbbf24;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px">P(4-1) pre-partido</div>
+        <div style="font-size:20px;font-weight:900;color:#fbbf24">1.56%</div>
+        <div style="font-size:9px;color:#2a4a1a;margin-top:4px">4-1 era el 4° marcador más probable desde HT 3-0</div>
+      </div>
+      <div style="background:#07111f;border-radius:10px;padding:12px;text-align:center">
+        <div style="font-size:9px;font-weight:700;color:#60a5fa;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px">P(4-1) desde HT 3-0</div>
+        <div style="font-size:20px;font-weight:900;color:#60a5fa">11.61%</div>
+        <div style="font-size:9px;color:#1a3050;margin-top:4px">Segundo semestre USA 0.755 xG · PAR 0.591 xG</div>
+      </div>
+    </div>
+    <div style="background:#07111f;border-radius:10px;padding:12px 14px;margin-bottom:10px">
+      <div style="font-size:10px;font-weight:700;color:#2a5070;margin-bottom:8px;letter-spacing:1px;text-transform:uppercase">Brier Score (error cuadrático medio — menor es mejor)</div>
+      <div style="display:flex;gap:16px;flex-wrap:wrap">
+        <div style="display:flex;align-items:center;gap:8px">
+          <div style="font-size:11px;color:#7aa8cc;font-weight:700">Elo puro</div>
+          <div style="font-size:15px;font-weight:900;color:#60a5fa">0.221</div>
+          <div style="font-size:9px;background:rgba(96,165,250,.1);color:#60a5fa;border:1px solid rgba(96,165,250,.2);border-radius:10px;padding:2px 8px">↑ más preciso aquí</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <div style="font-size:11px;color:#7aa8cc;font-weight:700">Blended v3</div>
+          <div style="font-size:15px;font-weight:900;color:#fbbf24">0.329</div>
+          <div style="font-size:9px;color:#2a4a2a;margin-left:4px">asignó más prob a Paraguay (SPI)</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <div style="font-size:11px;color:#7aa8cc;font-weight:700">SPI puro</div>
+          <div style="font-size:15px;font-weight:900;color:#f87171">0.539</div>
+          <div style="font-size:9px;background:rgba(239,68,68,.1);color:#f87171;border:1px solid rgba(239,68,68,.2);border-radius:10px;padding:2px 8px">favorecía Paraguay</div>
+        </div>
+      </div>
+    </div>
+    <div style="font-size:10px;color:#2a5a30;line-height:1.7;padding:10px 12px;background:#07111f;border-radius:8px">
+      <span style="color:#34d399;font-weight:700">Conclusión:</span> El Elo fue el modelo más exacto en este partido porque el resultado de <span style="color:#fbbf24">goleada USA (4-1) se alinea más con la ventaja histórica del Elo</span> (+146 puntos). El SPI reciente veía a Paraguay como favorito por su β=0.67 de defensa excelente, pero la presión de local y la calidad ofensiva de USA (xG 1.44 blended pre-partido) se impusieron. El blended dio dirección correcta pero subestimó la ventaja real. <span style="color:#60a5fa;font-weight:700">En partidos con resultados amplios, el Elo histórico tiende a ser más estable.</span>
+    </div>
+  </div>
+
   <!-- MODEL INFO v3 -->
   <div class="card" style="background:linear-gradient(135deg,#080f20,#0a1428);border-color:#1a2e48">
     <div class="card-title">Arquitectura del Modelo v3</div>
@@ -900,7 +949,7 @@
   <!-- FOOTER -->
   <div class="footer">
     <div class="footer-model">Modelo v3: <span>Elo+SPI blended · Dixon-Coles · minute multiplier · venue/phase context · squad strength</span></div>
-    <div class="footer-src">Fuentes: martj42 (25k partidos) · ESPN · Wikipedia · 12 Jun 2026 · min 64'</div>
+    <div class="footer-src">Fuentes: martj42 (25k partidos) · ESPN · Wikipedia · 12 Jun 2026 · FT 4-1</div>
   </div>
 
 </div>

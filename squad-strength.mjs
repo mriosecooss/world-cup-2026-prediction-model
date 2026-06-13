@@ -31,7 +31,8 @@ export function adjustedElo(baseElo, teamSlug) {
 }
 
 // CLI: node squad-strength.mjs usa paraguay
-if (process.argv[2]) {
+const isMain = process.argv[1]?.endsWith('squad-strength.mjs');
+if (isMain && process.argv[2]) {
   for (const slug of process.argv.slice(2)) {
     const s = squadAdjustment(slug);
     console.log(`\n${slug.toUpperCase()}`);

@@ -50,7 +50,8 @@ export function contextMult(phase = 'group', venueKey = null) {
 }
 
 // CLI: node context.mjs mexico-city quarterfinal
-if (process.argv[2]) {
+const isMain = process.argv[1]?.endsWith('context.mjs');
+if (isMain && process.argv[2]) {
   const v = process.argv[2], p = process.argv[3] || 'group';
   const info = venueInfo(v);
   console.log(`Venue : ${info?.city ?? v} — ${info?.stadium ?? '?'}`);
