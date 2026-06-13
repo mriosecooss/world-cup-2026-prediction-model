@@ -111,6 +111,17 @@ try {
   if (args.live) {
     const body = await api('live');
     args.raw ? console.log(JSON.stringify(body, null, 2)) : showLive(body);
+  } else if (args.match) {
+    // Live Match by ID — ruta confirmada: /matches/{id}/live
+    const body = await api(`matches/${args.match}/live`);
+    if (args.raw) console.log(JSON.stringify(body, null, 2));
+    else { console.log(`\n=== Detalle en vivo — fixture ${args.match} ===`); pretty(body); }
+    if (args.xg) {
+      const xg = tryXg(body);
+      console.log('\n  --- xG estimado (heurístico desde tiros) ---');
+      if (!xg.length) console.log('  (no encontré estadísticas de tiros en la respuesta)');
+      else xg.forEach(x => console.log(`  ${x.label || 'equipo'}: xG≈${x.xg}  (a puerta ${x.onG}, totales ${x.tot})`));
+    }
   } else if (args.discover) {
     console.log(`\n=== Sondeo del host ${HOST} (raíz "/") ===`);
     const body = await api('/');
@@ -133,6 +144,7 @@ try {
   } else {
     console.log('Uso:');
     console.log('  --live                          partidos en juego ahora (endpoint /live)');
+    console.log('  --match=<id> [--xg]             detalle en vivo de un partido (/matches/<id>/live)');
     console.log('  --discover                      sondea la raíz del host');
     console.log('  --endpoint="/ruta?params"       GET genérico (legible)');
     console.log('  --endpoint="/ruta" --raw        JSON crudo');
