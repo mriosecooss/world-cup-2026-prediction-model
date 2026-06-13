@@ -94,8 +94,24 @@ function tryXg(obj) {
   return found;
 }
 
+// Formatea la respuesta de /live (partidos en juego).
+function showLive(body) {
+  const list = body.data || body.response || [];
+  console.log(`\n=== Partidos EN VIVO (${body.live_count ?? list.length}) ===`);
+  if (!list.length) { console.log('  (no hay partidos en juego ahora)'); return; }
+  for (const m of list) {
+    console.log(`\n  [${m.fixture_id}] ${m.home} ${m.score_home}-${m.score_away} ${m.away}  ·  ${m.minute}' · ${m.status}`);
+    for (const g of (m.goals || [])) console.log(`     ${g.summary || `${g.min_str} ${g.player} (${g.team})`}`);
+    for (const c of (m.cards || [])) console.log(`     🟨/🟥 ${c.min_str || ''} ${c.player || ''} (${c.team || ''})`);
+  }
+  console.log('\n  → detalle/stats de un partido:  --endpoint="<ruta de Live Match by ID>"');
+}
+
 try {
-  if (args.discover) {
+  if (args.live) {
+    const body = await api('live');
+    args.raw ? console.log(JSON.stringify(body, null, 2)) : showLive(body);
+  } else if (args.discover) {
     console.log(`\n=== Sondeo del host ${HOST} (raíz "/") ===`);
     const body = await api('/');
     pretty(body);
@@ -116,6 +132,7 @@ try {
     }
   } else {
     console.log('Uso:');
+    console.log('  --live                          partidos en juego ahora (endpoint /live)');
     console.log('  --discover                      sondea la raíz del host');
     console.log('  --endpoint="/ruta?params"       GET genérico (legible)');
     console.log('  --endpoint="/ruta" --raw        JSON crudo');
@@ -124,5 +141,5 @@ try {
   }
 } catch (e) {
   console.error('❌ ' + e.message);
-  process.exit(1);
+  process.exitCode = 1;
 }
