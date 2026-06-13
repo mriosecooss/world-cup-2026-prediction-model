@@ -5,18 +5,11 @@
 //   node calibrate-blend.mjs
 import { readFileSync, writeFileSync } from "node:fs";
 import { matchProb, matchProbSPI, matchProbBlended, expectedScore } from "./elo.mjs";
+import { HOME_ADV, baseK, gMult } from "./constants.mjs";
 
 const D = (f) => new URL(`./data/${f}`, import.meta.url);
 const { seed: SEED } = JSON.parse(readFileSync(D("seed-ratings.json"), "utf8"));
-const HOME_ADV = 75, BURN_IN = 150;
-const baseK = (n = "") => { n = n.toLowerCase();
-  if (/world cup(?!.*qual)/.test(n)) return 55;
-  if (/world cup.*qual|qualification/.test(n)) return 40;
-  if (/copa america|euro championship\b|asian cup|africa cup|gold cup/.test(n)) return 50;
-  if (/nations league|nations cup/.test(n)) return 32;
-  if (/friendl/.test(n)) return 18;
-  return 28; };
-const gMult = (gd) => { const d = Math.abs(gd); return d <= 1 ? 1 : d === 2 ? 1.5 : (11 + d) / 8; };
+const BURN_IN = 150; // HOME_ADV, baseK, gMult en constants.mjs
 const rps3 = (p, y) => 0.5 * ((p[0] - y[0]) ** 2 + (p[0] + p[1] - y[0] - y[1]) ** 2);
 
 const { matches } = JSON.parse(readFileSync(D("results.json"), "utf8"));

@@ -4,6 +4,21 @@
 export const HOST = new Set(['mexico', 'usa', 'canada']);
 export const HOME_ADV = 75;
 
+// K-factor por importancia de competición (valores de producción).
+// Fuente única para calibrate, backtest, calibrate-blend, calibrate-rho.
+export function baseK(leagueName = '') {
+  const n = (leagueName || '').toLowerCase();
+  if (/world cup(?!.*qual)/.test(n) || /fifa world cup/.test(n)) return 60;
+  if (/world cup.*qual|qualification/.test(n)) return 42;
+  if (/copa america|euro championship\b|african cup|asian cup|gold cup|afcon/.test(n)) return 52;
+  if (/nations league|nations cup/.test(n)) return 34;
+  if (/friendl/.test(n)) return 16;
+  return 28;
+}
+
+// Multiplicador por margen de goles (goleadas mueven más el Elo).
+export const gMult = (gd) => { const d = Math.abs(gd); return d <= 1 ? 1 : d === 2 ? 1.5 : (11 + d) / 8; };
+
 // Distribución empírica de goles por bloque de 15 minutos (normalizada: suma = 6, promedio = 1.0).
 // Fuente: análisis de ~200k goles mostrando el repunte tardío. Usado por halftime.mjs y nextgoal.mjs.
 export const RATE_BLOCKS = [

@@ -25,7 +25,7 @@ EV  = (prob_modelo × cuota) − 1
 | Archivo | Propósito |
 |---|---|
 | `elo.mjs` | Fórmulas base: `matchProb`, `matchProbSPI`, `matchProbBlended`, `poissonPmf`, `dcTau` (exportado) |
-| `constants.mjs` | Fuente única: `SLUG_TO_NAME`, `RATE_BLOCKS`, `rateIntegral`, `HOST`, `HOME_ADV` |
+| `constants.mjs` | Fuente única: `SLUG_TO_NAME`, `RATE_BLOCKS`, `rateIntegral`, `HOST`, `HOME_ADV`, `baseK`, `gMult` |
 | `predict.mjs` | CLI principal: `node predict.mjs <a> <b> [--venue=X] [--phase=X] [--live]` |
 | `calibrate.mjs` | Genera `elo-calibrated.json` desde `results-full.json` |
 | `calibrate-spi.mjs` | Genera `spi-ratings.json` |
@@ -89,7 +89,17 @@ SEED unificado (63 equipos desde data/seed-ratings.json). Calibración bin 40-50
 | D1-D4 | Eliminar duplicación | ✅ | SEED→seed-ratings.json, RATE_BLOCKS/SLUG_TO_NAME/HOST→constants.mjs, dcTau exportado |
 | B1-B3 | Consistencia blend + CLI genérico | ✅ | analyze.mjs y nextgoal.mjs reescritos genéricos con blend 0.65 |
 | B4 | Squad data faltante | ✅ (parcial) | `hasData` flag; predict muestra "sin datos". players.json solo tiene usa/paraguay |
+| V2 | Rigor backtest: K-factor unificado | ✅ | `baseK`/`gMult` a constants.mjs con valores de producción (60/42/52/34/16). Backtest ahora usa el mismo K que calibrate |
 | 5 | Calibración bin 40-50% (Platt) | 📅 3 julio | Ya mejoró a 45%→47% con SEED unificado. Reevaluar tras fase de grupos |
+
+### Limitaciones del backtest (V3-V4, no resueltas — dependen de datos)
+- **V3 sede neutral:** `results.json` no tiene campo `neutral`; el backtest aplica HOME_ADV=75 a
+  todos los partidos. OK para clasificatorias (local real), infla partidos en sede neutral.
+  Arreglar requiere regenerar el dataset con la columna `neutral` del CSV martj42.
+- **V4 squad/venue/phase:** el backtest no aplica estos ajustes (predict sí). squad solo existe para
+  2 equipos; venue/phase no están en datos históricos. Diferencia inherente medido vs producción.
+- **Elo batch vs online:** calibrate hace un pase batch con decay por recencia; el backtest usa Elo
+  online secuencial (el "olvido" es implícito). Son aproximaciones distintas del mismo modelo.
 
 ### Limitación conocida: players.json
 Solo `usa` y `paraguay` tienen plantel cargado. Para los otros 46 equipos `squadAdjustment`

@@ -3,25 +3,15 @@
 // v2: uses 25k+ match dataset, 12-month half-life time-decay, 5-year hard cutoff.
 //   node calibrate.mjs [--source full]   (default: full dataset)
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
+import { HOST, HOME_ADV, baseK, gMult } from "./constants.mjs";
 
 const D = (f) => new URL(`./data/${f}`, import.meta.url);
 const useFullDataset = !process.argv.includes('--source=original');
 
 // Long-run strength priors (Elo anchors) — fuente única en data/seed-ratings.json
 const { seed: SEED } = JSON.parse(readFileSync(D("seed-ratings.json"), "utf8"));
-const HOST = new Set(["mexico", "usa", "canada"]);
-const HOME_ADV = 75;
 
-// K-factor by competition importance.
-function baseK(leagueName = "") {
-  const n = leagueName.toLowerCase();
-  if (/world cup(?!.*qual)/.test(n) || /fifa world cup/.test(n)) return 60;
-  if (/world cup.*qual|qualification/.test(n)) return 42;
-  if (/copa america|euro championship\b|african cup|asian cup|gold cup|afcon/.test(n)) return 52;
-  if (/nations league|nations cup/.test(n)) return 34;
-  if (/friendl/.test(n)) return 16;
-  return 28;
-}
+// HOST, HOME_ADV, baseK y gMult en constants.mjs (fuente única)
 
 // v3: competition-aware half-life — major tournaments decay slower, friendlies faster.
 // WC2022 at ~3.5 years: weight 0.5^(42/30)=0.38 (was 0.09 with uniform 12-month HL).
@@ -41,7 +31,6 @@ const recency = (tsSec, nowSec, leagueName = "") => {
 };
 
 const expectedScore = (a, b, hb) => 1 / (1 + Math.pow(10, (b - (a + hb)) / 400));
-const gMult = (gd) => { const d = Math.abs(gd); return d <= 1 ? 1 : d === 2 ? 1.5 : (11 + d) / 8; };
 
 // Load dataset: prefer full (25k) over original (913).
 const srcFile = useFullDataset && existsSync(new URL('./data/results-full.json', import.meta.url))
