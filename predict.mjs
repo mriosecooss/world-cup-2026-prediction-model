@@ -60,7 +60,7 @@ if (!eloOnly && spiR[a] && spiR[b]) {
     sB.attack * sqMultB, sA.defense,
     hb, ctxMult
   );
-  blended = matchProbBlended(eloResult, spiResult, 0.45);
+  blended = matchProbBlended(eloResult, spiResult, 0.65);
 }
 
 const bar = (x) => '█'.repeat(Math.round(x * 30));

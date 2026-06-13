@@ -3,9 +3,11 @@
 // Each match is predicted from ratings built ONLY on prior matches, then scored — no look-ahead.
 //   node backtest.mjs
 import { readFileSync, writeFileSync } from "node:fs";
-import { matchProb, expectedScore } from "./elo.mjs";
+import { matchProb, matchProbSPI, matchProbBlended, expectedScore } from "./elo.mjs";
 
 const D = (f) => new URL(`./data/${f}`, import.meta.url);
+const { ratings: spiR } = JSON.parse(readFileSync(D("spi-ratings.json"), "utf8"));
+const SPI_WEIGHT = 0.65; // optimizado via calibrate-blend.mjs (grid search RPS, conservador vs 1.00 puro)
 const SEED = {
   argentina:2085,france:2065,spain:2055,brazil:2045,england:2000,portugal:1980,netherlands:1965,germany:1945,belgium:1925,italy:1915,colombia:1890,uruguay:1875,croatia:1870,morocco:1840,switzerland:1825,usa:1830,mexico:1825,japan:1810,senegal:1795,denmark:1790,ecuador:1760,australia:1735,"south-korea":1730,iran:1720,poland:1715,canada:1700,serbia:1695,wales:1665,ghana:1665,tunisia:1655,"ivory-coast":1655,nigeria:1645,"saudi-arabia":1640,qatar:1630,egypt:1620,algeria:1615,scotland:1610,cameroon:1600,paraguay:1595,venezuela:1590,chile:1580,peru:1575,"czech-republic":1570,"bosnia-and-herzegovina":1545,"south-africa":1520,"new-zealand":1495,panama:1480,jamaica:1460,honduras:1440,jordan:1420,haiti:1380,"el-salvador":1370,"trinidad-and-tobago":1360,guatemala:1345
 };
@@ -38,7 +40,15 @@ for (const m of matches) {
   if (m.hg == null || m.ag == null) continue;
   const ra = getR(m.homeSlug, m.homeName), rb = getR(m.awaySlug, m.awayName);
   if (i >= BURN_IN) {
-    const p = matchProb(ra, rb, HOME_ADV);
+    let p;
+    if (spiR[m.homeSlug] && spiR[m.awaySlug]) {
+      const sA = spiR[m.homeSlug], sB = spiR[m.awaySlug];
+      const eloResult = matchProb(ra, rb, HOME_ADV);
+      const spiResult = matchProbSPI(sA.attack, sB.defense, sB.attack, sA.defense, HOME_ADV, 1.0);
+      p = matchProbBlended(eloResult, spiResult, SPI_WEIGHT);
+    } else {
+      p = matchProb(ra, rb, HOME_ADV);
+    }
     const probs = [p.winA, p.draw, p.winB];
     const actual = m.hg > m.ag ? 0 : m.hg < m.ag ? 2 : 1;
     const y = [actual === 0 ? 1 : 0, actual === 1 ? 1 : 0, actual === 2 ? 1 : 0];
@@ -90,7 +100,7 @@ console.log(`\nLive title odds (full 50k-sim tournament model, conditioned on re
 // Persist the metrics so data/model-backtest.json always matches a fresh `node backtest.mjs` run.
 writeFileSync(new URL("./data/model-backtest.json", import.meta.url), JSON.stringify({
   generatedAt: new Date().toISOString(),
-  method: "Walk-forward out-of-sample: each match predicted from ratings built only on prior matches; Elo updated after. Burn-in skipped.",
+  method: `Walk-forward out-of-sample: blended Elo+SPI (spiWeight=${SPI_WEIGHT}); Elo updates walk-forward, SPI static. Burn-in ${BURN_IN} skipped.`,
   totalMatches: matches.length, evaluated: n, burnIn: BURN_IN,
   outcomeSplit: { home: +(eH/n).toFixed(4), draw: +(eD/n).toFixed(4), away: +(eA/n).toFixed(4) },
   model: { accuracy: +(hit/n).toFixed(4), brier: +(brier/n).toFixed(4), logloss: +(logloss/n).toFixed(4),

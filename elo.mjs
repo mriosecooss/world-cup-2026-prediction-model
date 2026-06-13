@@ -86,7 +86,7 @@ export function matchProbSPI(alphaA, betaB, alphaB, betaA, homeBonus = 0, contex
 }
 
 // Blend Elo and SPI predictions (weight: 0=pure Elo, 1=pure SPI).
-export function matchProbBlended(eloResult, spiResult, spiWeight = 0.45) {
+export function matchProbBlended(eloResult, spiResult, spiWeight = 0.65) {
   const w = spiWeight, ew = 1 - w;
   return {
     winA: ew*eloResult.winA + w*spiResult.winA,
