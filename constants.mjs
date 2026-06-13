@@ -1,0 +1,49 @@
+// Constantes compartidas — fuente única para evitar duplicación entre scripts.
+
+// Anfitriones WC2026 y bonus de localía (Elo).
+export const HOST = new Set(['mexico', 'usa', 'canada']);
+export const HOME_ADV = 75;
+
+// Distribución empírica de goles por bloque de 15 minutos (normalizada: suma = 6, promedio = 1.0).
+// Fuente: análisis de ~200k goles mostrando el repunte tardío. Usado por halftime.mjs y nextgoal.mjs.
+export const RATE_BLOCKS = [
+  { from:  1, to: 15, rate: 0.714 },  // arranque lento
+  { from: 16, to: 30, rate: 0.876 },
+  { from: 31, to: 45, rate: 1.048 },  // empuje primer tiempo
+  { from: 46, to: 60, rate: 0.790 },  // segundo tiempo cauto
+  { from: 61, to: 75, rate: 1.067 },
+  { from: 76, to: 90, rate: 1.505 },  // empuje final (+50% vs promedio)
+];
+
+// Integral de la tasa goleadora entre dos minutos.
+export function rateIntegral(fromMin, toMin = 90) {
+  let w = 0;
+  for (const b of RATE_BLOCKS) {
+    const s = Math.max(fromMin, b.from);
+    const e = Math.min(toMin, b.to);
+    if (e > s) w += (e - s) * b.rate;
+  }
+  return w;
+}
+
+// Mapa slug → nombre display. Usado por add-result.mjs y halftime.mjs.
+export const SLUG_TO_NAME = {
+  argentina: 'Argentina', france: 'France', spain: 'Spain', brazil: 'Brazil',
+  england: 'England', portugal: 'Portugal', netherlands: 'Netherlands', germany: 'Germany',
+  belgium: 'Belgium', italy: 'Italy', colombia: 'Colombia', uruguay: 'Uruguay',
+  croatia: 'Croatia', morocco: 'Morocco', switzerland: 'Switzerland', usa: 'USA',
+  mexico: 'Mexico', japan: 'Japan', senegal: 'Senegal', denmark: 'Denmark',
+  ecuador: 'Ecuador', australia: 'Australia', 'south-korea': 'South Korea',
+  iran: 'Iran', poland: 'Poland', canada: 'Canada', serbia: 'Serbia',
+  wales: 'Wales', ghana: 'Ghana', tunisia: 'Tunisia', 'ivory-coast': 'Ivory Coast',
+  nigeria: 'Nigeria', 'saudi-arabia': 'Saudi Arabia', qatar: 'Qatar', egypt: 'Egypt',
+  algeria: 'Algeria', scotland: 'Scotland', cameroon: 'Cameroon', paraguay: 'Paraguay',
+  venezuela: 'Venezuela', chile: 'Chile', peru: 'Peru', 'czech-republic': 'Czech Republic',
+  'bosnia-and-herzegovina': 'Bosnia & Herzegovina', 'south-africa': 'South Africa',
+  'new-zealand': 'New Zealand', panama: 'Panama', jamaica: 'Jamaica', honduras: 'Honduras',
+  jordan: 'Jordan', haiti: 'Haiti', 'el-salvador': 'El Salvador',
+  'trinidad-and-tobago': 'Trinidad & Tobago', guatemala: 'Guatemala',
+  norway: 'Norway', sweden: 'Sweden', austria: 'Austria', turkey: 'Turkey',
+  uzbekistan: 'Uzbekistan', iraq: 'Iraq', 'dr-congo': 'DR Congo',
+  'cape-verde': 'Cape Verde', curacao: 'Curacao',
+};

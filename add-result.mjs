@@ -12,27 +12,7 @@
 
 import { readFileSync, writeFileSync } from "node:fs";
 import { matchProb } from "./elo.mjs";
-
-const SLUG_TO_NAME = {
-  argentina:"Argentina", france:"France", spain:"Spain", brazil:"Brazil",
-  england:"England", portugal:"Portugal", netherlands:"Netherlands", germany:"Germany",
-  belgium:"Belgium", italy:"Italy", colombia:"Colombia", uruguay:"Uruguay",
-  croatia:"Croatia", morocco:"Morocco", switzerland:"Switzerland", usa:"USA",
-  mexico:"Mexico", japan:"Japan", senegal:"Senegal", denmark:"Denmark",
-  ecuador:"Ecuador", australia:"Australia", "south-korea":"South Korea",
-  iran:"Iran", poland:"Poland", canada:"Canada", serbia:"Serbia",
-  wales:"Wales", ghana:"Ghana", tunisia:"Tunisia", "ivory-coast":"Ivory Coast",
-  nigeria:"Nigeria", "saudi-arabia":"Saudi Arabia", qatar:"Qatar", egypt:"Egypt",
-  algeria:"Algeria", scotland:"Scotland", cameroon:"Cameroon", paraguay:"Paraguay",
-  venezuela:"Venezuela", chile:"Chile", peru:"Peru", "czech-republic":"Czech Republic",
-  "bosnia-and-herzegovina":"Bosnia & Herzegovina", "south-africa":"South Africa",
-  "new-zealand":"New Zealand", panama:"Panama", jamaica:"Jamaica", honduras:"Honduras",
-  jordan:"Jordan", haiti:"Haiti", "el-salvador":"El Salvador",
-  "trinidad-and-tobago":"Trinidad & Tobago", guatemala:"Guatemala",
-  norway:"Norway", sweden:"Sweden", austria:"Austria", turkey:"Turkey",
-  uzbekistan:"Uzbekistan", iraq:"Iraq", "dr-congo":"DR Congo",
-  "cape-verde":"Cape Verde", curacao:"Curacao",
-};
+import { SLUG_TO_NAME, HOST, HOME_ADV } from "./constants.mjs";
 
 const argv  = process.argv.slice(2);
 const args  = argv.filter(a => !a.startsWith("--"));
@@ -92,10 +72,8 @@ db.updated = new Date().toISOString();
 writeFileSync(D("wc2026-results.json"), JSON.stringify(db, null, 1) + "\n");
 console.log(`\n✓ Guardado. Total partidos: ${db.matches.length}`);
 
-// Track record rápido
+// Track record rápido (HOST y HOME_ADV en constants.mjs)
 const { ratings } = JSON.parse(readFileSync(D("elo-calibrated.json"), "utf8"));
-const HOST = new Set(["mexico", "usa", "canada"]);
-const HOME_ADV = 75;
 const rps3 = (p, y) => 0.5 * ((p[0]-y[0])**2 + (p[0]+p[1]-y[0]-y[1])**2);
 let hits = 0, n = 0, rpsSum = 0;
 for (const m of db.matches) {

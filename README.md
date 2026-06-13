@@ -32,12 +32,12 @@ node backtest.mjs
 
 | Metric (763 evaluated, 150 burn-in) | Model | Baseline |
 |---|---|---|
-| **Ranked Probability Score** (the football standard, ↓) | **0.169** | coin-flip 0.241 |
-| Log-loss (↓) | **0.86** | coin-flip 1.10 |
-| Brier score (↓) | **0.51** | coin-flip 0.67 |
-| **Expected Calibration Error** (↓) | **2.3%** | < 5% = well-calibrated |
-| Correct result (win/draw/loss) | **63%** | always-home 49% · coin-flip 33% |
-| When a clear favourite (p ≥ 50%) | **70%** | — |
+| **Ranked Probability Score** (the football standard, ↓) | **0.164** | coin-flip 0.241 |
+| Log-loss (↓) | **0.85** | coin-flip 1.10 |
+| Brier score (↓) | **0.50** | coin-flip 0.67 |
+| **Expected Calibration Error** (↓) | **1.9%** | < 5% = well-calibrated |
+| Correct result (win/draw/loss) | **64%** | always-home 49% · coin-flip 33% |
+| When a clear favourite (p ≥ 50%) | **71%** | — |
 
 ### Is it calibrated? (the chart that matters)
 
@@ -46,19 +46,19 @@ probability the model issued across the out-of-sample matches:
 
 | Model said | Actually happened | n |
 |---|---|---|
-| 6% | 4% | 214 |
-| 15% | 12% | 405 |
-| 25% | 24% | 743 |
-| 35% | 33% | 238 |
-| 45% | 52% | 200 |
-| 54% | 58% | 146 |
-| 65% | 65% | 143 |
-| 75% | 79% | 103 |
-| 85% | 87% | 95 |
+| 6% | 3% | 238 |
+| 15% | 13% | 447 |
+| 25% | 24% | 703 |
+| 35% | 35% | 202 |
+| 45% | 47% | 161 |
+| 54% | 54% | 153 |
+| 64% | 70% | 160 |
+| 74% | 77% | 123 |
+| 85% | 89% | 101 |
 
 > _**Changelog** — Jun 13, 2026: **v5 core model** — Elo+SPI blend weight optimised to 0.65 via
 > RPS grid search; competition-aware time-decay (World Cup half-life 30mo vs 6mo for friendlies);
-> Dixon-Coles ρ calibrated on this dataset (−0.13→−0.065); backtest now evaluates the real blended
+> Dixon-Coles ρ calibrated on this dataset (−0.13→−0.075); backtest now evaluates the real blended
 > model. · Jun 11: Monte Carlo raised to **50,000 trials** (5× lower tail noise); in-tournament
 > conditioning is live; backtest extended with RPS + a reliability curve + ECE; data refreshed
 > through Jun 2026. · Jun 7: goal-model variance denominator 350→400._
@@ -75,8 +75,8 @@ The model's call on **every finished match** of the tournament, updated as it ha
 
 | Date | Result | Model's pick | |
 |---|---|---|---|
-| 2026-06-12 | USA 4–1 Paraguay | USA 42% | ✅ |
-| 2026-06-12 | Canada 1–1 Bosnia & Herzegovina | Canada 63% | ❌ |
+| 2026-06-12 | USA 4–1 Paraguay | USA 41% | ✅ |
+| 2026-06-12 | Canada 1–1 Bosnia & Herzegovina | Canada 62% | ❌ |
 | 2026-06-11 | South Korea 2–1 Czech Republic | South Korea 48% | ✅ |
 | 2026-06-11 | Mexico 2–0 South Africa | Mexico 66% | ✅ |
 
@@ -143,7 +143,7 @@ $ node predict.mjs spain germany
    (SPI-style, Dixon-Coles EM). See [`calibrate.mjs`](./calibrate.mjs) + [`calibrate-spi.mjs`](./calibrate-spi.mjs).
 2. **Each match (Dixon-Coles Poisson).** Ratings → expected goals → a Dixon-Coles bivariate
    Poisson gives win/draw/loss probabilities. The two views (Elo and SPI) are **blended 35/65**
-   (weight optimised by RPS grid search). The Dixon-Coles correction (ρ = −0.065, MLE-calibrated on
+   (weight optimised by RPS grid search). The Dixon-Coles correction (ρ = −0.075, MLE-calibrated on
    this dataset) fixes plain Poisson's under-count of low-scoring draws (0-0, 1-1). See [`elo.mjs`](./elo.mjs).
 3. **The tournament (Monte Carlo).** The live site plays all 104 matches **50,000 times** through
    the real bracket to get championship & advancement odds — and, now the tournament is underway,

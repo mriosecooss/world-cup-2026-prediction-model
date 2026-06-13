@@ -4,28 +4,7 @@
 //   node nextgoal.mjs 64              (uses default USA/PAR xG from spi-ratings.json)
 //   node nextgoal.mjs 64 1.71 0.99   (manual xG override)
 import { readFileSync } from 'node:fs';
-
-// Empirical scoring rate by 15-minute block (normalized: sum = 6, avg = 1.0 per block)
-// Source: analysis of ~200k football goals showing late-game surge.
-const RATE_BLOCKS = [
-  { from:  1, to: 15, rate: 0.714 },   // slow start
-  { from: 16, to: 30, rate: 0.876 },
-  { from: 31, to: 45, rate: 1.048 },   // first-half push
-  { from: 46, to: 60, rate: 0.790 },   // cautious second-half start
-  { from: 61, to: 75, rate: 1.067 },
-  { from: 76, to: 90, rate: 1.505 },   // desperate final push (+50% vs average)
-];
-
-// Integral of scoring rate from `fromMin` to `toMin`
-function rateIntegral(fromMin, toMin = 90) {
-  let w = 0;
-  for (const b of RATE_BLOCKS) {
-    const s = Math.max(fromMin, b.from);
-    const e = Math.min(toMin,   b.to);
-    if (e > s) w += (e - s) * b.rate;
-  }
-  return w;
-}
+import { RATE_BLOCKS, rateIntegral } from './constants.mjs';
 
 const FULL_WEIGHT = rateIntegral(1, 90); // = 90.0 (verified)
 

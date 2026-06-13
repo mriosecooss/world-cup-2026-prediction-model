@@ -15,7 +15,7 @@ SPI:  λ = 1.35 × attack_A × defense_B   [clamped 0.3–4.0]
 EV  = (prob_modelo × cuota) − 1
 1H  = 44% de λ total  |  2H = 56%
 ```
-- Dixon-Coles ρ = −0.065 (calibrado por MLE via `calibrate-rho.mjs` — paper usaba −0.13 en fútbol inglés)
+- Dixon-Coles ρ = −0.075 (calibrado por MLE via `calibrate-rho.mjs` — paper usaba −0.13 en fútbol inglés)
 - K_FACTOR_WC = 60 (clasificatorias 42, amistosos 16)
 - HOME_ADV = 75 Elo puntos (hosts: mexico +20, usa +10, canada +5)
 - Blend en `matchProbBlended(eloResult, spiResult, 0.65)` → optimizado via grid search RPS
@@ -24,7 +24,8 @@ EV  = (prob_modelo × cuota) − 1
 ### Archivos clave
 | Archivo | Propósito |
 |---|---|
-| `elo.mjs` | Fórmulas base: `matchProb`, `matchProbSPI`, `matchProbBlended`, `poissonPmf`, `dcTau` |
+| `elo.mjs` | Fórmulas base: `matchProb`, `matchProbSPI`, `matchProbBlended`, `poissonPmf`, `dcTau` (exportado) |
+| `constants.mjs` | Fuente única: `SLUG_TO_NAME`, `RATE_BLOCKS`, `rateIntegral`, `HOST`, `HOME_ADV` |
 | `predict.mjs` | CLI principal: `node predict.mjs <a> <b> [--venue=X] [--phase=X] [--live]` |
 | `calibrate.mjs` | Genera `elo-calibrated.json` desde `results-full.json` |
 | `calibrate-spi.mjs` | Genera `spi-ratings.json` |
@@ -39,6 +40,7 @@ EV  = (prob_modelo × cuota) − 1
 ### Archivos de datos
 | Archivo | Contenido |
 |---|---|
+| `data/seed-ratings.json` | Priors Elo (63 equipos) — fuente única usada por calibrate/backtest/blend/rho |
 | `data/elo-calibrated.json` | Ratings Elo PRE-TORNEO (CONGELADOS — no modificar) |
 | `data/elo-live.json` | [PENDIENTE] Ratings actualizados con partidos WC2026 |
 | `data/spi-ratings.json` | attack/defense/xg por equipo (calibrado sobre 676 partidos) |
@@ -55,16 +57,18 @@ EV  = (prob_modelo × cuota) − 1
 - wc2026-results.json actualizado al: 2026-06-12
 
 ## Métricas del modelo (backtest sobre 763 partidos)
-| Métrica | Antes (Elo puro 0.45) | Ahora (blended 0.65) | Baseline uniforme |
+| Métrica | Elo puro (0.45) | Blended (0.65) + SEED unificado | Baseline uniforme |
 |---|---|---|---|
-| Accuracy | 61.9% | **63.0%** (+1.1pp) | — |
-| Favourite acc | 69.0% | **71.5%** (+2.5pp) | — |
-| Brier | 0.520 | **0.506** | 0.667 |
-| Log-loss | 0.886 | **0.862** | 1.099 |
-| RPS | 0.1746 | **0.1687** (−59bp) | 0.2406 |
-| ECE | 2.3% | **2.3%** | — |
+| Accuracy | 61.9% | **64.0%** (+2.1pp) | — |
+| Favourite acc | 69.0% | **70.8%** | — |
+| Brier | 0.520 | **0.495** | 0.667 |
+| Log-loss | 0.886 | **0.847** | 1.099 |
+| RPS | 0.1746 | **0.1637** (−109bp) | 0.2406 |
+| ECE | 2.3% | **1.9%** | — |
 
-Backtest usa el modelo blended real (igual que predict.mjs). Half-life diferenciado. DC_RHO calibrado.
+Backtest usa el modelo blended real (igual que predict.mjs). Half-life diferenciado, DC_RHO=−0.075,
+SEED unificado (63 equipos desde data/seed-ratings.json). Calibración bin 40-50% mejoró a 45%→47%
+(antes 45%→52%), reduciendo la urgencia de la tarea 5 (Platt scaling).
 
 ## Tareas pendientes
 

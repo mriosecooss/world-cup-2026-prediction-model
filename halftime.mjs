@@ -5,32 +5,12 @@
 // node halftime.mjs brasil marruecos 1 0 67
 // node halftime.mjs espana alemania 0 0 45 --home=espana
 import { poissonPmf, matchProbBlended, matchProbSPI, matchProb } from './elo.mjs';
+import { SLUG_TO_NAME, rateIntegral } from './constants.mjs';
 import { readFileSync } from 'node:fs';
 
 const { ratings: eloR } = JSON.parse(readFileSync(new URL('./data/elo-calibrated.json', import.meta.url), 'utf8'));
 const { ratings: spiR } = JSON.parse(readFileSync(new URL('./data/spi-ratings.json', import.meta.url), 'utf8'));
 const SPI_WEIGHT = 0.65;
-
-const SLUG_TO_NAME = {
-  argentina:"Argentina", france:"France", spain:"Spain", brazil:"Brazil",
-  england:"England", portugal:"Portugal", netherlands:"Netherlands", germany:"Germany",
-  belgium:"Belgium", italy:"Italy", colombia:"Colombia", uruguay:"Uruguay",
-  croatia:"Croatia", morocco:"Morocco", switzerland:"Switzerland", usa:"USA",
-  mexico:"Mexico", japan:"Japan", senegal:"Senegal", denmark:"Denmark",
-  ecuador:"Ecuador", australia:"Australia", "south-korea":"South Korea",
-  iran:"Iran", poland:"Poland", canada:"Canada", serbia:"Serbia",
-  wales:"Wales", ghana:"Ghana", tunisia:"Tunisia", "ivory-coast":"Ivory Coast",
-  nigeria:"Nigeria", "saudi-arabia":"Saudi Arabia", qatar:"Qatar", egypt:"Egypt",
-  algeria:"Algeria", scotland:"Scotland", cameroon:"Cameroon", paraguay:"Paraguay",
-  venezuela:"Venezuela", chile:"Chile", peru:"Peru", "czech-republic":"Czech Republic",
-  "bosnia-and-herzegovina":"Bosnia & Herzegovina", "south-africa":"South Africa",
-  "new-zealand":"New Zealand", panama:"Panama", jamaica:"Jamaica", honduras:"Honduras",
-  jordan:"Jordan", haiti:"Haiti", "el-salvador":"El Salvador",
-  "trinidad-and-tobago":"Trinidad & Tobago", guatemala:"Guatemala",
-  norway:"Norway", sweden:"Sweden", austria:"Austria", turkey:"Turkey",
-  uzbekistan:"Uzbekistan", iraq:"Iraq", "dr-congo":"DR Congo",
-  "cape-verde":"Cape Verde", curacao:"Curacao",
-};
 
 const argv  = process.argv.slice(2);
 const args  = argv.filter(a => !a.startsWith('--'));
@@ -68,22 +48,8 @@ if (spiR[t1] && spiR[t2]) {
 const fullXg1 = blendFull.expectedGoalsA;
 const fullXg2 = blendFull.expectedGoalsB;
 
-// Distribución por minutos
-const RATE_BLOCKS = [
-  { from:  1, to: 15, rate: 0.714 },
-  { from: 16, to: 30, rate: 0.876 },
-  { from: 31, to: 45, rate: 1.048 },
-  { from: 46, to: 60, rate: 0.790 },
-  { from: 61, to: 75, rate: 1.067 },
-  { from: 76, to: 90, rate: 1.505 },
-];
+// Distribución por minutos (RATE_BLOCKS y rateIntegral en constants.mjs)
 const FULL_WEIGHT = 90;
-function rateIntegral(from, to = 90) {
-  let w = 0;
-  for (const b of RATE_BLOCKS) { const s = Math.max(from, b.from), e = Math.min(to, b.to); if (e > s) w += (e - s) * b.rate; }
-  return w;
-}
-
 const remainingFrac = rateIntegral(minute + 1, 90) / FULL_WEIGHT;
 const xg1r = fullXg1 * remainingFrac;
 const xg2r = fullXg2 * remainingFrac;
