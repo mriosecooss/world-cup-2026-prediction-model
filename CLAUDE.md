@@ -97,7 +97,7 @@ SEED unificado (63 equipos desde data/seed-ratings.json). Calibración bin 40-50
 | V2 | Rigor backtest: K-factor unificado | ✅ | `baseK`/`gMult` a constants.mjs con valores de producción (60/42/52/34/16). Backtest ahora usa el mismo K que calibrate |
 | R1 | Suite de tests | ✅ | `test.mjs` (42 invariantes) + `npm test`. Encontró bug en rateIntegral |
 | R2 | Escritura estable de JSON | ✅ | `writeStableJSON` — re-correr scripts no ensucia git con timestamps |
-| R3 | Token GitHub expuesto | ⚠️ usuario | Revocar token + `git remote set-url` sin credenciales embebidas |
+| R3 | Token GitHub expuesto | ✅ | Token revocado + remote sin credenciales (`git remote set-url`). Auth vía Git Credential Manager |
 | F2 | Fixture WC2026 | ✅ | `data/fixture-wc2026.json` (104 partidos, 12 grupos) + `fixture.mjs` para próximos |
 | F3 | Venue automático | ✅ | predict.mjs resuelve la sede del fixture solo → altitud aplicada (ej. Azteca ×1.18) |
 | F1 | players.json completo | ⏳ usuario | Necesita datos de jugadores por equipo (escala crack/importante/normal) |
