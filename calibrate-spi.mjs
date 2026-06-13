@@ -6,18 +6,39 @@
 //   alpha < 1 = weak attack             beta < 1 = strong defense (concedes less)
 import { readFileSync, writeFileSync } from 'node:fs';
 
-const BASE   = 1.35;          // global avg goals per team per game (internationals)
-const HL     = 12;             // half-life months (same as main calibration)
-const CUTOFF = 3;              // only last 3 years for SPI (focused on recent form)
-const ITERS  = 80;             // EM iterations — converges well by 50
+const BASE   = 1.35;
+const CUTOFF = 3;
+const ITERS  = 80;
+
+// Competition-aware half-life (igual que calibrate.mjs)
+function competitionHL(leagueName = '') {
+  const n = (leagueName || '').toLowerCase();
+  if (/world cup(?!.*qual)/.test(n) || /fifa world cup/.test(n)) return 30;
+  if (/copa america|euro championship\b|african cup(?!.*qual)|asian cup/.test(n)) return 24;
+  if (/nations league|nations cup/.test(n)) return 18;
+  if (/friendl/.test(n)) return 6;
+  return 12;
+}
+
+// Excluir competiciones regionales débiles que inflan ataque CAF/AFC
+function isWeakCompetition(leagueName = '') {
+  return /cecafa|cosafa|cfu|island games|aff championship|saff|uncaf/i.test(leagueName || '');
+}
 
 const now = Date.now() / 1000;
-const decay  = ts => { const m = (now - ts) / (30.44 * 86400); return m > CUTOFF*12 ? 0 : Math.pow(0.5, m/HL); };
+const decay = (ts, leagueName = '') => {
+  const ageMonths = (now - ts) / (30.44 * 86400);
+  if (ageMonths > CUTOFF * 12) return 0;
+  return Math.pow(0.5, ageMonths / competitionHL(leagueName));
+};
 
 const { matches } = JSON.parse(readFileSync(new URL('./data/results-full.json', import.meta.url), 'utf8'));
 
-// Filter: scored matches only, within cutoff, both teams known
-const data = matches.filter(m => m.hg != null && m.ag != null && m.homeSlug && m.awaySlug && decay(m.ts) > 0);
+// Filter: scored matches, dentro del cutoff, ambos equipos conocidos, sin competiciones débiles
+const data = matches.filter(m =>
+  m.hg != null && m.ag != null && m.homeSlug && m.awaySlug &&
+  decay(m.ts, m.leagueName) > 0 && !isWeakCompetition(m.leagueName)
+);
 console.log(`SPI calibration: ${data.length} matches in last ${CUTOFF} years`);
 
 // Collect all known team slugs
@@ -32,7 +53,7 @@ for (let iter = 0; iter < ITERS; iter++) {
   const aN = {}, aD = {}, bN = {}, bD = {};  // numerators / denominators
 
   for (const m of data) {
-    const w  = decay(m.ts);
+    const w  = decay(m.ts, m.leagueName);
     const ha = m.homeSlug, aw = m.awaySlug;
     const ah = alpha[ha] || 1, bh = beta[ha] || 1;
     const aa = alpha[aw] || 1, ba = beta[aw] || 1;

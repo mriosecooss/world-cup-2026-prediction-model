@@ -4,12 +4,13 @@
 // node predict.mjs usa mexico usa                   (home team as 3rd arg)
 // node predict.mjs usa paraguay --venue dallas --phase group
 // node predict.mjs usa paraguay --no-squad --elo-only
-import { readFileSync } from 'node:fs';
+import { readFileSync, existsSync } from 'node:fs';
 import { matchProb, matchProbSPI, matchProbBlended } from './elo.mjs';
 import { squadAdjustment } from './squad-strength.mjs';
 import { phaseMult, venueInfo, venueGoalMult } from './context.mjs';
 
-const { ratings: eloR } = JSON.parse(readFileSync(new URL('./data/elo-calibrated.json', import.meta.url), 'utf8'));
+const { ratings: eloFrozen } = JSON.parse(readFileSync(new URL('./data/elo-calibrated.json', import.meta.url), 'utf8'));
+const eloLiveFile = new URL('./data/elo-live.json', import.meta.url);
 const { ratings: spiR } = JSON.parse(readFileSync(new URL('./data/spi-ratings.json', import.meta.url), 'utf8'));
 
 const argv   = process.argv.slice(2);
@@ -18,11 +19,19 @@ const flags  = argv.filter(a => a.startsWith('--'));
 const getFlag = (name) => { const f = flags.find(f => f.startsWith(`--${name}=`)); return f ? f.split('=')[1] : null; };
 const hasFlag = (name) => flags.includes(`--${name}`);
 
+const useLive = hasFlag('live');
+const eloR = useLive && existsSync(eloLiveFile)
+  ? JSON.parse(readFileSync(eloLiveFile, 'utf8')).ratings
+  : eloFrozen;
+
 const [a, b, home] = args;
 if (!a || !b) {
-  console.log('Usage: node predict.mjs <teamA> <teamB> [homeTeam] [--venue=dallas] [--phase=group] [--no-squad] [--elo-only]');
+  console.log('Usage: node predict.mjs <teamA> <teamB> [homeTeam] [--venue=X] [--phase=X] [--no-squad] [--elo-only] [--live] [--odds=o1,oD,o2]');
   process.exit(0);
 }
+
+if (useLive && !existsSync(eloLiveFile))
+  console.warn('  ⚠ elo-live.json no encontrado — usando congelados. Correr: node update-elo-live.mjs');
 
 const ra = eloR[a], rb = eloR[b];
 if (!ra || !rb) { console.error(`Unknown: ${!ra ? a : b}`); process.exit(1); }
@@ -85,4 +94,20 @@ if (!eloOnly && spiR[a]) {
   console.log(`  Ataque/Defensa   :  ${a} α=${s[a]?.attack} β=${s[a]?.defense}  │  ${b} α=${s[b]?.attack} β=${s[b]?.defense}`);
   console.log(`  Squad strength   :  ${a} ${(sqA.ratio*100).toFixed(0)}%  │  ${b} ${(sqB.ratio*100).toFixed(0)}%`);
 }
-console.log(`  Elo (ajustado)   :  ${a} ${raAdj}  │  ${b} ${rbAdj}\n`);
+console.log(`  Elo (ajustado)   :  ${a} ${raAdj}  │  ${b} ${rbAdj}${useLive ? '  [LIVE]' : ''}\n`);
+const oddsStr = getFlag('odds');
+if (oddsStr) {
+  const parts = oddsStr.split(',').map(Number);
+  if (parts.length === 3 && parts.every(x => !isNaN(x) && x > 1)) {
+    const [o1, oD, o2] = parts;
+    const ev1 = blended.winA * o1 - 1;
+    const evD = blended.draw * oD - 1;
+    const ev2 = blended.winB * o2 - 1;
+    const fmt = (ev) => `${ev >= 0 ? '+' : ''}${(ev * 100).toFixed(1)}%${ev > 0.03 ? ' ✓' : ''}`;
+    console.log(`  ${'─'.repeat(58)}`);
+    console.log(`  Cuotas  :  ${a} ${o1}  draw ${oD}  ${b} ${o2}`);
+    console.log(`  EV      :  ${a} ${fmt(ev1).padEnd(12)}  draw ${fmt(evD).padEnd(12)}  ${b} ${fmt(ev2)}\n`);
+  } else {
+    console.log('  ⚠ --odds formato: --odds=2.20,3.40,3.90 (tres cuotas separadas por coma)\n');
+  }
+}
