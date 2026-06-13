@@ -1,5 +1,5 @@
 {
-  "note": "Registro de apuestas reales para tracking de ROI (V1). status: open|won|lost. team: home|away (away = 2do equipo, 'visitante' de la casa). payout = monto neto cobrado tras impuestos (los 'won' lo traen). Markets: total_over, total_under, total_atleast, total_exact, total_range, half_total_over, half_total_atleast, odd_even, half_odd_even, btts, team_atleast, team_exact, team_half_atleast, team_half_exact, team_win, team_win_half, team_both_halves_win, team_both_halves_score, handicap, rest_of_match, first_next_scorer, ht_ft, htft_combo.",
+  "note": "Registro de apuestas reales para tracking de ROI (V1). status: open|won|lost. team: home|away (away = 2do equipo, 'visitante' de la casa). payout = monto neto cobrado tras impuestos (los 'won' lo traen). Markets: total_over, total_under, total_atleast, total_exact, total_range, half_total_over, half_total_atleast, odd_even, half_odd_even, btts, team_atleast, team_exact, team_half_atleast, team_half_exact, team_win, team_win_half, team_both_halves_win, team_both_halves_score, team_total_over, handicap, rest_of_match, first_next_scorer, ht_ft, htft_combo.",
   "stake_unit": 1000,
   "bets": [
     { "id": "2000104135431", "match": "canada-bosnia", "home": "canada", "away": "bosnia-and-herzegovina", "date": "2026-06-12", "market": "team_win", "team": "home", "odds": 1.58, "stake": 2000, "status": "lost", "desc": "Resultado Final - Canadá gana", "settled_note": "FT 1-1 (empate)" },
@@ -50,6 +50,11 @@
     { "id": "bm-htft-BE", "match": "brazil-morocco", "home": "brazil", "away": "morocco", "date": "2026-06-13", "market": "htft_combo", "ht": "home", "ft": "draw", "odds": 14.00, "stake": 1500, "status": "open", "desc": "HT/FT Brasil/Empate" },
     { "id": "bm-htft-ME", "match": "brazil-morocco", "home": "brazil", "away": "morocco", "date": "2026-06-13", "market": "htft_combo", "ht": "away", "ft": "draw", "odds": 15.00, "stake": 1500, "status": "open", "desc": "HT/FT Marruecos/Empate" },
     { "id": "bm-htft-BM", "match": "brazil-morocco", "home": "brazil", "away": "morocco", "date": "2026-06-13", "market": "htft_combo", "ht": "home", "ft": "away", "odds": 50.00, "stake": 1500, "status": "open", "desc": "HT/FT Brasil/Marruecos" },
-    { "id": "bm-htft-EM", "match": "brazil-morocco", "home": "brazil", "away": "morocco", "date": "2026-06-13", "market": "htft_combo", "ht": "draw", "ft": "away", "odds": 9.25, "stake": 1500, "status": "open", "desc": "HT/FT Empate/Marruecos" }
+    { "id": "bm-htft-EM", "match": "brazil-morocco", "home": "brazil", "away": "morocco", "date": "2026-06-13", "market": "htft_combo", "ht": "draw", "ft": "away", "odds": 9.25, "stake": 1500, "status": "open", "desc": "HT/FT Empate/Marruecos" },
+
+    { "id": "bm-live-nextscorer-mar", "match": "brazil-morocco", "home": "brazil", "away": "morocco", "date": "2026-06-13", "market": "first_next_scorer", "team": "away", "odds": 2.95, "stake": 1000, "status": "open", "desc": "1er/siguiente en anotar - Marruecos (live 2T, 1-1)" },
+    { "id": "bm-live-oddeven-impar", "match": "brazil-morocco", "home": "brazil", "away": "morocco", "date": "2026-06-13", "market": "odd_even", "pick": "odd", "odds": 1.80, "stake": 1000, "status": "open", "desc": "Total goles Par/Impar (partido) - Impar (live 2T)" },
+    { "id": "bm-live-rest-mar", "match": "brazil-morocco", "home": "brazil", "away": "morocco", "date": "2026-06-13", "market": "rest_of_match", "pick": "away", "odds": 4.10, "stake": 1000, "status": "open", "desc": "Resultado resto del partido - Marruecos (live 2T)" },
+    { "id": "bm-live-away-over15", "match": "brazil-morocco", "home": "brazil", "away": "morocco", "date": "2026-06-13", "market": "team_total_over", "team": "away", "line": 1.5, "odds": 2.15, "stake": 1000, "status": "open", "desc": "Marruecos (visitante) Más de 1.5 goles (live 2T)" }
   ]
 }

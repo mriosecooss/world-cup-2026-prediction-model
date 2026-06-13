@@ -9,8 +9,8 @@ _Actualizado: 13 de junio de 2026_
 | USA–Paraguay (cerrado) | $18.550 | $21.860 | **+$3.310** |
 | Canadá–Bosnia (cerrado) | $20.000 | $10.550 | **−$9.450** |
 | Qatar–Suiza (cerrado) | $8.000 | $0 | **−$8.000** |
-| Brasil–Marruecos (en juego) | $17.500 | — | pendiente |
-| **TOTAL JORNADA** | **$64.050** | — | — |
+| Brasil–Marruecos (en juego) | $21.500 | — | pendiente |
+| **TOTAL JORNADA** | **$68.050** | — | — |
 
 ---
 
@@ -33,8 +33,14 @@ _Actualizado: 13 de junio de 2026_
 | bm-htft-ME | HT/FT Marruecos/Empate | 15,00 | $1.500 | $22.500 |
 | bm-htft-BM | HT/FT Brasil/Marruecos | 50,00 | $1.500 | $75.000 |
 | bm-htft-EM | HT/FT Empate/Marruecos | 9,25 | $1.500 | $13.875 |
-| **TOTAL APOSTADO** | | | **$17.500** | |
-| **TOTAL A COBRAR** (si ganaran todas*) | | | | **$369.674** |
+| live-1 | 1er/siguiente en anotar - Marruecos | 2,95 | $1.000 | $2.950 |
+| live-2 | Par/Impar del partido - Impar | 1,80 | $1.000 | $1.800 |
+| live-3 | Resto del partido - Marruecos | 4,10 | $1.000 | $4.100 |
+| live-4 | Marruecos (visitante) +1.5 goles | 2,15 | $1.000 | $2.150 |
+| **TOTAL APOSTADO** | | | **$21.500** | |
+| **TOTAL A COBRAR** (si ganaran todas*) | | | | **$380.674** |
+
+_Las 4 "live" se agregaron en el 2º tiempo con el partido 1-1._
 
 \* _Imposible cobrar todas: muchas son mutuamente excluyentes (solo sale un HT/FT, etc.). Es el potencial bruto teórico, no alcanzable._
 
