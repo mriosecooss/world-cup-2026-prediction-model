@@ -1,6 +1,8 @@
 // Elo + Dixon-Coles bivariate Poisson — the match model behind https://cup26matches.com
+// v2: adds SPI-style attack/defense parameters (Dixon & Coles 1997 full implementation)
 // References: World Football Elo; Maher (1982); Dixon & Coles (1997).
 export const K_FACTOR_WC = 60;
+export const BASE_GOALS   = 1.35; // global avg goals per team per game
 
 // Dixon-Coles ρ — corrects vanilla Poisson's under-count of 0-0 / 1-1 draws. ~ -0.13 empirically.
 export const DC_RHO = -0.13;
@@ -55,6 +57,45 @@ export function matchProb(ratingA, ratingB, homeBonusA = 0) {
   }
   const total = winA + draw + winB;
   return { winA: winA / total, draw: draw / total, winB: winB / total, expectedGoalsA: lambda, expectedGoalsB: mu };
+}
+
+// SPI-style: expected goals using separate attack/defense parameters.
+// attackA = alpha of team A, defenseB = beta (vulnerability) of team B.
+// contextMult = phase × venue multiplier (1.0 for neutral group stage).
+export function expectedGoalsSPI(attackA, defenseB, homeBonus = 0, contextMult = 1.0) {
+  const base = BASE_GOALS * attackA * defenseB * contextMult;
+  const adj  = base + homeBonus / 600; // small home effect on xG
+  return Math.max(0.3, Math.min(4.0, adj));
+}
+
+// Full match probabilities using SPI attack/defense parameters.
+export function matchProbSPI(alphaA, betaB, alphaB, betaA, homeBonus = 0, contextMult = 1.0) {
+  const lambda = expectedGoalsSPI(alphaA, betaB, homeBonus,  contextMult);
+  const mu     = expectedGoalsSPI(alphaB, betaA, -homeBonus/2, contextMult);
+  let winA = 0, draw = 0, winB = 0;
+  for (let a = 0; a <= 8; a++) {
+    const pA = poissonPmf(a, lambda);
+    for (let b = 0; b <= 8; b++) {
+      const tau = dcTau(a, b, lambda, mu, DC_RHO);
+      const p = pA * poissonPmf(b, mu) * tau;
+      if (a > b) winA += p; else if (a < b) winB += p; else draw += p;
+    }
+  }
+  const total = winA + draw + winB;
+  return { winA: winA/total, draw: draw/total, winB: winB/total, expectedGoalsA: lambda, expectedGoalsB: mu, model: 'spi' };
+}
+
+// Blend Elo and SPI predictions (weight: 0=pure Elo, 1=pure SPI).
+export function matchProbBlended(eloResult, spiResult, spiWeight = 0.45) {
+  const w = spiWeight, ew = 1 - w;
+  return {
+    winA: ew*eloResult.winA + w*spiResult.winA,
+    draw: ew*eloResult.draw + w*spiResult.draw,
+    winB: ew*eloResult.winB + w*spiResult.winB,
+    expectedGoalsA: ew*eloResult.expectedGoalsA + w*spiResult.expectedGoalsA,
+    expectedGoalsB: ew*eloResult.expectedGoalsB + w*spiResult.expectedGoalsB,
+    model: 'blended',
+  };
 }
 
 // Sample a scoreline (for Monte Carlo). allowDraw=false → penalty shootout nudge toward higher Elo.

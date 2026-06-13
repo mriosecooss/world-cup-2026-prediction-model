@@ -1,0 +1,27 @@
+{
+  "note": "FIFA World Cup 2026 venues. altitudeM = meters above sea level. goalMult > 1 means more goals expected.",
+  "venues": {
+    "dallas":        { "city": "Dallas, TX",         "stadium": "AT&T Stadium",         "altitudeM": 170,  "goalMult": 1.00 },
+    "los-angeles":   { "city": "Los Angeles, CA",    "stadium": "SoFi Stadium",          "altitudeM": 80,   "goalMult": 1.00 },
+    "new-york":      { "city": "East Rutherford, NJ","stadium": "MetLife Stadium",        "altitudeM": 10,   "goalMult": 1.00 },
+    "san-francisco": { "city": "Santa Clara, CA",    "stadium": "Levi's Stadium",         "altitudeM": 14,   "goalMult": 1.00 },
+    "kansas-city":   { "city": "Kansas City, MO",    "stadium": "Arrowhead Stadium",      "altitudeM": 235,  "goalMult": 1.01 },
+    "boston":        { "city": "Foxborough, MA",     "stadium": "Gillette Stadium",       "altitudeM": 39,   "goalMult": 1.00 },
+    "philadelphia":  { "city": "Philadelphia, PA",   "stadium": "Lincoln Financial",      "altitudeM": 10,   "goalMult": 1.00 },
+    "houston":       { "city": "Houston, TX",        "stadium": "NRG Stadium",            "altitudeM": 18,   "goalMult": 1.00 },
+    "seattle":       { "city": "Seattle, WA",        "stadium": "Lumen Field",            "altitudeM": 10,   "goalMult": 1.00 },
+    "miami":         { "city": "Miami Gardens, FL",  "stadium": "Hard Rock Stadium",      "altitudeM": 2,    "goalMult": 1.00 },
+    "mexico-city":   { "city": "Mexico City, MX",    "stadium": "Estadio Azteca",         "altitudeM": 2240, "goalMult": 1.18 },
+    "guadalajara":   { "city": "Guadalajara, MX",    "stadium": "Estadio Akron",          "altitudeM": 1566, "goalMult": 1.12 },
+    "monterrey":     { "city": "Monterrey, MX",      "stadium": "Estadio BBVA",           "altitudeM": 530,  "goalMult": 1.04 },
+    "vancouver":     { "city": "Vancouver, BC",      "stadium": "BC Place",               "altitudeM": 10,   "goalMult": 1.00 },
+    "toronto":       { "city": "Toronto, ON",        "stadium": "BMO Field",              "altitudeM": 76,   "goalMult": 1.00 }
+  },
+  "altitudeRules": {
+    "description": "Goal multiplier by altitude",
+    "under500m":   1.00,
+    "500to1500m":  1.04,
+    "1500to2000m": 1.12,
+    "over2000m":   1.18
+  }
+}
