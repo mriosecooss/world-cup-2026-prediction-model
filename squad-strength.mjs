@@ -6,7 +6,9 @@ const data = JSON.parse(readFileSync(new URL('./data/players.json', import.meta.
 
 export function squadAdjustment(teamSlug) {
   const team = data.teams[teamSlug];
-  if (!team) return { adjustment: 0, available: [], missing: [], ratio: 1 };
+  // hasData=false → no hay plantel cargado para este equipo (solo usa/paraguay tienen datos).
+  // El ajuste es neutral (0), pero el caller debe saber que NO se evaluó el plantel.
+  if (!team) return { adjustment: 0, available: [], missing: [], ratio: 1, hasData: false };
 
   const totalImpact = team.players.reduce((s, p) => s + p.elo_impact, 0);
   const missingImpact = team.players.filter(p => !p.available).reduce((s, p) => s + p.elo_impact, 0);
@@ -22,6 +24,7 @@ export function squadAdjustment(teamSlug) {
     missing: team.players.filter(p => !p.available).map(p => ({ name: p.name, impact: p.elo_impact })),
     totalImpact,
     missingImpact,
+    hasData: true,
   };
 }
 

@@ -68,24 +68,33 @@ EV  = (prob_modelo × cuota) − 1
 
 Backtest usa el modelo blended real (igual que predict.mjs). Half-life diferenciado, DC_RHO=−0.075,
 SEED unificado (63 equipos desde data/seed-ratings.json). Calibración bin 40-50% mejoró a 45%→47%
-(antes 45%→52%), reduciendo la urgencia de la tarea 5 (Platt scaling).
+(antes 45%→54%), reduciendo la urgencia de la tarea 5 (Platt scaling).
 
-## Tareas pendientes
+## Tareas
 
 | # | Tarea | Estado | Descripción breve |
 |---|---|---|---|
 | 1 | Half-life diferenciado | ✅ | WC 30m / Cups 24m / NL 18m / Clasif 12m / Amistosos 6m. WC2022: peso 0.09 → 0.38 |
 | 2 | Backtest corregido | ✅ | Reescrito para usar `matchProbBlended` igual que `predict.mjs` |
-| 3 | Blend weight optimizado | ✅ | Grid search RPS: 0.45 → 0.65, mejora 59 basis points |
+| 3 | Blend weight optimizado | ✅ | Grid search RPS: 0.45 → 0.65 |
+| 4 | Squad adjustment sobre SPI | ✅ | Ya implementado en predict.mjs (`sA.attack * sqA.ratio`). Solo aplica a equipos en players.json |
+| 6 | `elo-live.json` incremental | ✅ | `update-elo-live.mjs` (K=20) + flag `--live` en predict. Usar desde octavos |
+| 7 | `halftime.mjs` genérico | ✅ | CLI: `node halftime.mjs brasil marruecos 1 0 38` |
+| 8 | Flag `--odds` en predict.mjs | ✅ | `--odds=2.20,3.40,3.90` imprime EV por outcome |
 | 9 | Actualización diaria resultados | ✅ | `add-result.mjs` — registrar partidos en lenguaje natural vía Claude o CLI |
-| 4 | Squad adjustment sobre SPI | ✅ | Ya implementado en predict.mjs líneas 56-63: `sA.attack * sqA.ratio`. Estaba desde v3 |
-| 7 | `halftime.mjs` genérico | Pendiente | Hardcodeado USA-PAR 3-0. Convertir a `node halftime.mjs brasil marruecos 1 0 38` |
-| 8 | Flag `--odds` en predict.mjs | Pendiente | `--odds "2.20 3.40 3.90"` para imprimir EV por outcome directo en consola |
-| 6 | `elo-live.json` incremental | Pendiente (octavos) | Elo actualizado K=20 con resultados WC2026. Sin tocar el congelado. Flag `--live` en predict |
-| 5 | Calibración bin 40-50% | Pendiente | Modelo dice 45% → ocurre 54%. Platt scaling post-proceso |
-| 12 | `track-record.mjs` usa Elo puro | ✅ | Ahora usa `matchProbBlended` con SPI_WEIGHT=0.65, consistente con predict.mjs |
-| 11 | Filtrar clasificatorias débiles SPI | Pendiente | `spi-ratings.json` infla ataque CAF/AFC por partidos vs rivales ~1300 Elo |
-| 10 | Calibrar DC_RHO | ✅ | MLE sobre 272 marcadores bajos: −0.13 → −0.065. ECE 2.8% → 2.3% |
+| 10 | Calibrar DC_RHO | ✅ | MLE: −0.13 → −0.075 (con SEED unificado). ECE 2.8% → 1.9% |
+| 11 | Filtrar clasificatorias débiles SPI | ✅ | calibrate-spi con HL por competición; CECAFA/COSAFA fuera por cutoff 3 años |
+| 12 | `track-record.mjs` usa blended | ✅ | `matchProbBlended` SPI_WEIGHT=0.65, consistente con predict.mjs |
+| M1 | README actualizado a v5 | ✅ | Blend Elo+SPI, métricas, calibración, archivos nuevos |
+| D1-D4 | Eliminar duplicación | ✅ | SEED→seed-ratings.json, RATE_BLOCKS/SLUG_TO_NAME/HOST→constants.mjs, dcTau exportado |
+| B1-B3 | Consistencia blend + CLI genérico | ✅ | analyze.mjs y nextgoal.mjs reescritos genéricos con blend 0.65 |
+| B4 | Squad data faltante | ✅ (parcial) | `hasData` flag; predict muestra "sin datos". players.json solo tiene usa/paraguay |
+| 5 | Calibración bin 40-50% (Platt) | 📅 3 julio | Ya mejoró a 45%→47% con SEED unificado. Reevaluar tras fase de grupos |
+
+### Limitación conocida: players.json
+Solo `usa` y `paraguay` tienen plantel cargado. Para los otros 46 equipos `squadAdjustment`
+devuelve neutral (`hasData: false`) y predict muestra "sin datos" — el ajuste por bajas NO se aplica.
+Poblar players.json requiere datos confiables de elo_impact por jugador (pendiente, baja prioridad).
 
 ## Reglas de apuestas derivadas del modelo
 - ✅ Confiar en EV de mercados **1X2, HT/FT, resultado por tiempo** para todos los equipos

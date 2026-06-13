@@ -92,7 +92,8 @@ console.log(`  Modelo Elo       :  ${a} ${(eloResult.winA*100).toFixed(1)}% / ${
 if (!eloOnly && spiR[a]) {
   const s = spiR;
   console.log(`  Ataque/Defensa   :  ${a} α=${s[a]?.attack} β=${s[a]?.defense}  │  ${b} α=${s[b]?.attack} β=${s[b]?.defense}`);
-  console.log(`  Squad strength   :  ${a} ${(sqA.ratio*100).toFixed(0)}%  │  ${b} ${(sqB.ratio*100).toFixed(0)}%`);
+  const sqLabel = (sq) => sq.hasData ? `${(sq.ratio*100).toFixed(0)}%` : 'sin datos';
+  console.log(`  Squad strength   :  ${a} ${sqLabel(sqA)}  │  ${b} ${sqLabel(sqB)}`);
 }
 console.log(`  Elo (ajustado)   :  ${a} ${raAdj}  │  ${b} ${rbAdj}${useLive ? '  [LIVE]' : ''}\n`);
 const oddsStr = getFlag('odds');
