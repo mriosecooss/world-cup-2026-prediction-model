@@ -4,8 +4,9 @@
 export const K_FACTOR_WC = 60;
 export const BASE_GOALS   = 1.35; // global avg goals per team per game
 
-// Dixon-Coles ρ — corrects vanilla Poisson's under-count of 0-0 / 1-1 draws. ~ -0.13 empirically.
-export const DC_RHO = -0.13;
+// Dixon-Coles ρ — corrects vanilla Poisson's under-count of 0-0 / 1-1 draws.
+// MLE calibrated on this dataset via calibrate-rho.mjs: -0.065 (paper used -0.13 on English football).
+export const DC_RHO = -0.065;
 
 function dcTau(a, b, lambda, mu, rho) {
   if (a === 0 && b === 0) return 1 - lambda * mu * rho;

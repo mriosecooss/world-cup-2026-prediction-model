@@ -15,7 +15,7 @@ SPI:  λ = 1.35 × attack_A × defense_B   [clamped 0.3–4.0]
 EV  = (prob_modelo × cuota) − 1
 1H  = 44% de λ total  |  2H = 56%
 ```
-- Dixon-Coles ρ = −0.13 (hardcoded, no calibrado en este dataset)
+- Dixon-Coles ρ = −0.065 (calibrado por MLE via `calibrate-rho.mjs` — paper usaba −0.13 en fútbol inglés)
 - K_FACTOR_WC = 60 (clasificatorias 42, amistosos 16)
 - HOME_ADV = 75 Elo puntos (hosts: mexico +20, usa +10, canada +5)
 - Blend en `matchProbBlended(eloResult, spiResult, 0.65)` → optimizado via grid search RPS
@@ -62,9 +62,9 @@ EV  = (prob_modelo × cuota) − 1
 | Brier | 0.520 | **0.506** | 0.667 |
 | Log-loss | 0.886 | **0.862** | 1.099 |
 | RPS | 0.1746 | **0.1687** (−59bp) | 0.2406 |
-| ECE | 2.3% | 2.8% | — |
+| ECE | 2.3% | **2.3%** | — |
 
-Backtest ahora usa el modelo blended real (igual que predict.mjs). Half-life diferenciado aplicado.
+Backtest usa el modelo blended real (igual que predict.mjs). Half-life diferenciado. DC_RHO calibrado.
 
 ## Tareas pendientes
 
@@ -79,9 +79,9 @@ Backtest ahora usa el modelo blended real (igual que predict.mjs). Half-life dif
 | 8 | Flag `--odds` en predict.mjs | Pendiente | `--odds "2.20 3.40 3.90"` para imprimir EV por outcome directo en consola |
 | 6 | `elo-live.json` incremental | Pendiente (octavos) | Elo actualizado K=20 con resultados WC2026. Sin tocar el congelado. Flag `--live` en predict |
 | 5 | Calibración bin 40-50% | Pendiente | Modelo dice 45% → ocurre 54%. Platt scaling post-proceso |
-| 12 | `track-record.mjs` usa Elo puro | Pendiente | Usa `matchProb()` en vez del blended — inconsistente con predict.mjs |
+| 12 | `track-record.mjs` usa Elo puro | ✅ | Ahora usa `matchProbBlended` con SPI_WEIGHT=0.65, consistente con predict.mjs |
 | 11 | Filtrar clasificatorias débiles SPI | Pendiente | `spi-ratings.json` infla ataque CAF/AFC por partidos vs rivales ~1300 Elo |
-| 10 | Calibrar DC_RHO | Pendiente | −0.13 del paper 1997, no calibrado en este dataset. Afecta mercados de goles exactos |
+| 10 | Calibrar DC_RHO | ✅ | MLE sobre 272 marcadores bajos: −0.13 → −0.065. ECE 2.8% → 2.3% |
 
 ## Reglas de apuestas derivadas del modelo
 - ✅ Confiar en EV de mercados **1X2, HT/FT, resultado por tiempo** para todos los equipos
