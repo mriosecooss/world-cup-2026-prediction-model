@@ -30,6 +30,7 @@ EV  = (prob_modelo × cuota) − 1
 | `test.mjs` | Suite de 42 invariantes — `npm test` |
 | `bet-ev.mjs` | Tracker V1: calcula EV de las apuestas en data/bets.json (mercados de goles + split por tiempo) |
 | `bankroll.mjs` | Reconcilia abonos (data/deposits.json) + apuestas → saldo, P&L y ROI sobre capital propio (distingue reinversión) |
+| `live-stats.mjs` | Cliente genérico WC26 Live Football API (RapidAPI). Key vía env `RAPIDAPI_KEY`. `--discover` / `--endpoint="/ruta"` / `--xg`. NO hardcodear key |
 | `predict.mjs` | CLI principal: `node predict.mjs <a> <b> [--venue=X] [--phase=X] [--live]` |
 | `calibrate.mjs` | Genera `elo-calibrated.json` desde `results-full.json` |
 | `calibrate-spi.mjs` | Genera `spi-ratings.json` |
