@@ -19,15 +19,16 @@ export function baseK(leagueName = '') {
 // Multiplicador por margen de goles (goleadas mueven más el Elo).
 export const gMult = (gd) => { const d = Math.abs(gd); return d <= 1 ? 1 : d === 2 ? 1.5 : (11 + d) / 8; };
 
-// Distribución empírica de goles por bloque de 15 minutos (normalizada: suma = 6, promedio = 1.0).
+// Distribución empírica de goles por bloque de 15 minutos (normalizada: suma rates = 6.0).
 // Fuente: análisis de ~200k goles mostrando el repunte tardío. Usado por halftime.mjs y nextgoal.mjs.
+// Bloques CONTINUOS [from, to): rateIntegral(0,90) = 15 × 6.0 = 90 exacto.
 export const RATE_BLOCKS = [
-  { from:  1, to: 15, rate: 0.714 },  // arranque lento
-  { from: 16, to: 30, rate: 0.876 },
-  { from: 31, to: 45, rate: 1.048 },  // empuje primer tiempo
-  { from: 46, to: 60, rate: 0.790 },  // segundo tiempo cauto
-  { from: 61, to: 75, rate: 1.067 },
-  { from: 76, to: 90, rate: 1.505 },  // empuje final (+50% vs promedio)
+  { from:  0, to: 15, rate: 0.714 },  // arranque lento
+  { from: 15, to: 30, rate: 0.876 },
+  { from: 30, to: 45, rate: 1.048 },  // empuje primer tiempo
+  { from: 45, to: 60, rate: 0.790 },  // segundo tiempo cauto
+  { from: 60, to: 75, rate: 1.067 },
+  { from: 75, to: 90, rate: 1.505 },  // empuje final (+50% vs promedio)
 ];
 
 // Integral de la tasa goleadora entre dos minutos.

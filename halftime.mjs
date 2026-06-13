@@ -49,8 +49,8 @@ const fullXg1 = blendFull.expectedGoalsA;
 const fullXg2 = blendFull.expectedGoalsB;
 
 // Distribución por minutos (RATE_BLOCKS y rateIntegral en constants.mjs)
-const FULL_WEIGHT = 90;
-const remainingFrac = rateIntegral(minute + 1, 90) / FULL_WEIGHT;
+const FULL_WEIGHT = rateIntegral(0, 90); // = 90
+const remainingFrac = rateIntegral(minute, 90) / FULL_WEIGHT;
 const xg1r = fullXg1 * remainingFrac;
 const xg2r = fullXg2 * remainingFrac;
 

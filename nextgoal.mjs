@@ -9,7 +9,7 @@ import { matchProb, matchProbSPI, matchProbBlended } from './elo.mjs';
 import { SLUG_TO_NAME, RATE_BLOCKS, rateIntegral } from './constants.mjs';
 
 const SPI_WEIGHT = 0.65;
-const FULL_WEIGHT = rateIntegral(1, 90); // = 90.0 (verified)
+const FULL_WEIGHT = rateIntegral(0, 90); // = 90
 
 const { ratings: eloR } = JSON.parse(readFileSync(new URL('./data/elo-calibrated.json', import.meta.url), 'utf8'));
 const { ratings: spiR } = JSON.parse(readFileSync(new URL('./data/spi-ratings.json', import.meta.url), 'utf8'));
