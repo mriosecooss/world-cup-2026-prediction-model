@@ -1,60 +1,60 @@
 {
-  "calibratedAt": "2026-06-13T08:11:34.248Z",
+  "calibratedAt": "2026-06-13T19:28:09.615Z",
   "base": 1.35,
   "matchesUsed": 676,
   "ratings": {
     "argentina": {
-      "attack": 1.312,
+      "attack": 1.3121,
       "defense": 0.3107,
       "xg_for": 1.771,
       "xg_against": 0.419
     },
     "france": {
-      "attack": 1.466,
+      "attack": 1.4657,
       "defense": 0.5635,
       "xg_for": 1.979,
       "xg_against": 0.761
     },
     "spain": {
-      "attack": 1.9706,
+      "attack": 1.9709,
       "defense": 0.7,
-      "xg_for": 2.66,
+      "xg_for": 2.661,
       "xg_against": 0.945
     },
     "brazil": {
-      "attack": 1.9368,
-      "defense": 0.7783,
-      "xg_for": 2.615,
+      "attack": 1.9367,
+      "defense": 0.7782,
+      "xg_for": 2.614,
       "xg_against": 1.051
     },
     "england": {
-      "attack": 1.2909,
+      "attack": 1.2911,
       "defense": 0.5421,
       "xg_for": 1.743,
       "xg_against": 0.732
     },
     "portugal": {
-      "attack": 1.6599,
+      "attack": 1.6601,
       "defense": 0.4896,
       "xg_for": 2.241,
       "xg_against": 0.661
     },
     "netherlands": {
-      "attack": 1.3948,
-      "defense": 0.8757,
+      "attack": 1.3947,
+      "defense": 0.8758,
       "xg_for": 1.883,
       "xg_against": 1.182
     },
     "germany": {
       "attack": 1.8192,
-      "defense": 0.8448,
+      "defense": 0.8447,
       "xg_for": 2.456,
       "xg_against": 1.14
     },
     "belgium": {
-      "attack": 2.0812,
-      "defense": 0.8827,
-      "xg_for": 2.81,
+      "attack": 2.0807,
+      "defense": 0.8829,
+      "xg_for": 2.809,
       "xg_against": 1.192
     },
     "italy": {
@@ -64,39 +64,39 @@
       "xg_against": 1.314
     },
     "colombia": {
-      "attack": 1.7264,
-      "defense": 0.7395,
+      "attack": 1.7265,
+      "defense": 0.7396,
       "xg_for": 2.331,
       "xg_against": 0.998
     },
     "uruguay": {
-      "attack": 0.951,
-      "defense": 0.5487,
+      "attack": 0.9511,
+      "defense": 0.5486,
       "xg_for": 1.284,
       "xg_against": 0.741
     },
     "croatia": {
       "attack": 1.0267,
-      "defense": 0.7201,
+      "defense": 0.7202,
       "xg_for": 1.386,
       "xg_against": 0.972
     },
     "morocco": {
-      "attack": 1.275,
-      "defense": 0.572,
+      "attack": 1.2749,
+      "defense": 0.5719,
       "xg_for": 1.721,
       "xg_against": 0.772
     },
     "switzerland": {
-      "attack": 1.4107,
+      "attack": 1.4106,
       "defense": 0.8421,
       "xg_for": 1.904,
       "xg_against": 1.137
     },
     "usa": {
-      "attack": 1.1901,
-      "defense": 1.0779,
-      "xg_for": 1.607,
+      "attack": 1.19,
+      "defense": 1.0778,
+      "xg_for": 1.606,
       "xg_against": 1.455
     },
     "mexico": {
@@ -107,30 +107,30 @@
     },
     "japan": {
       "attack": 1.0965,
-      "defense": 0.65,
+      "defense": 0.6502,
       "xg_for": 1.48,
-      "xg_against": 0.877
+      "xg_against": 0.878
     },
     "senegal": {
-      "attack": 1.1489,
-      "defense": 1.0586,
+      "attack": 1.149,
+      "defense": 1.0588,
       "xg_for": 1.551,
       "xg_against": 1.429
     },
     "denmark": {
-      "attack": 0.8611,
+      "attack": 0.8613,
       "defense": 0.775,
       "xg_for": 1.163,
       "xg_against": 1.046
     },
     "ecuador": {
-      "attack": 0.8224,
+      "attack": 0.8223,
       "defense": 0.3397,
       "xg_for": 1.11,
       "xg_against": 0.459
     },
     "australia": {
-      "attack": 1.011,
+      "attack": 1.0111,
       "defense": 0.7253,
       "xg_for": 1.365,
       "xg_against": 0.979
@@ -142,26 +142,26 @@
       "xg_against": 1.298
     },
     "iran": {
-      "attack": 0.647,
+      "attack": 0.6471,
       "defense": 0.8911,
-      "xg_for": 0.873,
+      "xg_for": 0.874,
       "xg_against": 1.203
     },
     "poland": {
-      "attack": 1.1018,
+      "attack": 1.1017,
       "defense": 1.1497,
       "xg_for": 1.487,
       "xg_against": 1.552
     },
     "canada": {
       "attack": 0.825,
-      "defense": 0.5928,
+      "defense": 0.593,
       "xg_for": 1.114,
-      "xg_against": 0.8
+      "xg_against": 0.801
     },
     "serbia": {
-      "attack": 0.581,
-      "defense": 1.1552,
+      "attack": 0.5809,
+      "defense": 1.1547,
       "xg_for": 0.784,
       "xg_against": 1.559
     },
@@ -178,20 +178,20 @@
       "xg_against": 1.831
     },
     "tunisia": {
-      "attack": 0.6411,
-      "defense": 0.9207,
-      "xg_for": 0.865,
+      "attack": 0.6412,
+      "defense": 0.9208,
+      "xg_for": 0.866,
       "xg_against": 1.243
     },
     "ivory-coast": {
-      "attack": 1.1845,
-      "defense": 0.6909,
+      "attack": 1.1843,
+      "defense": 0.6912,
       "xg_for": 1.599,
       "xg_against": 0.933
     },
     "nigeria": {
       "attack": 1.2576,
-      "defense": 0.8166,
+      "defense": 0.8164,
       "xg_for": 1.698,
       "xg_against": 1.102
     },
@@ -202,20 +202,20 @@
       "xg_against": 1.259
     },
     "qatar": {
-      "attack": 0.7306,
-      "defense": 1.9639,
-      "xg_for": 0.986,
+      "attack": 0.7308,
+      "defense": 1.9637,
+      "xg_for": 0.987,
       "xg_against": 2.651
     },
     "egypt": {
-      "attack": 0.9086,
-      "defense": 0.8018,
-      "xg_for": 1.227,
-      "xg_against": 1.082
+      "attack": 0.9085,
+      "defense": 0.802,
+      "xg_for": 1.226,
+      "xg_against": 1.083
     },
     "algeria": {
-      "attack": 1.3556,
-      "defense": 0.5073,
+      "attack": 1.3554,
+      "defense": 0.5075,
       "xg_for": 1.83,
       "xg_against": 0.685
     },
@@ -233,61 +233,61 @@
     },
     "paraguay": {
       "attack": 0.9767,
-      "defense": 0.6503,
+      "defense": 0.6502,
       "xg_for": 1.319,
       "xg_against": 0.878
     },
     "venezuela": {
       "attack": 1.0446,
-      "defense": 1.0663,
+      "defense": 1.0664,
       "xg_for": 1.41,
       "xg_against": 1.44
     },
     "chile": {
-      "attack": 1.1341,
+      "attack": 1.1339,
       "defense": 1.1186,
       "xg_for": 1.531,
       "xg_against": 1.51
     },
     "peru": {
-      "attack": 0.4785,
-      "defense": 0.9348,
+      "attack": 0.4784,
+      "defense": 0.9347,
       "xg_for": 0.646,
       "xg_against": 1.262
     },
     "czech-republic": {
-      "attack": 1.1829,
-      "defense": 1.3933,
+      "attack": 1.1828,
+      "defense": 1.3932,
       "xg_for": 1.597,
       "xg_against": 1.881
     },
     "bosnia-and-herzegovina": {
-      "attack": 0.6988,
-      "defense": 1.3101,
+      "attack": 0.6989,
+      "defense": 1.3103,
       "xg_for": 0.943,
       "xg_against": 1.769
     },
     "south-africa": {
       "attack": 0.5637,
-      "defense": 0.8455,
+      "defense": 0.8456,
       "xg_for": 0.761,
       "xg_against": 1.141
     },
     "new-zealand": {
-      "attack": 0.6318,
-      "defense": 1.1447,
+      "attack": 0.632,
+      "defense": 1.1446,
       "xg_for": 0.853,
       "xg_against": 1.545
     },
     "panama": {
-      "attack": 0.8351,
-      "defense": 1.4394,
+      "attack": 0.835,
+      "defense": 1.4393,
       "xg_for": 1.127,
       "xg_against": 1.943
     },
     "jamaica": {
-      "attack": 0.4808,
-      "defense": 1.454,
+      "attack": 0.4809,
+      "defense": 1.4541,
       "xg_for": 0.649,
       "xg_against": 1.963
     },
@@ -298,67 +298,67 @@
       "xg_against": 1.816
     },
     "jordan": {
-      "attack": 1.0188,
-      "defense": 1.3262,
-      "xg_for": 1.375,
+      "attack": 1.0189,
+      "defense": 1.3261,
+      "xg_for": 1.376,
       "xg_against": 1.79
     },
     "haiti": {
-      "attack": 0.6539,
-      "defense": 1.9388,
+      "attack": 0.6538,
+      "defense": 1.939,
       "xg_for": 0.883,
-      "xg_against": 2.617
+      "xg_against": 2.618
     },
     "el-salvador": {
       "attack": 0.113,
-      "defense": 1.2531,
+      "defense": 1.2534,
       "xg_for": 0.153,
       "xg_against": 1.692
     },
     "trinidad-and-tobago": {
-      "attack": 0.4236,
-      "defense": 2.6584,
+      "attack": 0.4237,
+      "defense": 2.6583,
       "xg_for": 0.572,
       "xg_against": 3.589
     },
     "guatemala": {
       "attack": 0.4649,
-      "defense": 2.2979,
+      "defense": 2.2977,
       "xg_for": 0.628,
       "xg_against": 3.102
     },
     "norway": {
-      "attack": 1.3831,
-      "defense": 0.8163,
+      "attack": 1.3833,
+      "defense": 0.8165,
       "xg_for": 1.867,
       "xg_against": 1.102
     },
     "sweden": {
-      "attack": 1.1293,
-      "defense": 1.3952,
-      "xg_for": 1.525,
-      "xg_against": 1.884
+      "attack": 1.129,
+      "defense": 1.3951,
+      "xg_for": 1.524,
+      "xg_against": 1.883
     },
     "austria": {
       "attack": 1.3111,
-      "defense": 0.7693,
+      "defense": 0.7695,
       "xg_for": 1.77,
       "xg_against": 1.039
     },
     "turkey": {
-      "attack": 0.9526,
-      "defense": 0.9214,
+      "attack": 0.9525,
+      "defense": 0.9213,
       "xg_for": 1.286,
       "xg_against": 1.244
     },
     "uzbekistan": {
       "attack": 0.6486,
-      "defense": 0.8634,
+      "defense": 0.8632,
       "xg_for": 0.876,
-      "xg_against": 1.166
+      "xg_against": 1.165
     },
     "iraq": {
-      "attack": 0.4591,
+      "attack": 0.4592,
       "defense": 0.9528,
       "xg_for": 0.62,
       "xg_against": 1.286
@@ -370,14 +370,14 @@
       "xg_against": 0.911
     },
     "cape-verde": {
-      "attack": 1.0246,
-      "defense": 1.2354,
+      "attack": 1.0245,
+      "defense": 1.2356,
       "xg_for": 1.383,
       "xg_against": 1.668
     },
     "curacao": {
       "attack": 0.5941,
-      "defense": 1.94,
+      "defense": 1.9397,
       "xg_for": 0.802,
       "xg_against": 2.619
     }

@@ -1,0 +1,22 @@
+feat: fixture WC2026 completo (F2) + venue automatico (F3)
+
+F2 -- data/fixture-wc2026.json: los 104 partidos del Mundial (sorteo 5-dic-2025).
+  12 grupos con equipos, eliminatorias con placeholders (1A/2B/3ABCDF/W73/L101).
+  Cada partido con fecha, hora (ET) y sede.
+  Nuevo fixture.mjs: ver proximos partidos con prediccion del modelo.
+    node fixture.mjs --next=8 / --group=C / --all / --live
+
+F3 -- predict.mjs resuelve la sede automaticamente desde el fixture si no se pasa
+  --venue, aplicando el multiplicador de altitud (ej. Uzbekistan-Colombia en Azteca
+  detecta x1.18 solo). El --venue manual mantiene prioridad.
+
+Datos:
+- venues-wc2026.json: agregada Atlanta (16a sede, Mercedes-Benz Stadium) que faltaba.
+- wc2026-results.json: corregido USA-Paraguay (era grupo C, es grupo D) y
+  Canada-Bosnia (era Matchday 2, es Matchday 1).
+- Artefactos recalibrados (elo-calibrated, spi-ratings, blend-search, elo-live).
+
+Tests: test.mjs ahora valida el fixture (104 partidos, 12 grupos, 48 equipos,
+cada equipo juega 3, sedes existen). 42 invariantes en total, todos pasan.
+
+Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>

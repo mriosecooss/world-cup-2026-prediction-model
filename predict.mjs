@@ -13,6 +13,11 @@ const { ratings: eloFrozen } = JSON.parse(readFileSync(new URL('./data/elo-calib
 const eloLiveFile = new URL('./data/elo-live.json', import.meta.url);
 const { ratings: spiR } = JSON.parse(readFileSync(new URL('./data/spi-ratings.json', import.meta.url), 'utf8'));
 
+// Fixture: para resolver la sede automáticamente si el partido existe en el calendario.
+const fixtureFile = new URL('./data/fixture-wc2026.json', import.meta.url);
+const fixture = existsSync(fixtureFile) ? JSON.parse(readFileSync(fixtureFile, 'utf8')).matches : [];
+const fixtureVenue = (x, y) => fixture.find(m => (m.t1 === x && m.t2 === y) || (m.t1 === y && m.t2 === x))?.venue ?? null;
+
 const argv   = process.argv.slice(2);
 const args   = argv.filter(a => !a.startsWith('--'));
 const flags  = argv.filter(a => a.startsWith('--'));
@@ -36,7 +41,7 @@ if (useLive && !existsSync(eloLiveFile))
 const ra = eloR[a], rb = eloR[b];
 if (!ra || !rb) { console.error(`Unknown: ${!ra ? a : b}`); process.exit(1); }
 
-const venueKey  = getFlag('venue');
+const venueKey  = getFlag('venue') || fixtureVenue(a, b);  // sede del fixture si no se especifica
 const phase     = getFlag('phase') || 'group';
 const useSquad  = !hasFlag('no-squad');
 const eloOnly   = hasFlag('elo-only');

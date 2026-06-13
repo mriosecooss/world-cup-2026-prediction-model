@@ -106,6 +106,31 @@ function check(name, cond, detail = '') {
   check('HOME_ADV razonable', HOME_ADV > 0 && HOME_ADV < 200);
 }
 
+// ---- Fixture WC2026 ----
+{
+  const fx = D('fixture-wc2026.json');
+  const elo = D('elo-calibrated.json').ratings;
+  const venues = D('venues-wc2026.json').venues;
+  check('fixture: 104 partidos', fx.matches.length === 104, `=${fx.matches.length}`);
+  check('fixture: 12 grupos', Object.keys(fx.groups).length === 12);
+  check('fixture: 48 equipos en grupos', new Set(Object.values(fx.groups).flat()).size === 48);
+  const groupSlugs = Object.values(fx.groups).flat();
+  check('fixture: equipos de grupos tienen Elo', groupSlugs.every(s => elo[s] != null),
+    groupSlugs.filter(s => elo[s] == null).join(','));
+  check('fixture: venues existen', fx.matches.every(m => venues[m.venue]),
+    fx.matches.filter(m => !venues[m.venue]).map(m => m.venue).join(','));
+  const groupGames = fx.matches.filter(m => m.stage === 'group');
+  check('fixture: 72 partidos de grupos', groupGames.length === 72, `=${groupGames.length}`);
+  check('fixture: equipos de grupos coinciden con fase de grupos',
+    groupGames.every(m => fx.groups[m.group]?.includes(m.t1) && fx.groups[m.group]?.includes(m.t2)));
+  // Cada equipo juega exactamente 3 partidos de grupo
+  const counts = {};
+  for (const m of groupGames) { counts[m.t1] = (counts[m.t1]||0)+1; counts[m.t2] = (counts[m.t2]||0)+1; }
+  check('fixture: cada equipo juega 3 partidos de grupo',
+    Object.values(counts).every(c => c === 3),
+    Object.entries(counts).filter(([,c]) => c !== 3).map(([t,c]) => `${t}:${c}`).join(','));
+}
+
 // ---- Resultados WC2026 bien formados ----
 {
   const wc = D('wc2026-results.json');

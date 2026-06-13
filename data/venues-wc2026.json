@@ -11,6 +11,7 @@
     "houston":       { "city": "Houston, TX",        "stadium": "NRG Stadium",            "altitudeM": 18,   "goalMult": 1.00 },
     "seattle":       { "city": "Seattle, WA",        "stadium": "Lumen Field",            "altitudeM": 10,   "goalMult": 1.00 },
     "miami":         { "city": "Miami Gardens, FL",  "stadium": "Hard Rock Stadium",      "altitudeM": 2,    "goalMult": 1.00 },
+    "atlanta":       { "city": "Atlanta, GA",        "stadium": "Mercedes-Benz Stadium",  "altitudeM": 320,  "goalMult": 1.00 },
     "mexico-city":   { "city": "Mexico City, MX",    "stadium": "Estadio Azteca",         "altitudeM": 2240, "goalMult": 1.18 },
     "guadalajara":   { "city": "Guadalajara, MX",    "stadium": "Estadio Akron",          "altitudeM": 1566, "goalMult": 1.12 },
     "monterrey":     { "city": "Monterrey, MX",      "stadium": "Estadio BBVA",           "altitudeM": 530,  "goalMult": 1.04 },
