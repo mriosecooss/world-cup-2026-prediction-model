@@ -1,0 +1,41 @@
+{
+  "updated": "2026-06-12",
+  "note": "elo_impact = puntos Elo que aporta este jugador al rating base del equipo. available=false si lesionado/suspendido.",
+  "teams": {
+    "usa": {
+      "base_elo": 1826,
+      "players": [
+        { "name": "Christian Pulisic",   "pos": "MF", "club": "AC Milan",           "number": 10, "elo_impact": 32, "available": true  },
+        { "name": "Tyler Adams",          "pos": "MF", "club": "Bournemouth",         "number": 4,  "elo_impact": 22, "available": true  },
+        { "name": "Weston McKennie",      "pos": "MF", "club": "Juventus",            "number": 8,  "elo_impact": 18, "available": true  },
+        { "name": "Giovanni Reyna",       "pos": "MF", "club": "Nottm Forest",        "number": 7,  "elo_impact": 17, "available": true  },
+        { "name": "Folarin Balogun",      "pos": "FW", "club": "Monaco",              "number": 20, "elo_impact": 16, "available": true  },
+        { "name": "Ricardo Pepi",         "pos": "FW", "club": "PSV",                 "number": 9,  "elo_impact": 15, "available": true  },
+        { "name": "Antonee Robinson",     "pos": "DF", "club": "Fulham",              "number": 5,  "elo_impact": 13, "available": true  },
+        { "name": "Timothy Weah",         "pos": "FW", "club": "Juventus",            "number": 21, "elo_impact": 12, "available": true  },
+        { "name": "Brenden Aaronson",     "pos": "MF", "club": "Leeds United",        "number": 11, "elo_impact": 11, "available": true  },
+        { "name": "Sergiño Dest",         "pos": "DF", "club": "PSV",                 "number": 2,  "elo_impact": 10, "available": true  },
+        { "name": "Matt Turner",          "pos": "GK", "club": "Nottm Forest",        "number": 1,  "elo_impact": 9,  "available": true  },
+        { "name": "Chris Richards",       "pos": "DF", "club": "Crystal Palace",      "number": 3,  "elo_impact": 8,  "available": true  },
+        { "name": "Malik Tillman",        "pos": "MF", "club": "PSV",                 "number": 17, "elo_impact": 7,  "available": true  },
+        { "name": "Haji Wright",          "pos": "FW", "club": "Coventry",            "number": 19, "elo_impact": 6,  "available": true  },
+        { "name": "Miles Robinson",       "pos": "DF", "club": "FC Cincinnati",       "number": 12, "elo_impact": 6,  "available": true  }
+      ]
+    },
+    "paraguay": {
+      "base_elo": 1681,
+      "players": [
+        { "name": "Miguel Almirón",       "pos": "MF", "club": "Atlanta United",      "number": 10, "elo_impact": 35, "available": true  },
+        { "name": "Diego Gómez",          "pos": "MF", "club": "Brighton",            "number": 8,  "elo_impact": 22, "available": true  },
+        { "name": "Ramón Sosa",           "pos": "FW", "club": "Palmeiras",           "number": 11, "elo_impact": 18, "available": true  },
+        { "name": "Gustavo Gómez",        "pos": "DF", "club": "Palmeiras",           "number": 3,  "elo_impact": 17, "available": true  },
+        { "name": "Júnior Alonso",        "pos": "DF", "club": "Atlético Mineiro",    "number": 4,  "elo_impact": 14, "available": true  },
+        { "name": "Fabián Balbuena",      "pos": "DF", "club": "Cruz Azul",           "number": 5,  "elo_impact": 11, "available": true  },
+        { "name": "Omar Alderete",        "pos": "DF", "club": "Getafe",              "number": 6,  "elo_impact": 10, "available": true  },
+        { "name": "Andrés Cubas",         "pos": "MF", "club": "Nottm Forest",        "number": 7,  "elo_impact": 10, "available": true  },
+        { "name": "Gatito Fernández",     "pos": "GK", "club": "Cerro Porteño",       "number": 1,  "elo_impact": 9,  "available": true  },
+        { "name": "Julio Enciso",         "pos": "FW", "club": "Brighton",            "number": 9,  "elo_impact": 9,  "available": true  }
+      ]
+    }
+  }
+}
