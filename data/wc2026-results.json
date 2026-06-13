@@ -1,5 +1,5 @@
 {
- "updated": "2026-06-12T21:07:23.681Z",
+ "updated": "2026-06-13T21:10:42.150Z",
  "matches": [
   {
    "date": "2026-06-11",
@@ -60,6 +60,21 @@
    "pens2": null,
    "status": "FT",
    "winner": "usa"
+  },
+  {
+   "date": "2026-06-13",
+   "round": "Matchday 1",
+   "group": "Group B",
+   "team1": "Qatar",
+   "team2": "Switzerland",
+   "t1": "qatar",
+   "t2": "switzerland",
+   "g1": 1,
+   "g2": 1,
+   "pens1": null,
+   "pens2": null,
+   "status": "FT",
+   "winner": null
   }
  ]
 }
