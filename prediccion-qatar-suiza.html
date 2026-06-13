@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Catar vs Suiza — Análisis + Apuestas</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap');
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{background:#080d18;color:#dde4f0;font-family:'Inter',sans-serif;min-height:100vh;padding:28px 16px}
+    .page{max-width:860px;margin:0 auto;display:flex;flex-direction:column;gap:16px}
+
+    .header{background:linear-gradient(135deg,#0c1a35 0%,#142444 100%);border:1px solid #1e3360;border-radius:18px;padding:22px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+    .tournament-name{font-size:11px;font-weight:700;letter-spacing:2.5px;color:#4a7ab8;text-transform:uppercase}
+    .match-date{font-size:12px;color:#3a5a80;font-weight:500;margin-top:4px}
+    .badge{display:flex;align-items:center;gap:7px;background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.3);border-radius:30px;padding:6px 16px;font-size:11px;font-weight:700;color:#fbbf24;letter-spacing:1.5px}
+
+    .score-card{background:linear-gradient(135deg,#0a1628 0%,#0f2040 100%);border:1px solid #1e3a60;border-radius:18px;padding:28px}
+    .pre-label{text-align:center;font-size:10px;font-weight:700;letter-spacing:3px;color:#4a7ab8;text-transform:uppercase;margin-bottom:18px}
+    .teams-row{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .team-block{display:flex;flex-direction:column;align-items:center;gap:8px;flex:1}
+    .flag{font-size:48px;line-height:1;filter:drop-shadow(0 4px 12px rgba(0,0,0,.5))}
+    .team-name{font-size:16px;font-weight:900;text-transform:uppercase;letter-spacing:1.5px}
+    .vs-sep{font-size:28px;font-weight:300;color:#1e3a60}
+
+    .win-bar-wrap{margin-top:20px;height:14px;background:#07111f;border-radius:8px;overflow:hidden;display:flex}
+    .win-bar-a{background:linear-gradient(90deg,#78350f,#f59e0b);border-radius:8px 0 0 8px}
+    .win-bar-d{background:#374151}
+    .win-bar-b{background:linear-gradient(90deg,#1e3a8a,#60a5fa);border-radius:0 8px 8px 0}
+    .win-labels{display:flex;justify-content:space-between;margin-top:8px}
+    .wl-a{font-size:11px;font-weight:700;color:#f59e0b}
+    .wl-d{font-size:11px;font-weight:700;color:#9ca3af;text-align:center;flex:1}
+    .wl-b{font-size:11px;font-weight:700;color:#60a5fa}
+    .prob-note{text-align:center;font-size:10px;color:#1e3a5a;margin-top:8px;font-weight:600;letter-spacing:1px;text-transform:uppercase}
+
+    .update-banner{background:linear-gradient(135deg,#0a1a30,#0d2440);border:1px solid #1a3a60;border-radius:14px;padding:14px 20px;display:flex;align-items:center;gap:12px}
+    .update-text{font-size:12px;color:#60a5fa;font-weight:600}
+    .update-sub{font-size:10px;color:#1a3a58;margin-top:2px}
+
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    @media(max-width:600px){.grid2{grid-template-columns:1fr}}
+    .card{background:#0e1e38;border:1px solid #1e3360;border-radius:18px;padding:22px 24px}
+    .card-title{font-size:10px;font-weight:700;letter-spacing:2.5px;color:#2a5080;text-transform:uppercase;margin-bottom:18px}
+    .card-subtitle{font-size:9px;font-weight:600;letter-spacing:1px;color:#1a3a55;margin-left:8px;text-transform:uppercase}
+
+    .prob-row{display:flex;align-items:center;gap:12px;margin-bottom:13px}
+    .prob-lbl{font-size:11px;font-weight:700;color:#5a85b0;width:80px;flex-shrink:0;text-transform:uppercase;letter-spacing:.5px}
+    .bar-bg{flex:1;background:#07111f;border-radius:6px;height:10px;overflow:hidden}
+    .bar-fill{height:100%;border-radius:6px}
+    .bar-q{background:linear-gradient(90deg,#78350f,#f59e0b)}
+    .bar-d{background:linear-gradient(90deg,#374151,#9ca3af)}
+    .bar-s{background:linear-gradient(90deg,#1e3a8a,#60a5fa)}
+    .prob-pct{font-size:14px;font-weight:800;width:52px;text-align:right;flex-shrink:0}
+    .pct-q{color:#f59e0b}.pct-d{color:#9ca3af}.pct-s{color:#60a5fa}
+    .fav-tag{font-size:9px;font-weight:700;background:rgba(96,165,250,.12);border:1px solid rgba(96,165,250,.3);color:#60a5fa;border-radius:20px;padding:2px 8px;letter-spacing:1px;flex-shrink:0}
+
+    .xg-row{display:flex;align-items:center;justify-content:center;gap:20px;margin-top:4px}
+    .xg-team{text-align:center}
+    .xg-num{font-size:36px;font-weight:900;letter-spacing:-1px}
+    .xg-q{color:#f59e0b}.xg-s{color:#60a5fa}
+    .xg-lbl{font-size:10px;color:#2a5080;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-top:2px}
+    .xg-sep{font-size:20px;color:#1a3050;font-weight:700;padding-top:8px}
+
+    .market-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #0d1e35}
+    .market-row:last-child{border-bottom:none;padding-bottom:0}
+    .market-lbl{font-size:12px;font-weight:600;color:#8aa8cc}
+    .market-vals{display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+    .market-pill{font-size:11px;font-weight:700;border-radius:20px;padding:3px 11px}
+    .pill-yes{background:rgba(52,211,153,.12);color:#34d399;border:1px solid rgba(52,211,153,.25)}
+    .pill-no{background:rgba(107,114,128,.1);color:#6b7280;border:1px solid rgba(107,114,128,.2)}
+    .pill-neutral{background:rgba(96,165,250,.1);color:#60a5fa;border:1px solid rgba(96,165,250,.2)}
+    .pill-hot{background:rgba(251,191,36,.1);color:#fbbf24;border:1px solid rgba(251,191,36,.25)}
+
+    /* BETTING VALUE TABLE */
+    .bet-table{width:100%;border-collapse:collapse;font-size:11px}
+    .bet-table th{padding:8px 10px;font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;border-bottom:1px solid #1a2e48;text-align:left}
+    .bet-table td{padding:9px 10px;border-bottom:1px solid #0d1e35;vertical-align:middle}
+    .bet-table tr:last-child td{border-bottom:none}
+    .ev-pill{font-size:10px;font-weight:800;border-radius:12px;padding:3px 9px;white-space:nowrap}
+    .ev-great{background:rgba(52,211,153,.15);color:#34d399;border:1px solid rgba(52,211,153,.3)}
+    .ev-good{background:rgba(251,191,36,.12);color:#fbbf24;border:1px solid rgba(251,191,36,.25)}
+    .ev-bad{background:rgba(239,68,68,.08);color:#f87171;border:1px solid rgba(239,68,68,.15)}
+    .ev-neutral{background:rgba(107,114,128,.1);color:#6b7280;border:1px solid rgba(107,114,128,.2)}
+    .star{color:#fbbf24}
+    .odds-val{font-size:14px;font-weight:900;color:#dde4f0}
+
+    /* SPI BARS */
+    .spi-card{background:#07111f;border-radius:10px;padding:12px 14px;margin-bottom:8px}
+    .spi-team-label{font-size:10px;color:#3a6090;font-weight:700;margin-bottom:8px;text-transform:uppercase;letter-spacing:1px}
+    .spi-metric-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+    .spi-bar{background:#0a1628;border-radius:4px;height:6px;width:90px;overflow:hidden;margin-left:10px}
+
+    .elo-compare{background:#07111f;border-radius:10px;padding:14px 16px;display:flex;flex-direction:column;gap:8px}
+    .elo-row{display:flex;align-items:center;gap:10px}
+    .elo-name{font-size:10px;font-weight:700;width:80px;flex-shrink:0;text-transform:uppercase}
+    .elo-bar-bg{flex:1;background:#040a14;border-radius:4px;height:6px;overflow:hidden}
+    .elo-bar-fill{height:100%;border-radius:4px}
+    .elo-num{font-size:11px;font-weight:700;width:36px;text-align:right}
+
+    .section-divider{display:flex;align-items:center;gap:12px;margin:4px 0}
+    .div-line{flex:1;height:1px;background:#0d1e35}
+    .div-label{font-size:9px;font-weight:700;letter-spacing:2px;color:#1a3050;text-transform:uppercase;white-space:nowrap}
+
+    .footer{border:1px solid #1a2e48;border-radius:14px;padding:14px 22px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+    .footer-model{font-size:10px;color:#1e3a5a;font-weight:600}
+    .footer-model span{color:#2a5a8a}
+    .footer-src{font-size:10px;color:#1a3050}
+
+    .warning-box{background:rgba(251,191,36,.05);border:1px solid rgba(251,191,36,.2);border-radius:12px;padding:12px 16px;font-size:10px;color:#92400e;line-height:1.6}
+    .warning-box strong{color:#fbbf24}
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div>
+      <div class="tournament-name">FIFA World Cup 2026 — Grupo B</div>
+      <div class="match-date">13 de junio de 2026 · Sede neutral</div>
+    </div>
+    <div class="badge">⚽ PRÓXIMO · 13 JUN</div>
+  </div>
+
+  <!-- PREDICCIÓN CENTRAL -->
+  <div class="score-card">
+    <div class="pre-label">Predicción Pre-Partido · Modelo Blended v3</div>
+    <div class="teams-row">
+      <div class="team-block">
+        <div class="flag">🇶🇦</div>
+        <div class="team-name" style="color:#f59e0b">Catar</div>
+      </div>
+      <div class="vs-sep">vs</div>
+      <div class="team-block">
+        <div class="flag">🇨🇭</div>
+        <div class="team-name" style="color:#93c5fd">Suiza</div>
+      </div>
+    </div>
+    <div class="win-bar-wrap">
+      <div class="win-bar-a" style="width:7.3%"></div>
+      <div class="win-bar-d" style="width:15.3%"></div>
+      <div class="win-bar-b" style="width:77.4%"></div>
+    </div>
+    <div class="win-labels">
+      <div class="wl-a">Catar 7.3%</div>
+      <div class="wl-d">Empate 15.3%</div>
+      <div class="wl-b">Suiza 77.4%</div>
+    </div>
+    <div class="prob-note">xG esperados: Catar 0.66 — Suiza 2.88 · Total 3.54 goles</div>
+  </div>
+
+  <!-- BANNER INFO -->
+  <div class="update-banner">
+    <div style="font-size:18px">📐</div>
+    <div>
+      <div class="update-text">Suiza es favorita dominante · Elo +247 · Défense Catar β=2.07 (la peor del torneo)</div>
+      <div class="update-sub">Modelo Blended v3 · 55% SPI + 45% Elo · 25,345 partidos calibrados · decay 12 meses</div>
+    </div>
+  </div>
+
+  <!-- PROBABILIDADES + xG -->
+  <div class="grid2">
+    <div class="card">
+      <div class="card-title">Probabilidades · Comparativa de modelos</div>
+      <div style="font-size:9px;font-weight:700;letter-spacing:1px;color:#2a5080;text-transform:uppercase;margin-bottom:10px">Blended v3 (principal)</div>
+      <div class="prob-row">
+        <div class="prob-lbl">Catar</div>
+        <div class="bar-bg"><div class="bar-fill bar-q" style="width:7.3%"></div></div>
+        <div class="prob-pct pct-q">7.3%</div>
+      </div>
+      <div class="prob-row">
+        <div class="prob-lbl">Empate</div>
+        <div class="bar-bg"><div class="bar-fill bar-d" style="width:15.3%"></div></div>
+        <div class="prob-pct pct-d">15.3%</div>
+      </div>
+      <div class="prob-row" style="margin-bottom:16px">
+        <div class="prob-lbl">Suiza</div>
+        <div class="bar-bg"><div class="bar-fill bar-s" style="width:77.4%"></div></div>
+        <div class="prob-pct pct-s">77.4%</div>
+        <div class="fav-tag">FAV</div>
+      </div>
+      <div style="font-size:9px;font-weight:700;letter-spacing:1px;color:#1a3a55;text-transform:uppercase;margin-bottom:10px">Solo Elo</div>
+      <div class="prob-row" style="margin-bottom:8px">
+        <div class="prob-lbl" style="color:#2a4060">Catar</div>
+        <div class="bar-bg" style="background:#060f1e"><div class="bar-fill" style="width:11.8%;background:#5a3a0a;height:6px"></div></div>
+        <div class="prob-pct" style="font-size:11px;color:#2a4060">11.8%</div>
+      </div>
+      <div class="prob-row" style="margin-bottom:8px">
+        <div class="prob-lbl" style="color:#2a4060">Empate</div>
+        <div class="bar-bg" style="background:#060f1e"><div class="bar-fill" style="width:23.0%;background:#1e2530;height:6px"></div></div>
+        <div class="prob-pct" style="font-size:11px;color:#2a4060">23.0%</div>
+      </div>
+      <div class="prob-row" style="margin-bottom:0">
+        <div class="prob-lbl" style="color:#2a4060">Suiza</div>
+        <div class="bar-bg" style="background:#060f1e"><div class="bar-fill" style="width:65.2%;background:#0f2050;height:6px"></div></div>
+        <div class="prob-pct" style="font-size:11px;color:#2a4060">65.2%</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Goles Esperados (xG Pre-Partido)</div>
+      <div class="xg-row">
+        <div class="xg-team">
+          <div class="xg-num xg-q">0.66</div>
+          <div class="xg-lbl">Catar</div>
+        </div>
+        <div class="xg-sep">–</div>
+        <div class="xg-team">
+          <div class="xg-num xg-s">2.88</div>
+          <div class="xg-lbl">Suiza</div>
+        </div>
+      </div>
+      <div style="margin-top:18px;display:flex;flex-direction:column;gap:6px">
+        <div class="market-row" style="padding-top:0">
+          <div class="market-lbl" style="font-size:11px">Total xG</div>
+          <div class="market-pill pill-hot">3.54 goles</div>
+        </div>
+        <div class="market-row">
+          <div class="market-lbl" style="font-size:11px">xG 1°T (44% del total)</div>
+          <div class="market-pill pill-neutral">Catar 0.29 · Suiza 1.27</div>
+        </div>
+        <div class="market-row" style="border-bottom:none;padding-bottom:0">
+          <div class="market-lbl" style="font-size:11px">xG 2°T (56% del total)</div>
+          <div class="market-pill pill-neutral">Catar 0.37 · Suiza 1.61</div>
+        </div>
+      </div>
+      <div style="margin-top:12px;padding:10px 12px;background:#07111f;border-radius:8px;font-size:9px;color:#1a3a55;line-height:1.6">
+        El xG alto de Suiza se explica por el <span style="color:#f87171;font-weight:700">β=2.07 de la defensa de Catar</span> — la más vulnerable del torneo. Esto significa que Catar concede el doble de los goles que un equipo promedio.
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION: ANÁLISIS DE APUESTAS CON VALOR -->
+  <div class="section-divider">
+    <div class="div-line"></div>
+    <div class="div-label">Análisis de Apuestas — Cuotas xperto.polla.cl</div>
+    <div class="div-line"></div>
+  </div>
+
+  <!-- ADVERTENCIA METODOLÓGICA -->
+  <div class="warning-box">
+    <strong>Cómo leer esta tabla:</strong> El modelo calcula la probabilidad real de cada evento. Si esa probabilidad es mayor que 1/cuota (punto de equilibrio), la apuesta tiene <strong>valor esperado positivo (EV+)</strong>. Las casas siempre tienen margen (~22-30%), así que solo apostamos cuando nuestro modelo supera significativamente ese margen. <strong>Mayor EV% = mayor ventaja sobre la casa.</strong>
+  </div>
+
+  <!-- TABLA PRINCIPAL DE APUESTAS CON VALOR -->
+  <div class="card" style="background:linear-gradient(135deg,#071a0f,#0a2218);border-color:#1a4a28;padding:20px">
+    <div class="card-title" style="color:#34d399">Apuestas con Valor Esperado Positivo (EV+)</div>
+    <div style="overflow-x:auto">
+      <table class="bet-table">
+        <thead>
+          <tr style="background:#050d0a">
+            <th style="color:#34d399">Mercado</th>
+            <th style="color:#fbbf24;text-align:center">Cuota</th>
+            <th style="color:#60a5fa;text-align:center">Modelo</th>
+            <th style="color:#9ca3af;text-align:center">Punto eq.</th>
+            <th style="color:#34d399;text-align:center">EV</th>
+            <th style="text-align:center">Valor</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="background:rgba(52,211,153,.04)">
+            <td style="color:#dde4f0;font-weight:700">Visitante 3+ goles en 2°T</td>
+            <td style="text-align:center"><span class="odds-val">6.00</span></td>
+            <td style="text-align:center;color:#60a5fa;font-weight:800">22.1%</td>
+            <td style="text-align:center;color:#9ca3af">16.7%</td>
+            <td style="text-align:center"><span class="ev-pill ev-great">+32.6%</span></td>
+            <td style="text-align:center"><span class="star">★★★</span></td>
+          </tr>
+          <tr style="background:rgba(52,211,153,.04)">
+            <td style="color:#dde4f0;font-weight:700">Visitante 3+ goles en 1°T</td>
+            <td style="text-align:center"><span class="odds-val">9.75</span></td>
+            <td style="text-align:center;color:#60a5fa;font-weight:800">13.5%</td>
+            <td style="text-align:center;color:#9ca3af">10.3%</td>
+            <td style="text-align:center"><span class="ev-pill ev-great">+31.6%</span></td>
+            <td style="text-align:center"><span class="star">★★★</span></td>
+          </tr>
+          <tr>
+            <td style="color:#dde4f0;font-weight:700">5+ goles totales en el partido</td>
+            <td style="text-align:center"><span class="odds-val">4.25</span></td>
+            <td style="text-align:center;color:#60a5fa;font-weight:800">28.1%</td>
+            <td style="text-align:center;color:#9ca3af">23.5%</td>
+            <td style="text-align:center"><span class="ev-pill ev-great">+19.4%</span></td>
+            <td style="text-align:center"><span class="star">★★★</span></td>
+          </tr>
+          <tr>
+            <td style="color:#dde4f0;font-weight:700">Más de 2.5 goles en el 2°T</td>
+            <td style="text-align:center"><span class="odds-val">3.60</span></td>
+            <td style="text-align:center;color:#60a5fa;font-weight:800">31.8%</td>
+            <td style="text-align:center;color:#9ca3af">27.8%</td>
+            <td style="text-align:center"><span class="ev-pill ev-great">+14.5%</span></td>
+            <td style="text-align:center"><span class="star">★★★</span></td>
+          </tr>
+          <tr>
+            <td style="color:#dde4f0;font-weight:700">Más de 3.5 goles (Total o 4+ goles)</td>
+            <td style="text-align:center"><span class="odds-val">2.40</span></td>
+            <td style="text-align:center;color:#60a5fa;font-weight:800">47.1%</td>
+            <td style="text-align:center;color:#9ca3af">41.7%</td>
+            <td style="text-align:center"><span class="ev-pill ev-great">+13.0%</span></td>
+            <td style="text-align:center"><span class="star">★★★</span></td>
+          </tr>
+          <tr>
+            <td style="color:#dde4f0;font-weight:700">3+ goles totales en el 2°T</td>
+            <td style="text-align:center"><span class="odds-val">3.50</span></td>
+            <td style="text-align:center;color:#60a5fa;font-weight:800">31.8%</td>
+            <td style="text-align:center;color:#9ca3af">28.6%</td>
+            <td style="text-align:center"><span class="ev-pill ev-good">+11.3%</span></td>
+            <td style="text-align:center"><span class="star">★★</span></td>
+          </tr>
+          <tr style="background:rgba(52,211,153,.03)">
+            <td style="color:#dde4f0;font-weight:700">Visitante anota en ambos tiempos (SÍ)</td>
+            <td style="text-align:center"><span class="odds-val">1.85</span></td>
+            <td style="text-align:center;color:#60a5fa;font-weight:800">57.5%</td>
+            <td style="text-align:center;color:#9ca3af">54.1%</td>
+            <td style="text-align:center"><span class="ev-pill ev-good">+6.4%</span></td>
+            <td style="text-align:center"><span class="star">★★</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- POR QUÉ ESTAS APUESTAS TIENEN VALOR -->
+  <div class="card" style="background:#080f1e;border-color:#1a2e48">
+    <div class="card-title">La Ineficiencia del Mercado — Por qué hay valor</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+      <div style="background:#07111f;border-radius:10px;padding:12px 14px">
+        <div style="font-size:10px;font-weight:700;color:#34d399;margin-bottom:6px;text-transform:uppercase;letter-spacing:1px">Suiza 3+ goles/tiempo (6.00 y 9.75)</div>
+        <div style="font-size:10px;color:#4a7090;line-height:1.6">La casa <strong style="color:#dde4f0">sí paga correctamente</strong> el mercado de "Suiza 3+ goles totales (1.78 → ~55%)", PERO <strong style="color:#fbbf24">no traslada esa misma lógica</strong> a los mercados por tiempo. El modelo dice 22% para 3+ en 2°T — la casa sólo paga 16.7%. Esta es la ineficiencia más clara.</div>
+      </div>
+      <div style="background:#07111f;border-radius:10px;padding:12px 14px">
+        <div style="font-size:10px;font-weight:700;color:#fbbf24;margin-bottom:6px;text-transform:uppercase;letter-spacing:1px">5+ goles totales (4.25)</div>
+        <div style="font-size:10px;color:#4a7090;line-height:1.6">Con un total de <strong style="color:#dde4f0">3.54 xG</strong>, la Poisson predice que habrá 5 o más goles el <strong style="color:#fbbf24">28.1% de las veces</strong>. La casa implica sólo 23.5%. Ligado directamente al xG extremo de Suiza.</div>
+      </div>
+    </div>
+    <div style="margin-top:10px;background:#07111f;border-radius:10px;padding:12px 14px">
+      <div style="font-size:10px;font-weight:700;color:#60a5fa;margin-bottom:6px;text-transform:uppercase;letter-spacing:1px">Visitante anota en ambos tiempos (1.85)</div>
+      <div style="font-size:10px;color:#4a7090;line-height:1.6">P(Suiza anota en 1°T) = 71.8% · P(Suiza anota en 2°T) = 80.1% · P(ambos) = <strong style="color:#dde4f0">57.5%</strong>. La casa implica 43.1% (break-even 54.1%). La cuota de 1.85 no refleja que Suiza tiene xG=1.27 en el primer tiempo solo.</div>
+    </div>
+  </div>
+
+  <!-- TABLA COMPLETA: TODOS LOS MERCADOS -->
+  <div class="section-divider">
+    <div class="div-line"></div>
+    <div class="div-label">Análisis Completo — Todos los mercados</div>
+    <div class="div-line"></div>
+  </div>
+
+  <div class="grid2">
+
+    <!-- 1X2 y HT -->
+    <div class="card">
+      <div class="card-title">Resultado Final del Partido (1X2)</div>
+      <table class="bet-table">
+        <thead><tr><th>Resultado</th><th style="text-align:center">Cuota</th><th style="text-align:center">Modelo</th><th style="text-align:center">EV</th></tr></thead>
+        <tbody>
+          <tr><td style="color:#f59e0b">Catar</td><td style="text-align:center"><span class="odds-val" style="font-size:12px">7.50</span></td><td style="text-align:center;color:#9ca3af">7.3%</td><td style="text-align:center"><span class="ev-pill ev-bad">-45%</span></td></tr>
+          <tr><td style="color:#9ca3af">Empate</td><td style="text-align:center"><span class="odds-val" style="font-size:12px">3.75</span></td><td style="text-align:center;color:#9ca3af">15.3%</td><td style="text-align:center"><span class="ev-pill ev-bad">-43%</span></td></tr>
+          <tr><td style="color:#60a5fa;font-weight:700">Suiza</td><td style="text-align:center"><span class="odds-val" style="font-size:12px">1.12</span></td><td style="text-align:center;color:#60a5fa;font-weight:700">77.4%</td><td style="text-align:center"><span class="ev-pill ev-bad">-13%</span></td></tr>
+        </tbody>
+      </table>
+      <div style="font-size:9px;color:#1a3050;margin-top:10px;line-height:1.5">La cuota 1.12 de Suiza implica 89.3% — el modelo da 77.4%. La casa sobre-valora a Suiza en 1X2. No hay valor positivo aquí.</div>
+    </div>
+
+    <!-- Resultado 1°T -->
+    <div class="card">
+      <div class="card-title">Resultado 1°T / Resultado 1°T</div>
+      <table class="bet-table">
+        <thead><tr><th>Resultado</th><th style="text-align:center">Cuota</th><th style="text-align:center">Modelo</th><th style="text-align:center">EV</th></tr></thead>
+        <tbody>
+          <tr><td style="color:#f59e0b">Catar (HT)</td><td style="text-align:center"><span class="odds-val" style="font-size:12px">7.50</span></td><td style="text-align:center;color:#9ca3af">9.0%</td><td style="text-align:center"><span class="ev-pill ev-bad">-33%</span></td></tr>
+          <tr><td style="color:#9ca3af">Empate (HT)</td><td style="text-align:center"><span class="odds-val" style="font-size:12px">2.25</span></td><td style="text-align:center;color:#9ca3af">29.5%</td><td style="text-align:center"><span class="ev-pill ev-bad">-34%</span></td></tr>
+          <tr><td style="color:#60a5fa">Suiza (HT)</td><td style="text-align:center"><span class="odds-val" style="font-size:12px">1.38</span></td><td style="text-align:center;color:#60a5fa">62.4%</td><td style="text-align:center"><span class="ev-pill ev-bad">-14%</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Goles totales O/U -->
+    <div class="card">
+      <div class="card-title">Goles Totales — Sobre/Bajo</div>
+      <table class="bet-table">
+        <thead><tr><th>Mercado</th><th style="text-align:center">Cuota</th><th style="text-align:center">Modelo</th><th style="text-align:center">EV</th></tr></thead>
+        <tbody>
+          <tr><td>Más 1.5</td><td style="text-align:center"><span class="odds-val" style="font-size:12px">1.03</span></td><td style="text-align:center;color:#60a5fa">86.8%</td><td style="text-align:center"><span class="ev-pill ev-bad">-11%</span></td></tr>
+          <tr><td>Más 2.5</td><td style="text-align:center"><span class="odds-val" style="font-size:12px">1.40</span></td><td style="text-align:center;color:#60a5fa">68.6%</td><td style="text-align:center"><span class="ev-pill ev-bad">-4%</span></td></tr>
+          <tr style="background:rgba(52,211,153,.04)"><td style="color:#34d399;font-weight:700">Más 3.5 ★</td><td style="text-align:center"><span class="odds-val" style="font-size:12px">2.40</span></td><td style="text-align:center;color:#34d399;font-weight:800">47.1%</td><td style="text-align:center"><span class="ev-pill ev-great">+13%</span></td></tr>
+          <tr><td>Menos 3.5</td><td style="text-align:center"><span class="odds-val" style="font-size:12px">1.20</span></td><td style="text-align:center;color:#9ca3af">52.9%</td><td style="text-align:center"><span class="ev-pill ev-bad">-37%</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Suma de goles -->
+    <div class="card">
+      <div class="card-title">Suma de Goles en el Partido</div>
+      <table class="bet-table">
+        <thead><tr><th>Goles</th><th style="text-align:center">Cuota</th><th style="text-align:center">Modelo</th><th style="text-align:center">EV</th></tr></thead>
+        <tbody>
+          <tr><td>0 goles</td><td style="text-align:center"><span class="odds-val" style="font-size:12px">10.50</span></td><td style="text-align:center;color:#9ca3af">2.9%</td><td style="text-align:center"><span class="ev-pill ev-bad">-70%</span></td></tr>
+          <tr><td>1 gol</td><td style="text-align:center"><span class="odds-val" style="font-size:12px">4.50</span></td><td style="text-align:center;color:#9ca3af">10.3%</td><td style="text-align:center"><span class="ev-pill ev-bad">-54%</span></td></tr>
+          <tr><td>2 goles</td><td style="text-align:center"><span class="odds-val" style="font-size:12px">3.10</span></td><td style="text-align:center;color:#9ca3af">18.2%</td><td style="text-align:center"><span class="ev-pill ev-bad">-44%</span></td></tr>
+          <tr><td>3 goles</td><td style="text-align:center"><span class="odds-val" style="font-size:12px">3.40</span></td><td style="text-align:center;color:#9ca3af">21.5%</td><td style="text-align:center"><span class="ev-pill ev-bad">-27%</span></td></tr>
+          <tr><td>4 goles</td><td style="text-align:center"><span class="odds-val" style="font-size:12px">4.40</span></td><td style="text-align:center;color:#9ca3af">19.0%</td><td style="text-align:center"><span class="ev-pill ev-bad">-16%</span></td></tr>
+          <tr style="background:rgba(52,211,153,.04)"><td style="color:#34d399;font-weight:700">5+ goles ★</td><td style="text-align:center"><span class="odds-val" style="font-size:12px">4.25</span></td><td style="text-align:center;color:#34d399;font-weight:800">28.1%</td><td style="text-align:center"><span class="ev-pill ev-great">+19%</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <div class="grid2">
+
+    <!-- Goles por equipo -->
+    <div class="card">
+      <div class="card-title">Goles del Visitante (Suiza) — Partido completo</div>
+      <table class="bet-table">
+        <thead><tr><th>Mercado</th><th style="text-align:center">Cuota</th><th style="text-align:center">Modelo</th><th style="text-align:center">EV</th></tr></thead>
+        <tbody>
+          <tr><td>0 goles</td><td style="text-align:center"><span class="odds-val" style="font-size:12px">8.25</span></td><td style="text-align:center;color:#9ca3af">5.6%</td><td style="text-align:center"><span class="ev-pill ev-bad">-54%</span></td></tr>
+          <tr><td>1 gol</td><td style="text-align:center"><span class="odds-val" style="font-size:12px">3.60</span></td><td style="text-align:center;color:#9ca3af">16.2%</td><td style="text-align:center"><span class="ev-pill ev-bad">-42%</span></td></tr>
+          <tr><td>2 goles</td><td style="text-align:center"><span class="odds-val" style="font-size:12px">2.95</span></td><td style="text-align:center;color:#9ca3af">23.3%</td><td style="text-align:center"><span class="ev-pill ev-bad">-31%</span></td></tr>
+          <tr><td>3+ goles</td><td style="text-align:center"><span class="odds-val" style="font-size:12px">1.78</span></td><td style="text-align:center;color:#60a5fa">54.9%</td><td style="text-align:center"><span class="ev-pill ev-bad">-2%</span></td></tr>
+        </tbody>
+      </table>
+      <div style="font-size:9px;color:#1a3050;margin-top:8px">El 3+ goles (1.78) está casi en equilibrio (-2%). No hay valor claro aquí.</div>
+    </div>
+
+    <!-- Goles por equipo local -->
+    <div class="card">
+      <div class="card-title">Goles del Local (Catar) — Partido completo</div>
+      <table class="bet-table">
+        <thead><tr><th>Mercado</th><th style="text-align:center">Cuota</th><th style="text-align:center">Modelo</th><th style="text-align:center">EV</th></tr></thead>
+        <tbody>
+          <tr><td>0 goles</td><td style="text-align:center"><span class="odds-val" style="font-size:12px">1.45</span></td><td style="text-align:center;color:#9ca3af">51.7%</td><td style="text-align:center"><span class="ev-pill ev-bad">-25%</span></td></tr>
+          <tr><td>1 gol</td><td style="text-align:center"><span class="odds-val" style="font-size:12px">2.25</span></td><td style="text-align:center;color:#9ca3af">34.1%</td><td style="text-align:center"><span class="ev-pill ev-bad">-23%</span></td></tr>
+          <tr><td>2 goles</td><td style="text-align:center"><span class="odds-val" style="font-size:12px">7.00</span></td><td style="text-align:center;color:#9ca3af">11.3%</td><td style="text-align:center"><span class="ev-pill ev-bad">-21%</span></td></tr>
+          <tr><td>3+ goles</td><td style="text-align:center"><span class="odds-val" style="font-size:12px">30.00</span></td><td style="text-align:center;color:#9ca3af">2.9%</td><td style="text-align:center"><span class="ev-pill ev-bad">-13%</span></td></tr>
+        </tbody>
+      </table>
+      <div style="font-size:9px;color:#1a3050;margin-top:8px">Ningún mercado local tiene valor.</div>
+    </div>
+
+    <!-- Goles 2°T desglosado -->
+    <div class="card" style="border-color:#1a4a28">
+      <div class="card-title" style="color:#34d399">Goles Visitante en el 2°T ★</div>
+      <table class="bet-table">
+        <thead><tr><th>Mercado</th><th style="text-align:center">Cuota</th><th style="text-align:center">Modelo</th><th style="text-align:center">EV</th></tr></thead>
+        <tbody>
+          <tr><td>0 goles 2°T</td><td style="text-align:center"><span class="odds-val" style="font-size:12px">2.55</span></td><td style="text-align:center;color:#9ca3af">19.9%</td><td style="text-align:center"><span class="ev-pill ev-bad">-49%</span></td></tr>
+          <tr><td>1 gol 2°T</td><td style="text-align:center"><span class="odds-val" style="font-size:12px">2.15</span></td><td style="text-align:center;color:#9ca3af">32.1%</td><td style="text-align:center"><span class="ev-pill ev-bad">-31%</span></td></tr>
+          <tr><td>2 goles 2°T</td><td style="text-align:center"><span class="odds-val" style="font-size:12px">3.60</span></td><td style="text-align:center;color:#9ca3af">25.9%</td><td style="text-align:center"><span class="ev-pill ev-bad">-7%</span></td></tr>
+          <tr style="background:rgba(52,211,153,.06)"><td style="color:#34d399;font-weight:800">3+ goles 2°T ★★★</td><td style="text-align:center"><span class="odds-val" style="font-size:12px">6.00</span></td><td style="text-align:center;color:#34d399;font-weight:900">22.1%</td><td style="text-align:center"><span class="ev-pill ev-great">+33%</span></td></tr>
+        </tbody>
+      </table>
+      <div style="margin-top:8px;font-size:9px;color:#1a5030;line-height:1.5">Suiza xG 2°T = <strong style="color:#34d399">1.61</strong> · P(≥3 goles en el 2°T) = 22.1% vs BE 16.7%</div>
+    </div>
+
+    <!-- Goles 1°T desglosado -->
+    <div class="card" style="border-color:#1a4a28">
+      <div class="card-title" style="color:#34d399">Goles Visitante en el 1°T ★</div>
+      <table class="bet-table">
+        <thead><tr><th>Mercado</th><th style="text-align:center">Cuota</th><th style="text-align:center">Modelo</th><th style="text-align:center">EV</th></tr></thead>
+        <tbody>
+          <tr><td>0 goles 1°T</td><td style="text-align:center"><span class="odds-val" style="font-size:12px">2.00</span></td><td style="text-align:center;color:#9ca3af">28.2%</td><td style="text-align:center"><span class="ev-pill ev-bad">-44%</span></td></tr>
+          <tr><td>1 gol 1°T</td><td style="text-align:center"><span class="odds-val" style="font-size:12px">2.10</span></td><td style="text-align:center;color:#9ca3af">35.7%</td><td style="text-align:center"><span class="ev-pill ev-bad">-25%</span></td></tr>
+          <tr><td>2 goles 1°T</td><td style="text-align:center"><span class="odds-val" style="font-size:12px">4.25</span></td><td style="text-align:center;color:#9ca3af">22.6%</td><td style="text-align:center"><span class="ev-pill ev-bad">-4%</span></td></tr>
+          <tr style="background:rgba(52,211,153,.06)"><td style="color:#34d399;font-weight:800">3+ goles 1°T ★★★</td><td style="text-align:center"><span class="odds-val" style="font-size:12px">9.75</span></td><td style="text-align:center;color:#34d399;font-weight:900">13.5%</td><td style="text-align:center"><span class="ev-pill ev-great">+32%</span></td></tr>
+        </tbody>
+      </table>
+      <div style="margin-top:8px;font-size:9px;color:#1a5030;line-height:1.5">Suiza xG 1°T = <strong style="color:#34d399">1.27</strong> · P(≥3 goles en el 1°T) = 13.5% vs BE 10.3%</div>
+    </div>
+
+  </div>
+
+  <div class="grid2">
+
+    <!-- Goles 2°T totales -->
+    <div class="card" style="border-color:#1a4a28">
+      <div class="card-title" style="color:#fbbf24">Suma de Goles en el 2°T (Total)</div>
+      <table class="bet-table">
+        <thead><tr><th>Mercado</th><th style="text-align:center">Cuota</th><th style="text-align:center">Modelo</th><th style="text-align:center">EV</th></tr></thead>
+        <tbody>
+          <tr><td>0 goles 2°T</td><td style="text-align:center"><span class="odds-val" style="font-size:12px">3.75</span></td><td style="text-align:center;color:#9ca3af">13.8%</td><td style="text-align:center"><span class="ev-pill ev-bad">-48%</span></td></tr>
+          <tr><td>1 gol 2°T</td><td style="text-align:center"><span class="odds-val" style="font-size:12px">2.45</span></td><td style="text-align:center;color:#9ca3af">27.3%</td><td style="text-align:center"><span class="ev-pill ev-bad">-33%</span></td></tr>
+          <tr><td>2 goles 2°T</td><td style="text-align:center"><span class="odds-val" style="font-size:12px">2.95</span></td><td style="text-align:center;color:#9ca3af">27.1%</td><td style="text-align:center"><span class="ev-pill ev-bad">-20%</span></td></tr>
+          <tr style="background:rgba(251,191,36,.05)"><td style="color:#fbbf24;font-weight:800">3+ goles 2°T ★★</td><td style="text-align:center"><span class="odds-val" style="font-size:12px">3.50</span></td><td style="text-align:center;color:#fbbf24;font-weight:900">31.8%</td><td style="text-align:center"><span class="ev-pill ev-good">+11%</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Más/Menos 2°T -->
+    <div class="card" style="border-color:#1a4a28">
+      <div class="card-title" style="color:#fbbf24">Sobre/Bajo Goles — 2° Tiempo</div>
+      <table class="bet-table">
+        <thead><tr><th>Mercado</th><th style="text-align:center">Cuota</th><th style="text-align:center">Modelo</th><th style="text-align:center">EV</th></tr></thead>
+        <tbody>
+          <tr><td>Más 1.5 (2°T)</td><td style="text-align:center"><span class="odds-val" style="font-size:12px">1.65</span></td><td style="text-align:center;color:#9ca3af">58.9%</td><td style="text-align:center"><span class="ev-pill ev-bad">-3%</span></td></tr>
+          <tr><td>Menos 1.5 (2°T)</td><td style="text-align:center"><span class="odds-val" style="font-size:12px">1.55</span></td><td style="text-align:center;color:#9ca3af">41.1%</td><td style="text-align:center"><span class="ev-pill ev-bad">-36%</span></td></tr>
+          <tr style="background:rgba(251,191,36,.05)"><td style="color:#fbbf24;font-weight:800">Más 2.5 (2°T) ★★★</td><td style="text-align:center"><span class="odds-val" style="font-size:12px">3.60</span></td><td style="text-align:center;color:#fbbf24;font-weight:900">31.8%</td><td style="text-align:center"><span class="ev-pill ev-great">+15%</span></td></tr>
+          <tr><td>Menos 2.5 (2°T)</td><td style="text-align:center"><span class="odds-val" style="font-size:12px">1.03</span></td><td style="text-align:center;color:#9ca3af">68.2%</td><td style="text-align:center"><span class="ev-pill ev-bad">-30%</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- BTTS y otros -->
+    <div class="card">
+      <div class="card-title">BTTS / Especiales</div>
+      <table class="bet-table">
+        <thead><tr><th>Mercado</th><th style="text-align:center">Cuota</th><th style="text-align:center">Modelo</th><th style="text-align:center">EV</th></tr></thead>
+        <tbody>
+          <tr><td>BTTS Gol</td><td style="text-align:center"><span class="odds-val" style="font-size:12px">1.90</span></td><td style="text-align:center;color:#9ca3af">45.6%</td><td style="text-align:center"><span class="ev-pill ev-bad">-13%</span></td></tr>
+          <tr><td>BTTS No Gol</td><td style="text-align:center"><span class="odds-val" style="font-size:12px">1.38</span></td><td style="text-align:center;color:#9ca3af">54.4%</td><td style="text-align:center"><span class="ev-pill ev-bad">-25%</span></td></tr>
+          <tr style="background:rgba(52,211,153,.04)"><td style="color:#34d399;font-weight:700">Visitante ambos tiempos ★★</td><td style="text-align:center"><span class="odds-val" style="font-size:12px">1.85</span></td><td style="text-align:center;color:#34d399;font-weight:800">57.5%</td><td style="text-align:center"><span class="ev-pill ev-good">+6%</span></td></tr>
+          <tr><td>Visitante gana ambos 2T</td><td style="text-align:center"><span class="odds-val" style="font-size:12px">1.95</span></td><td style="text-align:center;color:#9ca3af">42.4%</td><td style="text-align:center"><span class="ev-pill ev-bad">-17%</span></td></tr>
+          <tr><td>1er gol: Suiza</td><td style="text-align:center"><span class="odds-val" style="font-size:12px">1.10</span></td><td style="text-align:center;color:#9ca3af">79.0%</td><td style="text-align:center"><span class="ev-pill ev-bad">-13%</span></td></tr>
+          <tr><td>1er gol: Catar</td><td style="text-align:center"><span class="odds-val" style="font-size:12px">3.45</span></td><td style="text-align:center;color:#9ca3af">18.1%</td><td style="text-align:center"><span class="ev-pill ev-bad">-38%</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Combos con valor -->
+    <div class="card">
+      <div class="card-title">Combos Resultado + Goles</div>
+      <table class="bet-table">
+        <thead><tr><th>Mercado</th><th style="text-align:center">Cuota</th><th style="text-align:center">Modelo</th><th style="text-align:center">EV</th></tr></thead>
+        <tbody>
+          <tr><td>V + Más 2.5</td><td style="text-align:center"><span class="odds-val" style="font-size:12px">1.48</span></td><td style="text-align:center;color:#9ca3af">60.6%</td><td style="text-align:center"><span class="ev-pill ev-bad">-10%</span></td></tr>
+          <tr><td>V + Menos 2.5</td><td style="text-align:center"><span class="odds-val" style="font-size:12px">2.60</span></td><td style="text-align:center;color:#9ca3af">20.4%</td><td style="text-align:center"><span class="ev-pill ev-bad">-47%</span></td></tr>
+          <tr><td>V + Más 3.5</td><td style="text-align:center"><span class="odds-val" style="font-size:12px">2.15</span></td><td style="text-align:center;color:#9ca3af">39.6%</td><td style="text-align:center"><span class="ev-pill ev-bad">-15%</span></td></tr>
+          <tr><td>E + Menos 2.5</td><td style="text-align:center"><span class="odds-val" style="font-size:12px">5.50</span></td><td style="text-align:center;color:#9ca3af">6.1%</td><td style="text-align:center"><span class="ev-pill ev-bad">-67%</span></td></tr>
+          <tr><td>V + Más 4.5</td><td style="text-align:center"><span class="odds-val" style="font-size:12px">3.30</span></td><td style="text-align:center;color:#9ca3af">28.5%</td><td style="text-align:center"><span class="ev-pill ev-bad">-6%</span></td></tr>
+        </tbody>
+      </table>
+      <div style="font-size:9px;color:#1a3050;margin-top:8px">Ningún combo tiene EV+ neto, aunque V+Más4.5 está muy cerca (-6%).</div>
+    </div>
+
+  </div>
+
+  <!-- SECCIÓN: PERFIL DE EQUIPOS -->
+  <div class="section-divider">
+    <div class="div-line"></div>
+    <div class="div-label">Perfil de Equipos · SPI + Elo</div>
+    <div class="div-line"></div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <div class="card-title">Ratings SPI — Ataque y Defensa</div>
+      <div class="spi-card">
+        <div class="spi-team-label" style="color:#f59e0b">Catar 🇶🇦</div>
+        <div class="spi-metric-row">
+          <span style="font-size:11px;color:#8aa8cc">Ataque (α)</span>
+          <span style="font-size:16px;font-weight:900;color:#9ca3af">0.55</span>
+          <div class="spi-bar"><div style="background:#9ca3af;height:100%;width:37%"></div></div>
+        </div>
+        <div class="spi-metric-row">
+          <span style="font-size:11px;color:#8aa8cc">Vulnerabilidad def. (β)</span>
+          <span style="font-size:16px;font-weight:900;color:#f87171">2.07</span>
+          <div class="spi-bar"><div style="background:#f87171;height:100%;width:100%"></div></div>
+        </div>
+        <div style="font-size:9px;color:#2a4a6a;margin-top:6px">Ataque muy débil · <span style="color:#f87171;font-weight:700">DEFENSA CATASTRÓFICA</span> (β>2 = concede el doble del promedio)</div>
+      </div>
+      <div class="spi-card" style="margin-bottom:0">
+        <div class="spi-team-label" style="color:#60a5fa">Suiza 🇨🇭</div>
+        <div class="spi-metric-row">
+          <span style="font-size:11px;color:#8aa8cc">Ataque (α)</span>
+          <span style="font-size:16px;font-weight:900;color:#60a5fa">1.49</span>
+          <div class="spi-bar"><div style="background:#60a5fa;height:100%;width:99%"></div></div>
+        </div>
+        <div class="spi-metric-row">
+          <span style="font-size:11px;color:#8aa8cc">Vulnerabilidad def. (β)</span>
+          <span style="font-size:16px;font-weight:900;color:#34d399">0.78</span>
+          <div class="spi-bar"><div style="background:#34d399;height:100%;width:52%"></div></div>
+        </div>
+        <div style="font-size:9px;color:#2a4a6a;margin-top:6px"><span style="color:#60a5fa">Ataque fuerte</span> (2.01 goles/partido) · <span style="color:#34d399">Defensa sólida</span> (1.05 goles concedidos/partido)</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Comparativa Elo</div>
+      <div class="elo-compare">
+        <div class="elo-row">
+          <div class="elo-name" style="color:#60a5fa">Suiza</div>
+          <div class="elo-bar-bg"><div class="elo-bar-fill" style="background:linear-gradient(90deg,#1d4ed8,#60a5fa);width:100%"></div></div>
+          <div class="elo-num" style="color:#60a5fa">1838</div>
+        </div>
+        <div class="elo-row">
+          <div class="elo-name" style="color:#f59e0b">Catar</div>
+          <div class="elo-bar-bg"><div class="elo-bar-fill" style="background:linear-gradient(90deg,#78350f,#f59e0b);width:81%"></div></div>
+          <div class="elo-num" style="color:#f59e0b">1591</div>
+        </div>
+      </div>
+      <div style="display:flex;justify-content:space-between;margin-top:14px;padding-top:12px;border-top:1px solid #0d1e35">
+        <div style="text-align:center">
+          <div style="font-size:18px;font-weight:900;color:#f59e0b">1591</div>
+          <div style="font-size:9px;color:#2a5070;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-top:2px">Elo Catar</div>
+        </div>
+        <div style="text-align:center">
+          <div style="font-size:18px;font-weight:900;color:#f87171">-247</div>
+          <div style="font-size:9px;color:#2a5070;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-top:2px">Diferencia</div>
+        </div>
+        <div style="text-align:center">
+          <div style="font-size:18px;font-weight:900;color:#60a5fa">1838</div>
+          <div style="font-size:9px;color:#2a5070;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-top:2px">Elo Suiza</div>
+        </div>
+      </div>
+      <div style="margin-top:12px;padding:10px 12px;background:#07111f;border-radius:8px;font-size:10px;color:#3a6090;line-height:1.6">
+        Una diferencia de <span style="color:#fbbf24;font-weight:700">247 puntos Elo</span> es enorme — similar a la diferencia entre un equipo de top 10 y uno de 50+. En el modelo de probabilidades: cada 100 pts = aprox. +15pp de ventaja.
+      </div>
+    </div>
+  </div>
+
+  <!-- RESUMEN EJECUTIVO -->
+  <div class="card" style="background:linear-gradient(135deg,#061510,#09201a);border-color:#1a4a30">
+    <div class="card-title" style="color:#34d399">Resumen Ejecutivo — Las 3 Mejores Apuestas</div>
+    <div style="display:flex;flex-direction:column;gap:10px">
+
+      <div style="background:#07111f;border-radius:12px;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;border:1px solid rgba(52,211,153,.2)">
+        <div style="flex:1">
+          <div style="font-size:13px;font-weight:800;color:#34d399">🥇 Suiza 3+ goles en el 2°T</div>
+          <div style="font-size:10px;color:#2a6040;margin-top:4px">xG Suiza 2°T = 1.61 · Poisson P(≥3) = 22.1% · Break-even = 16.7%</div>
+        </div>
+        <div style="text-align:center;flex-shrink:0">
+          <div style="font-size:26px;font-weight:900;color:#dde4f0">6.00</div>
+          <div style="font-size:10px;font-weight:700;background:rgba(52,211,153,.15);color:#34d399;border:1px solid rgba(52,211,153,.3);border-radius:10px;padding:2px 10px;margin-top:4px">EV +32.6%</div>
+        </div>
+      </div>
+
+      <div style="background:#07111f;border-radius:12px;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;border:1px solid rgba(251,191,36,.2)">
+        <div style="flex:1">
+          <div style="font-size:13px;font-weight:800;color:#fbbf24">🥈 Más de 3.5 goles en el partido</div>
+          <div style="font-size:10px;color:#4a4010;margin-top:4px">Total xG = 3.54 · P(≥4 goles) = 47.1% · Break-even = 41.7%</div>
+        </div>
+        <div style="text-align:center;flex-shrink:0">
+          <div style="font-size:26px;font-weight:900;color:#dde4f0">2.40</div>
+          <div style="font-size:10px;font-weight:700;background:rgba(251,191,36,.12);color:#fbbf24;border:1px solid rgba(251,191,36,.25);border-radius:10px;padding:2px 10px;margin-top:4px">EV +13.0%</div>
+        </div>
+      </div>
+
+      <div style="background:#07111f;border-radius:12px;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;border:1px solid rgba(96,165,250,.2)">
+        <div style="flex:1">
+          <div style="font-size:13px;font-weight:800;color:#60a5fa">🥉 Suiza anota en ambos tiempos (SÍ)</div>
+          <div style="font-size:10px;color:#1a3050;margin-top:4px">P(1°T) = 71.8% · P(2°T) = 80.1% · P(ambos) = 57.5% · Break-even = 54.1%</div>
+        </div>
+        <div style="text-align:center;flex-shrink:0">
+          <div style="font-size:26px;font-weight:900;color:#dde4f0">1.85</div>
+          <div style="font-size:10px;font-weight:700;background:rgba(96,165,250,.1);color:#60a5fa;border:1px solid rgba(96,165,250,.2);border-radius:10px;padding:2px 10px;margin-top:4px">EV +6.4%</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:14px;padding:12px 14px;background:#050e0a;border-radius:10px;font-size:10px;color:#2a5030;line-height:1.7;border:1px solid #0d2a18">
+      <strong style="color:#34d399">⚠️ Advertencia:</strong> El xG=2.88 de Suiza está basado en el β=2.07 de Catar (datos de los últimos 3 años con decay 12 meses). Catar viene del Mundial 2022 donde concedió 7 goles en 3 partidos. Si la defensa de Catar ha mejorado, el valor real podría ser menor. <strong style="color:#fbbf24">Apueste con responsabilidad.</strong>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-model">Modelo v3: <span>Elo+SPI blended · Dixon-Coles · minute multiplier · venue/phase context</span></div>
+    <div class="footer-src">Fuentes: martj42 (25k partidos) · xperto.polla.cl · 13 Jun 2026</div>
+  </div>
+
+</div>
+</body>
+</html>
