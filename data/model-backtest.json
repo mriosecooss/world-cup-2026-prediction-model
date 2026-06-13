@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-13T08:05:52.867Z",
+  "generatedAt": "2026-06-13T08:11:34.068Z",
   "method": "Walk-forward out-of-sample: blended Elo+SPI (spiWeight=0.65); Elo updates walk-forward, SPI static. Burn-in 150 skipped.",
   "totalMatches": 913,
   "evaluated": 763,

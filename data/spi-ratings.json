@@ -1,5 +1,5 @@
 {
-  "calibratedAt": "2026-06-13T07:51:04.792Z",
+  "calibratedAt": "2026-06-13T08:11:34.248Z",
   "base": 1.35,
   "matchesUsed": 676,
   "ratings": {
@@ -22,13 +22,13 @@
       "xg_against": 0.945
     },
     "brazil": {
-      "attack": 1.9369,
+      "attack": 1.9368,
       "defense": 0.7783,
       "xg_for": 2.615,
       "xg_against": 1.051
     },
     "england": {
-      "attack": 1.2908,
+      "attack": 1.2909,
       "defense": 0.5421,
       "xg_for": 1.743,
       "xg_against": 0.732
@@ -52,7 +52,7 @@
       "xg_against": 1.14
     },
     "belgium": {
-      "attack": 2.0813,
+      "attack": 2.0812,
       "defense": 0.8827,
       "xg_for": 2.81,
       "xg_against": 1.192
@@ -163,7 +163,7 @@
       "attack": 0.581,
       "defense": 1.1552,
       "xg_for": 0.784,
-      "xg_against": 1.56
+      "xg_against": 1.559
     },
     "wales": {
       "attack": 0.6849,
