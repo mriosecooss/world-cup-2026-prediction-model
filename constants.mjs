@@ -1,4 +1,18 @@
 // Constantes compartidas — fuente única para evitar duplicación entre scripts.
+import { readFileSync, writeFileSync } from 'node:fs';
+
+// Escribe JSON solo si el contenido SUSTANTIVO cambió (ignorando campos de timestamp).
+// Evita que correr un script sin cambios reales ensucie git con un timestamp nuevo.
+// Devuelve true si escribió, false si lo dejó intacto.
+export function writeStableJSON(url, obj, { indent = 2, timestampKeys = ['generatedAt', 'calibratedAt', 'updated', 'wcResultsUpdated'] } = {}) {
+  const strip = (o) => { const c = { ...o }; for (const k of timestampKeys) delete c[k]; return JSON.stringify(c); };
+  try {
+    const prev = JSON.parse(readFileSync(url, 'utf8'));
+    if (strip(prev) === strip(obj)) return false; // sin cambios sustantivos → no reescribir
+  } catch { /* archivo nuevo */ }
+  writeFileSync(url, JSON.stringify(obj, null, indent) + '\n');
+  return true;
+}
 
 // Anfitriones WC2026 y bonus de localía (Elo).
 export const HOST = new Set(['mexico', 'usa', 'canada']);

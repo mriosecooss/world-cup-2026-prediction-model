@@ -4,7 +4,8 @@
 // Produces data/spi-ratings.json with alpha (attack) and beta (defense vulnerability).
 //   alpha > 1 = above-average attack    beta > 1 = weak defense (concedes more)
 //   alpha < 1 = weak attack             beta < 1 = strong defense (concedes less)
-import { readFileSync, writeFileSync } from 'node:fs';
+import { readFileSync } from 'node:fs';
+import { writeStableJSON } from './constants.mjs';
 
 const BASE   = 1.35;
 const CUTOFF = 3;
@@ -108,7 +109,7 @@ for (const t of SEED_TEAMS) {
   };
 }
 
-writeFileSync(new URL('./data/spi-ratings.json', import.meta.url), JSON.stringify({ calibratedAt: new Date().toISOString(), base: BASE, matchesUsed: data.length, ratings }, null, 2) + '\n');
+writeStableJSON(new URL('./data/spi-ratings.json', import.meta.url), { calibratedAt: new Date().toISOString(), base: BASE, matchesUsed: data.length, ratings });
 
 // Print top 10 attack + top 10 defense
 const sortedAtk = SEED_TEAMS.filter(t=>ratings[t]).sort((a,b) => ratings[b].attack - ratings[a].attack);

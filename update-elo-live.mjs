@@ -3,13 +3,12 @@
 // Lee elo-calibrated.json (congelado) como base + wc2026-results.json.
 // Escribe elo-live.json — usar con: node predict.mjs brasil marruecos --live
 //   node update-elo-live.mjs
-import { readFileSync, writeFileSync } from 'node:fs';
+import { readFileSync } from 'node:fs';
 import { expectedScore } from './elo.mjs';
+import { HOST, HOME_ADV, writeStableJSON } from './constants.mjs';
 
 const D = (f) => new URL(`./data/${f}`, import.meta.url);
 const K_LIVE  = 20;
-const HOST    = new Set(['mexico', 'usa', 'canada']);
-const HOME_ADV = 75;
 
 const { ratings: base } = JSON.parse(readFileSync(D('elo-calibrated.json'), 'utf8'));
 const { updated, matches } = JSON.parse(readFileSync(D('wc2026-results.json'), 'utf8'));
@@ -30,14 +29,14 @@ for (const m of matches) {
   applied++;
 }
 
-writeFileSync(D('elo-live.json'), JSON.stringify({
+writeStableJSON(D('elo-live.json'), {
   generatedAt: new Date().toISOString(),
   basedOn: 'elo-calibrated.json',
   wcResultsUpdated: updated,
   matchesApplied: applied,
   kFactor: K_LIVE,
   ratings: R,
-}, null, 2) + '\n');
+});
 
 console.log(`elo-live.json generado — ${applied} partidos WC2026 aplicados (K=${K_LIVE})`);
 

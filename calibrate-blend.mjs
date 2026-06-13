@@ -3,9 +3,9 @@
 // Elo updates walk-forward; SPI ratings are static (pre-computed).
 // NOTE: static SPI introduces minor look-ahead bias — acceptable for weight optimization.
 //   node calibrate-blend.mjs
-import { readFileSync, writeFileSync } from "node:fs";
+import { readFileSync } from "node:fs";
 import { matchProb, matchProbSPI, matchProbBlended, expectedScore } from "./elo.mjs";
-import { HOME_ADV, baseK, gMult } from "./constants.mjs";
+import { HOME_ADV, baseK, gMult, writeStableJSON } from "./constants.mjs";
 
 const D = (f) => new URL(`./data/${f}`, import.meta.url);
 const { seed: SEED } = JSON.parse(readFileSync(D("seed-ratings.json"), "utf8"));
@@ -68,11 +68,11 @@ console.log(`\nOptimo : weight=${best.weight.toFixed(2)}  RPS=${best.rps.toFixed
 console.log(`Antes  : weight=0.45  RPS=${prev?.rps.toFixed(4)}`);
 console.log(`Mejora RPS: ${((prev?.rps - best.rps) * 10000).toFixed(1)} puntos base`);
 
-writeFileSync(D("blend-search.json"), JSON.stringify({
+const wrote = writeStableJSON(D("blend-search.json"), {
   generatedAt: new Date().toISOString(),
   optimalWeight: best.weight,
   previousWeight: 0.45,
   rpsImprovement: +((prev?.rps - best.rps).toFixed(6)),
   results: results.map(r => ({ weight: r.weight, rps: +r.rps.toFixed(6), accuracy: +r.accuracy.toFixed(4) })),
-}, null, 2) + "\n");
-console.log(`-> data/blend-search.json guardado`);
+});
+console.log(wrote ? `-> data/blend-search.json guardado` : `-> data/blend-search.json sin cambios`);

@@ -2,9 +2,9 @@
 // Walk-forward, OUT-OF-SAMPLE backtest of the model on real internationals (data/results.json).
 // Each match is predicted from ratings built ONLY on prior matches, then scored — no look-ahead.
 //   node backtest.mjs
-import { readFileSync, writeFileSync } from "node:fs";
+import { readFileSync } from "node:fs";
 import { matchProb, matchProbSPI, matchProbBlended, expectedScore } from "./elo.mjs";
-import { HOME_ADV, baseK, gMult } from "./constants.mjs";
+import { HOME_ADV, baseK, gMult, writeStableJSON } from "./constants.mjs";
 
 const D = (f) => new URL(`./data/${f}`, import.meta.url);
 const { ratings: spiR } = JSON.parse(readFileSync(D("spi-ratings.json"), "utf8"));
@@ -89,7 +89,7 @@ for (const [k, b] of calib.entries()) {
 console.log(`\nLive title odds (full 50k-sim tournament model, conditioned on real results): https://cup26matches.com`);
 
 // Persist the metrics so data/model-backtest.json always matches a fresh `node backtest.mjs` run.
-writeFileSync(new URL("./data/model-backtest.json", import.meta.url), JSON.stringify({
+const wrote = writeStableJSON(new URL("./data/model-backtest.json", import.meta.url), {
   generatedAt: new Date().toISOString(),
   method: `Walk-forward out-of-sample: blended Elo+SPI (spiWeight=${SPI_WEIGHT}); Elo updates walk-forward, SPI static. Burn-in ${BURN_IN} skipped.`,
   totalMatches: matches.length, evaluated: n, burnIn: BURN_IN,
@@ -101,5 +101,5 @@ writeFileSync(new URL("./data/model-backtest.json", import.meta.url), JSON.strin
   calibration: { bins: calib.map((c,k)=>({ range:[k/10,(k+1)/10], n:c.n,
     avgPred: c.n? +(c.sumP/c.n).toFixed(4):null, obsFreq: c.n? +(c.sumY/c.n).toFixed(4):null })),
     ece: +ece.toFixed(4) },
-}, null, 2) + "\n");
-console.log("→ wrote data/model-backtest.json");
+});
+console.log(wrote ? "→ wrote data/model-backtest.json" : "→ data/model-backtest.json sin cambios");
