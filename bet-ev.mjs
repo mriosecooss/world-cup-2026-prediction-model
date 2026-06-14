@@ -7,6 +7,8 @@ import { readFileSync, existsSync } from 'node:fs';
 import { matchProb, matchProbSPI, matchProbBlended, poissonPmf } from './elo.mjs';
 import { SLUG_TO_NAME, rateIntegral } from './constants.mjs';
 import { venueGoalMult } from './context.mjs';
+import { squadAdjustment } from './squad-strength.mjs';
+import { marketValueBoost } from './squad-market-value.mjs';
 
 const SPI_WEIGHT = 0.65;
 const D = (f) => new URL(`./data/${f}`, import.meta.url);
@@ -22,15 +24,26 @@ const FRAC_1H = rateIntegral(0, 45) / rateIntegral(0, 90);
 const FRAC_2H = rateIntegral(45, 90) / rateIntegral(0, 90);
 
 // xG full del modelo blended para un partido.
+// Aplica squad adjustment + market value sobre ataque SPI (igual que predict.mjs).
 function matchXg(home, away) {
   const venue = fixture.find(m => (m.t1 === home && m.t2 === away) || (m.t1 === away && m.t2 === home))?.venue;
   const ctx = venue ? venueGoalMult(venue) : 1.0;
-  const elo = matchProb(eloR[home], eloR[away], 0);
-  let r = elo;
+  const sqH = squadAdjustment(home), sqA = squadAdjustment(away);
+  const mvH = marketValueBoost(home), mvA = marketValueBoost(away);
+  const eloAdj = matchProb(
+    (eloR[home] ?? 1500) + sqH.adjustment,
+    (eloR[away] ?? 1500) + sqA.adjustment,
+    0  // WC neutral (hosts reciben bonus via predict.mjs, bet-ev trabaja en neutral)
+  );
+  let r = eloAdj;
   if (spiR[home] && spiR[away]) {
-    const sA = spiR[home], sB = spiR[away];
-    const spi = matchProbSPI(sA.attack, sB.defense, sB.attack, sA.defense, 0, ctx);
-    r = matchProbBlended(elo, spi, SPI_WEIGHT);
+    const sH = spiR[home], sA = spiR[away];
+    const spi = matchProbSPI(
+      sH.attack * sqH.ratio * mvH.boost, sA.defense,
+      sA.attack * sqA.ratio * mvA.boost, sH.defense,
+      0, ctx
+    );
+    r = matchProbBlended(eloAdj, spi, SPI_WEIGHT);
   }
   return { home: r.expectedGoalsA, away: r.expectedGoalsB };
 }
