@@ -97,12 +97,14 @@ const presB = usePres ? pressureBoost(b, phase) : 1;
 let blended = eloResult;
 if (!eloOnly && spiR[a] && spiR[b]) {
   const sA = spiR[a], sB = spiR[b];
-  const sqMultA = useSquad ? sqA.ratio : 1;
-  const sqMultB = useSquad ? sqB.ratio : 1;
-  // Cadena multiplicativa sobre ataque: squad × MV × fatiga × calor × presión
+  const sqMultA    = useSquad ? sqA.attack_ratio  : 1;
+  const sqMultB    = useSquad ? sqB.attack_ratio  : 1;
+  const sqDefMultA = useSquad ? (2 - sqA.defense_ratio) : 1;
+  const sqDefMultB = useSquad ? (2 - sqB.defense_ratio) : 1;
+  // Ataque: squad × MV × fatiga × calor × presión. Defensa: empeora cuando faltan defensores.
   const spiResult = matchProbSPI(
-    sA.attack * sqMultA * mvA * fatA * heatA * presA, sB.defense,
-    sB.attack * sqMultB * mvB * fatB * heatB * presB, sA.defense,
+    sA.attack * sqMultA * mvA * fatA * heatA * presA, sB.defense * sqDefMultB,
+    sB.attack * sqMultB * mvB * fatB * heatB * presB, sA.defense * sqDefMultA,
     hb, ctxMult
   );
 
@@ -156,7 +158,7 @@ if (oddsStr) {
     const ev1 = blended.winA * o1 - 1;
     const evD = blended.draw * oD - 1;
     const ev2 = blended.winB * o2 - 1;
-    const fmt = (ev) => `${ev >= 0 ? '+' : ''}${(ev * 100).toFixed(1)}%${ev > 0.03 ? ' ✓' : ''}`;
+    const fmt = (ev) => `${ev >= 0 ? '+' : ''}${(ev * 100).toFixed(1)}%${ev > 0.05 ? ' ✓' : ''}`;
     console.log(`  ${'─'.repeat(58)}`);
     console.log(`  Cuotas  :  ${a} ${o1}  draw ${oD}  ${b} ${o2}`);
     console.log(`  EV      :  ${a} ${fmt(ev1).padEnd(12)}  draw ${fmt(evD).padEnd(12)}  ${b} ${fmt(ev2)}\n`);
