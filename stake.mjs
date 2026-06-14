@@ -14,22 +14,19 @@
 // Cap de seguridad: 5% del bankroll por apuesta independiente.
 
 import { readFileSync, existsSync } from 'node:fs';
-import { matchProb, matchProbSPI, matchProbBlended, poissonPmf } from './elo.mjs';
+import { poissonPmf } from './elo.mjs';
 import { SLUG_TO_NAME, rateIntegral } from './constants.mjs';
 import { venueGoalMult } from './context.mjs';
-import { squadAdjustment } from './squad-strength.mjs';
-import { marketValueBoost } from './squad-market-value.mjs';
+import { matchBlendedXg } from './match-core.mjs';
 
 const D = (f) => new URL(`./data/${f}`, import.meta.url);
 const { ratings: eloR } = JSON.parse(readFileSync(D('elo-calibrated.json'), 'utf8'));
-const { ratings: spiR } = JSON.parse(readFileSync(D('spi-ratings.json'), 'utf8'));
 const { bets } = JSON.parse(readFileSync(D('bets.json'), 'utf8'));
 const { account_snapshot } = JSON.parse(readFileSync(D('deposits.json'), 'utf8'));
 const fixture = existsSync(D('fixture-wc2026.json'))
   ? JSON.parse(readFileSync(D('fixture-wc2026.json'), 'utf8')).matches
   : [];
 
-const SPI_WEIGHT = 0.65;
 const FRAC_1H = rateIntegral(0, 45) / rateIntegral(0, 90);
 const FRAC_2H = rateIntegral(45, 90) / rateIntegral(0, 90);
 const KELLY_CAP = 0.05; // maximo 5% por apuesta independiente
@@ -41,29 +38,14 @@ const hasFlag = (n) => argv.includes(`--${n}`);
 const bankroll   = parseInt(getFlag('bankroll') ?? account_snapshot.saldo_disponible, 10);
 const showAll    = hasFlag('all');
 const matchSlug  = getFlag('match');
+const overround  = parseFloat(getFlag('overround') ?? '0');
 
-// ── xG del modelo (igual que bet-ev.mjs v2: con squad adj + MV) ──────────────
+// ── xG via match-core.mjs (squad adj ataque+defensa, MV boost, Pi-rating) ────
 function matchXg(home, away) {
   const venue = fixture.find(m => (m.t1 === home && m.t2 === away) || (m.t1 === away && m.t2 === home))?.venue;
   const ctx = venue ? venueGoalMult(venue) : 1.0;
-  const sqH = squadAdjustment(home), sqA = squadAdjustment(away);
-  const mvH = marketValueBoost(home), mvA = marketValueBoost(away);
-  const eloAdj = matchProb(
-    (eloR[home] ?? 1500) + sqH.adjustment,
-    (eloR[away] ?? 1500) + sqA.adjustment,
-    0
-  );
-  let r = eloAdj;
-  if (spiR[home] && spiR[away]) {
-    const sH = spiR[home], sA = spiR[away];
-    const spi = matchProbSPI(
-      sH.attack * sqH.ratio * mvH.boost, sA.defense,
-      sA.attack * sqA.ratio * mvA.boost, sH.defense,
-      0, ctx
-    );
-    r = matchProbBlended(eloAdj, spi, SPI_WEIGHT);
-  }
-  return { home: r.expectedGoalsA, away: r.expectedGoalsB };
+  const r = matchBlendedXg(eloR[home] ?? 1500, eloR[away] ?? 1500, home, away, { contextMult: ctx });
+  return { home: r.home, away: r.away };
 }
 
 // ── Probabilidades de mercado (misma logica que bet-ev.mjs) ──────────────────
@@ -161,8 +143,10 @@ for (const [, list] of Object.entries(byMatch)) {
   console.log(`── ${hName} vs ${aName} ──────────`);
   console.log(`   xG: ${hName} ${xg.home.toFixed(2)} – ${aName} ${xg.away.toFixed(2)}\n`);
 
-  console.log(`   ${'Descripcion'.padEnd(W)} odds    prob      EV    Kelly  H-Kelly   Sug`);
-  console.log(`   ${'─'.repeat(W + 48)}`);
+  const hasOR = overround > 0;
+  const hdr = `   ${'Descripcion'.padEnd(W)} odds    prob      EV    Kelly  H-Kelly   Sug${hasOR ? '   Edge/mkt' : ''}`;
+  console.log(hdr);
+  console.log(`   ${'─'.repeat(W + (hasOR ? 58 : 48))}`);
 
   for (const b of display) {
     const p = modelProb(b, xg);
@@ -176,7 +160,10 @@ for (const [, list] of Object.entries(byMatch)) {
     const probStr = p != null ? `${(p * 100).toFixed(1).padStart(5)}%` : '    ?  ';
     const status = b.status === 'won' ? '[G]' : b.status === 'lost' ? '[P]' : '[A]';
     const desc = (b.desc ?? b.market).substring(0, W - 1);
-    console.log(`   ${status} ${desc.padEnd(W - 1)} ${b.odds.toFixed(2).padStart(4)}  ${probStr}  ${evStr}  ${kStr}  ${hkStr}  ${sug}`);
+    const fairProb = hasOR && p != null ? (1 / b.odds) / overround : null;
+    const edge    = fairProb != null ? p - fairProb : null;
+    const edgeStr = edge != null ? `  ${edge >= 0 ? '+' : ''}${(edge * 100).toFixed(1).padStart(4)}%` : '';
+    console.log(`   ${status} ${desc.padEnd(W - 1)} ${b.odds.toFixed(2).padStart(4)}  ${probStr}  ${evStr}  ${kStr}  ${hkStr}  ${sug}${edgeStr}`);
   }
 
   const openStake  = open.reduce((s, b) => s + b.stake, 0);
@@ -204,6 +191,7 @@ for (const [, list] of Object.entries(byMatch)) {
 
 // ── Resumen global ────────────────────────────────────────────────────────────
 console.log(`── RESUMEN ──────────────────────────────────`);
+if (!overround) console.log(`   Tip: --overround=1.06 muestra "edge vs fair market" por boleto (overround tipico 1.04-1.08).`);
 if (openCount === 0) {
   console.log(`   Sin apuestas abiertas.`);
   if (!showAll) console.log(`   Usa --all para ver el analisis historico de todos los partidos.`);

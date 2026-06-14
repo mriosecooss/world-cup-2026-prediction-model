@@ -4,18 +4,17 @@
 //   node bet-ev.mjs                 todas las apuestas abiertas
 //   node bet-ev.mjs qatar-switzerland   solo ese partido
 import { readFileSync, existsSync } from 'node:fs';
-import { matchProb, matchProbSPI, matchProbBlended, poissonPmf } from './elo.mjs';
+import { poissonPmf } from './elo.mjs';
 import { SLUG_TO_NAME, rateIntegral } from './constants.mjs';
 import { venueGoalMult } from './context.mjs';
-import { squadAdjustment } from './squad-strength.mjs';
-import { marketValueBoost } from './squad-market-value.mjs';
+import { matchBlendedXg } from './match-core.mjs';
 
-const SPI_WEIGHT = 0.65;
 const D = (f) => new URL(`./data/${f}`, import.meta.url);
 const { ratings: eloR } = JSON.parse(readFileSync(D('elo-calibrated.json'), 'utf8'));
-const { ratings: spiR } = JSON.parse(readFileSync(D('spi-ratings.json'), 'utf8'));
 const { bets } = JSON.parse(readFileSync(D('bets.json'), 'utf8'));
 const fixture = existsSync(D('fixture-wc2026.json')) ? JSON.parse(readFileSync(D('fixture-wc2026.json'), 'utf8')).matches : [];
+
+const overround = parseFloat(process.argv.find(a => a.startsWith('--overround='))?.split('=')[1] ?? '0');
 
 const filter = process.argv[2];
 
@@ -23,29 +22,12 @@ const filter = process.argv[2];
 const FRAC_1H = rateIntegral(0, 45) / rateIntegral(0, 90);
 const FRAC_2H = rateIntegral(45, 90) / rateIntegral(0, 90);
 
-// xG full del modelo blended para un partido.
-// Aplica squad adjustment + market value sobre ataque SPI (igual que predict.mjs).
+// xG blended via match-core.mjs (squad adj ataque+defensa, MV boost, Pi-rating si disponible).
 function matchXg(home, away) {
   const venue = fixture.find(m => (m.t1 === home && m.t2 === away) || (m.t1 === away && m.t2 === home))?.venue;
   const ctx = venue ? venueGoalMult(venue) : 1.0;
-  const sqH = squadAdjustment(home), sqA = squadAdjustment(away);
-  const mvH = marketValueBoost(home), mvA = marketValueBoost(away);
-  const eloAdj = matchProb(
-    (eloR[home] ?? 1500) + sqH.adjustment,
-    (eloR[away] ?? 1500) + sqA.adjustment,
-    0  // WC neutral (hosts reciben bonus via predict.mjs, bet-ev trabaja en neutral)
-  );
-  let r = eloAdj;
-  if (spiR[home] && spiR[away]) {
-    const sH = spiR[home], sA = spiR[away];
-    const spi = matchProbSPI(
-      sH.attack * sqH.ratio * mvH.boost, sA.defense,
-      sA.attack * sqA.ratio * mvA.boost, sH.defense,
-      0, ctx
-    );
-    r = matchProbBlended(eloAdj, spi, SPI_WEIGHT);
-  }
-  return { home: r.expectedGoalsA, away: r.expectedGoalsB };
+  const r = matchBlendedXg(eloR[home] ?? 1500, eloR[away] ?? 1500, home, away, { contextMult: ctx });
+  return { home: r.home, away: r.away };
 }
 
 // P(X >= k) y P(X = k) para Poisson(λ)
@@ -134,15 +116,18 @@ for (const [, list] of Object.entries(byMatch)) {
   for (const b of list) {
     const p = modelProb(b, xg);
     const ev = p * b.odds - 1;
+    const fairProb = overround > 0 && p != null ? (1 / b.odds) / overround : null;
+    const edge     = fairProb != null ? p - fairProb : null;
+    const edgeStr  = edge != null ? ` edge ${edge >= 0 ? '+' : ''}${(edge * 100).toFixed(1)}%` : '';
     if (b.status === 'won' || b.status === 'lost') {
       const ret = b.status === 'won' ? b.stake * b.odds : 0;
       settledStake += b.stake; settledReturn += ret;
       const mark = b.status === 'won' ? '🟢 GANADA' : '🔴 PERDIDA';
-      console.log(`  ${b.odds.toFixed(2).padStart(5)}  ${(p*100).toFixed(1).padStart(5)}%  ${(ev>=0?'+':'')}${(ev*100).toFixed(1).padStart(5)}%  ${mark} ${b.desc}`);
+      console.log(`  ${b.odds.toFixed(2).padStart(5)}  ${(p*100).toFixed(1).padStart(5)}%  ${(ev>=0?'+':'')}${(ev*100).toFixed(1).padStart(5)}%  ${mark}${edgeStr} ${b.desc}`);
     } else {
       openStake += b.stake; openExpReturn += b.stake * p * b.odds;
       const flag = ev > 0.05 ? '✅' : ev < 0 ? '❌' : '➖';
-      console.log(`  ${b.odds.toFixed(2).padStart(5)}  ${(p*100).toFixed(1).padStart(5)}%  ${(ev>=0?'+':'')}${(ev*100).toFixed(1).padStart(5)}%  ${flag} ${b.desc}`);
+      console.log(`  ${b.odds.toFixed(2).padStart(5)}  ${(p*100).toFixed(1).padStart(5)}%  ${(ev>=0?'+':'')}${(ev*100).toFixed(1).padStart(5)}%  ${flag}${edgeStr} ${b.desc}`);
     }
   }
 }
@@ -155,3 +140,4 @@ if (openStake) {
   console.log(`Abiertas:   apostado $${openStake.toLocaleString()} → retorno esperado $${Math.round(openExpReturn).toLocaleString()} (EV ${((openExpReturn/openStake-1)*100).toFixed(1)}%, según modelo)`);
 }
 console.log(`\nNota: EV alto y uniforme en mercados de goles indica λ sobreestimado (sesgo CAF/AFC), no valor real.`);
+if (!overround) console.log(`Tip: añadir --overround=1.06 calcula "edge vs fair market" (overround típico 1.04-1.08).`);
