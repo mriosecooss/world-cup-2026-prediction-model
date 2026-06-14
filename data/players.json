@@ -164,6 +164,24 @@
         { "name": "Yahia Fofana",         "pos": "GK", "club": "Angers",              "number": 1,  "elo_impact": 10, "available": true  },
         { "name": "Ghislain Konan",       "pos": "DF", "club": "Al-Wakrah",           "number": 6,  "elo_impact": 9,  "available": true  }
       ]
+    },
+    "sweden": {
+      "base_elo": 1730,
+      "players": [
+        { "name": "Alexander Isak",       "pos": "FW", "club": "Liverpool",           "number": 9,  "elo_impact": 28, "available": true  },
+        { "name": "Viktor Gyökeres",      "pos": "FW", "club": "Arsenal",             "number": 10, "elo_impact": 28, "available": true  },
+        { "name": "Dejan Kulusevski",     "pos": "MF", "club": "Tottenham",           "number": 8,  "elo_impact": 20, "available": true  },
+        { "name": "Anthony Elanga",       "pos": "FW", "club": "Newcastle",           "number": 11, "elo_impact": 16, "available": true  },
+        { "name": "Victor Lindelöf",      "pos": "DF", "club": "Aston Villa",         "number": 3,  "elo_impact": 15, "available": true  },
+        { "name": "Lucas Bergvall",       "pos": "MF", "club": "Tottenham",           "number": 16, "elo_impact": 15, "available": true  },
+        { "name": "Hugo Larsson",         "pos": "MF", "club": "Eintracht Frankfurt", "number": 6,  "elo_impact": 13, "available": true  },
+        { "name": "Isak Hien",            "pos": "DF", "club": "Aston Villa",         "number": 5,  "elo_impact": 13, "available": true  },
+        { "name": "Emil Forsberg",        "pos": "MF", "club": "New York Red Bulls",  "number": 7,  "elo_impact": 12, "available": true  },
+        { "name": "Daniel Svensson",      "pos": "DF", "club": "Borussia Dortmund",   "number": 2,  "elo_impact": 11, "available": true  },
+        { "name": "Yasin Ayari",          "pos": "MF", "club": "Brighton",            "number": 17, "elo_impact": 10, "available": true  },
+        { "name": "Gabriel Gudmundsson",  "pos": "DF", "club": "Leeds United",        "number": 4,  "elo_impact": 9,  "available": true  },
+        { "name": "Robin Olsen",          "pos": "GK", "club": "Malmö FF",            "number": 1,  "elo_impact": 9,  "available": true  }
+      ]
     }
   }
 }
