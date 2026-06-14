@@ -293,6 +293,25 @@
         { "name": "Andreas Schjelderup",  "pos": "FW", "club": "Benfica",             "number": 21, "elo_impact": 10, "available": true  },
         { "name": "Ørjan Nyland",         "pos": "GK", "club": "Sevilla",             "number": 1,  "elo_impact": 9,  "available": true  }
       ]
+    },
+    "uruguay": {
+      "base_elo": 1851,
+      "players": [
+        { "name": "Federico Valverde",    "pos": "MF", "club": "Real Madrid",         "number": 15, "elo_impact": 30, "available": true  },
+        { "name": "Ronald Araújo",        "pos": "DF", "club": "Barcelona",           "number": 4,  "elo_impact": 22, "available": true  },
+        { "name": "Darwin Núñez",         "pos": "FW", "club": "Al Hilal",            "number": 9,  "elo_impact": 20, "available": true  },
+        { "name": "Giorgian de Arrascaeta","pos": "MF", "club": "Flamengo",           "number": 10, "elo_impact": 17, "available": true  },
+        { "name": "Rodrigo Bentancur",    "pos": "MF", "club": "Tottenham",           "number": 6,  "elo_impact": 16, "available": true  },
+        { "name": "Manuel Ugarte",        "pos": "MF", "club": "Manchester United",   "number": 5,  "elo_impact": 16, "available": true  },
+        { "name": "José María Giménez",   "pos": "DF", "club": "Atlético Madrid",     "number": 2,  "elo_impact": 15, "available": true  },
+        { "name": "Nicolás de la Cruz",   "pos": "MF", "club": "Flamengo",            "number": 8,  "elo_impact": 14, "available": true  },
+        { "name": "Federico Pellistri",   "pos": "FW", "club": "Panathinaikos",       "number": 11, "elo_impact": 12, "available": true  },
+        { "name": "Maximiliano Araújo",   "pos": "FW", "club": "Toluca",              "number": 16, "elo_impact": 11, "available": true  },
+        { "name": "Brian Rodríguez",      "pos": "FW", "club": "América",             "number": 7,  "elo_impact": 10, "available": true  },
+        { "name": "Guillermo Varela",     "pos": "DF", "club": "Flamengo",            "number": 22, "elo_impact": 10, "available": true  },
+        { "name": "Sebastián Cáceres",    "pos": "DF", "club": "América",             "number": 3,  "elo_impact": 9,  "available": true  },
+        { "name": "Fernando Muslera",     "pos": "GK", "club": "Estudiantes",         "number": 1,  "elo_impact": 10, "available": true  }
+      ]
     }
   }
 }
