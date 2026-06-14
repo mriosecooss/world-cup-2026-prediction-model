@@ -492,6 +492,112 @@
         { "name": "Josip Šutalo",         "pos": "DF", "club": "Ajax",                "number": 3,  "elo_impact": 12, "available": true  },
         { "name": "Josip Stanišić",       "pos": "DF", "club": "Bayern München",      "number": 2,  "elo_impact": 11, "available": true  }
       ]
+    },
+    "switzerland": {
+      "base_elo": 1831,
+      "players": [
+        { "name": "Granit Xhaka",         "pos": "MF", "club": "Bayer Leverkusen",    "number": 10, "elo_impact": 26, "available": true  },
+        { "name": "Manuel Akanji",        "pos": "DF", "club": "Inter",               "number": 5,  "elo_impact": 22, "available": true  },
+        { "name": "Breel Embolo",         "pos": "FW", "club": "Rennes",              "number": 9,  "elo_impact": 20, "available": true  },
+        { "name": "Gregor Kobel",         "pos": "GK", "club": "Borussia Dortmund",   "number": 1,  "elo_impact": 18, "available": true  },
+        { "name": "Dan Ndoye",            "pos": "FW", "club": "Bologna",             "number": 11, "elo_impact": 17, "available": true  },
+        { "name": "Remo Freuler",         "pos": "MF", "club": "Bologna",             "number": 8,  "elo_impact": 16, "available": true  },
+        { "name": "Rubén Vargas",         "pos": "FW", "club": "Augsburg",            "number": 7,  "elo_impact": 16, "available": true  },
+        { "name": "Fabian Rieder",        "pos": "MF", "club": "Rennes",              "number": 14, "elo_impact": 14, "available": true  },
+        { "name": "Silvan Widmer",        "pos": "DF", "club": "Mainz 05",            "number": 2,  "elo_impact": 13, "available": true  },
+        { "name": "Denis Zakaria",        "pos": "MF", "club": "Lazio",               "number": 6,  "elo_impact": 13, "available": true  },
+        { "name": "Ricardo Rodríguez",    "pos": "DF", "club": "Torino",              "number": 3,  "elo_impact": 12, "available": true  },
+        { "name": "Johan Manzambi",       "pos": "FW", "club": "Freiburg",            "number": 19, "elo_impact": 12, "available": true  },
+        { "name": "Djibril Sow",          "pos": "MF", "club": "Sevilla",             "number": 22, "elo_impact": 11, "available": true  }
+      ]
+    },
+    "austria": {
+      "base_elo": 1778,
+      "players": [
+        { "name": "David Alaba",          "pos": "DF", "club": "Real Madrid",         "number": 14, "elo_impact": 28, "available": true  },
+        { "name": "Marcel Sabitzer",      "pos": "MF", "club": "Borussia Dortmund",   "number": 7,  "elo_impact": 24, "available": true  },
+        { "name": "Konrad Laimer",        "pos": "MF", "club": "Bayern München",      "number": 8,  "elo_impact": 22, "available": true  },
+        { "name": "Christoph Baumgartner","pos": "MF", "club": "RB Leipzig",          "number": 10, "elo_impact": 20, "available": true  },
+        { "name": "Marko Arnautović",     "pos": "FW", "club": "Crvena Zvezda",       "number": 9,  "elo_impact": 19, "available": true  },
+        { "name": "Kevin Danso",          "pos": "DF", "club": "Tottenham",           "number": 5,  "elo_impact": 18, "available": true  },
+        { "name": "Xaver Schlager",       "pos": "MF", "club": "RB Leipzig",          "number": 6,  "elo_impact": 16, "available": true  },
+        { "name": "Nicolas Seiwald",      "pos": "MF", "club": "RB Leipzig",          "number": 16, "elo_impact": 16, "available": true  },
+        { "name": "Patrick Wimmer",       "pos": "MF", "club": "VfL Wolfsburg",       "number": 17, "elo_impact": 13, "available": true  },
+        { "name": "Michael Gregoritsch",  "pos": "FW", "club": "Augsburg",            "number": 11, "elo_impact": 13, "available": true  },
+        { "name": "Alexander Schlager",   "pos": "GK", "club": "RB Salzburg",         "number": 1,  "elo_impact": 13, "available": true  },
+        { "name": "Carney Chukwuemeka",   "pos": "MF", "club": "Borussia Dortmund",   "number": 22, "elo_impact": 13, "available": true  },
+        { "name": "Marco Friedl",         "pos": "DF", "club": "Werder Bremen",       "number": 4,  "elo_impact": 11, "available": true  }
+      ]
+    },
+    "iran": {
+      "base_elo": 1757,
+      "players": [
+        { "name": "Mehdi Taremi",         "pos": "FW", "club": "Olympiacos",          "number": 9,  "elo_impact": 28, "available": true  },
+        { "name": "Alireza Jahanbakhsh",  "pos": "MF", "club": "Dender",              "number": 11, "elo_impact": 18, "available": true  },
+        { "name": "Alireza Beiranvand",   "pos": "GK", "club": "Tractor",             "number": 1,  "elo_impact": 16, "available": true  },
+        { "name": "Saeid Ezatolahi",      "pos": "MF", "club": "Shabab Al-Ahli",      "number": 6,  "elo_impact": 16, "available": true  },
+        { "name": "Saman Ghoddos",        "pos": "MF", "club": "Kalba",               "number": 7,  "elo_impact": 14, "available": true  },
+        { "name": "Mehdi Ghaedi",         "pos": "MF", "club": "Al-Nasr",             "number": 10, "elo_impact": 14, "available": true  },
+        { "name": "Ehsan Hajsafi",        "pos": "DF", "club": "Sepahan",             "number": 3,  "elo_impact": 14, "available": true  },
+        { "name": "Rouzbeh Cheshmi",      "pos": "MF", "club": "Esteghlal",           "number": 8,  "elo_impact": 13, "available": true  },
+        { "name": "Ali Alipour",          "pos": "FW", "club": "Persepolis",          "number": 19, "elo_impact": 13, "available": true  },
+        { "name": "Dennis Dargahi",       "pos": "FW", "club": "Standard Liège",      "number": 17, "elo_impact": 12, "available": true  },
+        { "name": "Ramin Rezaeian",       "pos": "DF", "club": "Foolad",              "number": 2,  "elo_impact": 11, "available": true  },
+        { "name": "Hossein Kanaani",      "pos": "DF", "club": "Persepolis",          "number": 4,  "elo_impact": 10, "available": true  }
+      ]
+    },
+    "uzbekistan": {
+      "base_elo": 1725,
+      "players": [
+        { "name": "Eldor Shomurodov",     "pos": "FW", "club": "Istanbul Basaksehir", "number": 9,  "elo_impact": 25, "available": true  },
+        { "name": "Abdukodir Khusanov",   "pos": "DF", "club": "Manchester City",     "number": 4,  "elo_impact": 22, "available": true  },
+        { "name": "Jaloliddin Masharipov","pos": "MF", "club": "Esteghlal",           "number": 10, "elo_impact": 18, "available": true  },
+        { "name": "Abbosbek Fayzullaev",  "pos": "MF", "club": "Istanbul Basaksehir", "number": 7,  "elo_impact": 17, "available": true  },
+        { "name": "Otabek Shukurov",      "pos": "MF", "club": "Baniyas",             "number": 6,  "elo_impact": 15, "available": true  },
+        { "name": "Oston Urunov",         "pos": "MF", "club": "Persepolis",          "number": 8,  "elo_impact": 13, "available": true  },
+        { "name": "Igor Sergeev",         "pos": "FW", "club": "Persepolis",          "number": 11, "elo_impact": 13, "available": true  },
+        { "name": "Dostonbek Khamdamov",  "pos": "MF", "club": "Pakhtakor",           "number": 14, "elo_impact": 12, "available": true  },
+        { "name": "Utkir Yusupov",        "pos": "GK", "club": "Navbahor",            "number": 1,  "elo_impact": 11, "available": true  },
+        { "name": "Farrukh Sayfiev",      "pos": "DF", "club": "Neftchi",             "number": 2,  "elo_impact": 11, "available": true  },
+        { "name": "Azizjon Ganiev",       "pos": "MF", "club": "Al Bataeh",           "number": 18, "elo_impact": 9,  "available": true  },
+        { "name": "Azizbek Amonov",       "pos": "FW", "club": "Bukhara",             "number": 17, "elo_impact": 10, "available": true  }
+      ]
+    },
+    "canada": {
+      "base_elo": 1714,
+      "players": [
+        { "name": "Alphonso Davies",      "pos": "DF", "club": "Bayern München",      "number": 3,  "elo_impact": 30, "available": false },
+        { "name": "Jonathan David",       "pos": "FW", "club": "Juventus",            "number": 9,  "elo_impact": 28, "available": true  },
+        { "name": "Tajon Buchanan",       "pos": "FW", "club": "Villarreal",          "number": 11, "elo_impact": 20, "available": true  },
+        { "name": "Stephen Eustáquio",    "pos": "MF", "club": "Porto",               "number": 7,  "elo_impact": 20, "available": true  },
+        { "name": "Ismaël Koné",          "pos": "MF", "club": "Sassuolo",            "number": 8,  "elo_impact": 17, "available": true  },
+        { "name": "Cyle Larin",           "pos": "FW", "club": "Southampton",         "number": 17, "elo_impact": 16, "available": true  },
+        { "name": "Alistair Johnston",    "pos": "DF", "club": "Celtic",              "number": 2,  "elo_impact": 15, "available": true  },
+        { "name": "Moïse Bombito",        "pos": "DF", "club": "Nice",                "number": 5,  "elo_impact": 13, "available": true  },
+        { "name": "Derek Cornelius",      "pos": "DF", "club": "Marseille",           "number": 4,  "elo_impact": 13, "available": true  },
+        { "name": "Luc de Fougerolles",   "pos": "DF", "club": "Fulham",              "number": 22, "elo_impact": 13, "available": true  },
+        { "name": "Maxime Crépeau",       "pos": "GK", "club": "LAFC",               "number": 1,  "elo_impact": 12, "available": true  },
+        { "name": "Richie Laryea",        "pos": "DF", "club": "Toronto FC",          "number": 23, "elo_impact": 11, "available": true  },
+        { "name": "Jonathan Osorio",      "pos": "MF", "club": "Toronto FC",          "number": 21, "elo_impact": 10, "available": true  }
+      ]
+    },
+    "algeria": {
+      "base_elo": 1712,
+      "players": [
+        { "name": "Riyad Mahrez",         "pos": "FW", "club": "Al-Ahli",             "number": 7,  "elo_impact": 26, "available": true  },
+        { "name": "Ibrahim Maza",         "pos": "MF", "club": "Bayer Leverkusen",    "number": 10, "elo_impact": 22, "available": true  },
+        { "name": "Amine Gouiri",         "pos": "FW", "club": "Marseille",           "number": 11, "elo_impact": 18, "available": true  },
+        { "name": "Houssem Aouar",        "pos": "MF", "club": "Al-Ittihad",          "number": 8,  "elo_impact": 18, "available": true  },
+        { "name": "Mohamed Amine Amoura", "pos": "FW", "club": "Wolfsburg",           "number": 9,  "elo_impact": 17, "available": true  },
+        { "name": "Ramy Bensebaini",      "pos": "DF", "club": "Borussia Dortmund",   "number": 3,  "elo_impact": 17, "available": true  },
+        { "name": "Rayan Aït-Nouri",      "pos": "DF", "club": "Manchester City",     "number": 22, "elo_impact": 16, "available": true  },
+        { "name": "Fares Chaibi",         "pos": "MF", "club": "Eintracht Frankfurt", "number": 14, "elo_impact": 15, "available": true  },
+        { "name": "Anis Hadj Moussa",     "pos": "FW", "club": "Feyenoord",           "number": 17, "elo_impact": 14, "available": true  },
+        { "name": "Aïssa Mandi",          "pos": "DF", "club": "Lille",               "number": 5,  "elo_impact": 13, "available": true  },
+        { "name": "Ramiz Zerrouki",       "pos": "MF", "club": "Twente",              "number": 6,  "elo_impact": 13, "available": true  },
+        { "name": "Nabil Bentaleb",       "pos": "MF", "club": "Lille",               "number": 16, "elo_impact": 12, "available": true  },
+        { "name": "Luca Zidane",          "pos": "GK", "club": "Granada",             "number": 1,  "elo_impact": 10, "available": true  }
+      ]
     }
   }
 }
