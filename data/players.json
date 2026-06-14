@@ -1,6 +1,6 @@
 {
-  "updated": "2026-06-12",
-  "note": "elo_impact = puntos Elo que aporta este jugador al rating base del equipo. available=false si lesionado/suspendido.",
+  "updated": "2026-06-13",
+  "note": "elo_impact = puntos Elo que aporta este jugador al rating base del equipo. available=false si lesionado/suspendido. Escala: crack 30-35, titular clave 18-26, titular sólido 12-17, rotación 6-11.",
   "teams": {
     "usa": {
       "base_elo": 1826,
@@ -35,6 +35,25 @@
         { "name": "Andrés Cubas",         "pos": "MF", "club": "Nottm Forest",        "number": 7,  "elo_impact": 10, "available": true  },
         { "name": "Gatito Fernández",     "pos": "GK", "club": "Cerro Porteño",       "number": 1,  "elo_impact": 9,  "available": true  },
         { "name": "Julio Enciso",         "pos": "FW", "club": "Brighton",            "number": 9,  "elo_impact": 9,  "available": true  }
+      ]
+    },
+    "australia": {
+      "base_elo": 1779,
+      "players": [
+        { "name": "Mohamed Toure",        "pos": "FW", "club": "Norwich City",        "number": 9,  "elo_impact": 24, "available": true  },
+        { "name": "Jackson Irvine",       "pos": "MF", "club": "St. Pauli",           "number": 22, "elo_impact": 22, "available": true  },
+        { "name": "Mathew Ryan",          "pos": "GK", "club": "Levante",             "number": 1,  "elo_impact": 20, "available": true  },
+        { "name": "Cristian Volpato",     "pos": "MF", "club": "Sassuolo",            "number": 10, "elo_impact": 18, "available": true  },
+        { "name": "Harry Souttar",        "pos": "DF", "club": "Sheffield United",    "number": 19, "elo_impact": 17, "available": true  },
+        { "name": "Jordan Bos",           "pos": "DF", "club": "Feyenoord",           "number": 3,  "elo_impact": 16, "available": true  },
+        { "name": "Alessandro Circati",   "pos": "DF", "club": "Parma",               "number": 4,  "elo_impact": 15, "available": true  },
+        { "name": "Nestory Irankunda",    "pos": "FW", "club": "Watford",             "number": 11, "elo_impact": 13, "available": true  },
+        { "name": "Connor Metcalfe",      "pos": "MF", "club": "St. Pauli",           "number": 15, "elo_impact": 12, "available": true  },
+        { "name": "Aiden O'Neill",        "pos": "MF", "club": "Standard Liège",      "number": 13, "elo_impact": 10, "available": true  },
+        { "name": "Ajdin Hrustić",        "pos": "MF", "club": "NAC Breda",           "number": 7,  "elo_impact": 10, "available": true  },
+        { "name": "Mathew Leckie",        "pos": "FW", "club": "Melbourne City",      "number": 16, "elo_impact": 9,  "available": true  },
+        { "name": "Cameron Burgess",      "pos": "DF", "club": "Ipswich Town",        "number": 5,  "elo_impact": 8,  "available": true  },
+        { "name": "Lucas Herrington",     "pos": "DF", "club": "Adelaide United",     "number": 2,  "elo_impact": 6,  "available": true  }
       ]
     }
   }
