@@ -109,6 +109,24 @@
         { "name": "Roshon van Eijma",     "pos": "DF", "club": "Telstar",            "number": 3,  "elo_impact": 7,  "available": true  },
         { "name": "Sherel Floranus",      "pos": "DF", "club": "Heracles",           "number": 2,  "elo_impact": 6,  "available": true  }
       ]
+    },
+    "netherlands": {
+      "base_elo": 1947,
+      "players": [
+        { "name": "Virgil van Dijk",      "pos": "DF", "club": "Liverpool",           "number": 4,  "elo_impact": 28, "available": true  },
+        { "name": "Frenkie de Jong",      "pos": "MF", "club": "Barcelona",           "number": 21, "elo_impact": 28, "available": true  },
+        { "name": "Cody Gakpo",           "pos": "FW", "club": "Liverpool",           "number": 11, "elo_impact": 24, "available": true  },
+        { "name": "Tijjani Reijnders",    "pos": "MF", "club": "Manchester City",     "number": 14, "elo_impact": 22, "available": true  },
+        { "name": "Ryan Gravenberch",     "pos": "MF", "club": "Liverpool",           "number": 8,  "elo_impact": 22, "available": true  },
+        { "name": "Xavi Simons",          "pos": "MF", "club": "RB Leipzig",          "number": 7,  "elo_impact": 20, "available": false },
+        { "name": "Memphis Depay",        "pos": "FW", "club": "Corinthians",         "number": 10, "elo_impact": 17, "available": true  },
+        { "name": "Jurriën Timber",       "pos": "DF", "club": "Arsenal",             "number": 2,  "elo_impact": 16, "available": true  },
+        { "name": "Donyell Malen",        "pos": "FW", "club": "Roma",                "number": 18, "elo_impact": 16, "available": true  },
+        { "name": "Denzel Dumfries",      "pos": "DF", "club": "Inter",               "number": 22, "elo_impact": 15, "available": true  },
+        { "name": "Micky van de Ven",     "pos": "DF", "club": "Tottenham",           "number": 3,  "elo_impact": 14, "available": true  },
+        { "name": "Bart Verbruggen",      "pos": "GK", "club": "Brighton",            "number": 1,  "elo_impact": 13, "available": true  },
+        { "name": "Jorrel Hato",          "pos": "DF", "club": "Chelsea",             "number": 5,  "elo_impact": 12, "available": true  }
+      ]
     }
   }
 }
