@@ -182,6 +182,24 @@
         { "name": "Gabriel Gudmundsson",  "pos": "DF", "club": "Leeds United",        "number": 4,  "elo_impact": 9,  "available": true  },
         { "name": "Robin Olsen",          "pos": "GK", "club": "Malmö FF",            "number": 1,  "elo_impact": 9,  "available": true  }
       ]
+    },
+    "ecuador": {
+      "base_elo": 1797,
+      "players": [
+        { "name": "Moisés Caicedo",       "pos": "MF", "club": "Chelsea",             "number": 23, "elo_impact": 30, "available": true  },
+        { "name": "Willian Pacho",        "pos": "DF", "club": "Paris Saint-Germain", "number": 3,  "elo_impact": 24, "available": true  },
+        { "name": "Piero Hincapié",       "pos": "DF", "club": "Arsenal",             "number": 2,  "elo_impact": 20, "available": true  },
+        { "name": "Kendry Páez",          "pos": "MF", "club": "River Plate",         "number": 10, "elo_impact": 17, "available": true  },
+        { "name": "Pervis Estupiñán",     "pos": "DF", "club": "AC Milan",            "number": 7,  "elo_impact": 15, "available": true  },
+        { "name": "Enner Valencia",       "pos": "FW", "club": "Internacional",       "number": 13, "elo_impact": 15, "available": true  },
+        { "name": "Gonzalo Plata",        "pos": "FW", "club": "Flamengo",            "number": 19, "elo_impact": 14, "available": true  },
+        { "name": "Jeremy Sarmiento",     "pos": "FW", "club": "Brighton",            "number": 11, "elo_impact": 11, "available": true  },
+        { "name": "Ángelo Preciado",      "pos": "DF", "club": "Sporting CP",         "number": 17, "elo_impact": 11, "available": true  },
+        { "name": "Alan Franco",          "pos": "MF", "club": "Al-Rayyan",           "number": 6,  "elo_impact": 10, "available": true  },
+        { "name": "Moisés Ramírez",       "pos": "GK", "club": "Independiente del Valle", "number": 1, "elo_impact": 10, "available": true  },
+        { "name": "Jhegson Méndez",       "pos": "MF", "club": "León",                "number": 8,  "elo_impact": 9,  "available": true  },
+        { "name": "Kevin Rodríguez",      "pos": "FW", "club": "Union SG",            "number": 9,  "elo_impact": 9,  "available": true  }
+      ]
     }
   }
 }
