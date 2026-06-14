@@ -65,10 +65,10 @@ _Ya cargadas (17): australia, curacao, ecuador, germany, ivory-coast, japan, mex
 
 ### Impacto medio
 
-5. **El ajuste de plantel solo toca el ATAQUE, no la defensa** — [predict.mjs:73-74](predict.mjs#L73), [analyze.mjs:45](analyze.mjs#L45)
-   - Hacen `attack * ratio` pero dejan `defense` intacta. Perder un defensor clave (ej. Van Dijk) no empeora la defensa SPI, solo baja el ataque del equipo.
-   - Parcialmente compensado por el ajuste de Elo (simétrico), pero la mitad SPI (65% del peso) ignora la pérdida defensiva.
-   - **Fix:** escalar también `defense` (peor defensa = beta mayor) cuando faltan defensores, idealmente ponderando `elo_impact` por posición.
+5. ✅ **El ajuste de plantel solo toca el ATAQUE, no la defensa** — RESUELTO 2026-06-14
+   - squad-strength.mjs ahora calcula `attack_ratio` (FW+0.5×MF) y `defense_ratio` (DF+GK+0.5×MF).
+   - predict/halftime/match-core aplican `sA.defense × (2 − sqB.defense_ratio)` — defensores ausentes empeoran el beta SPI.
+   - Commits: `915ee4d` (squad), `7f63d5b` (predict), `1e67fad` (halftime), `ef4ea11` (match-core)
 
 6. **`squadAdjustment` solo resta, nunca refleja la calidad base** — [squad-strength.mjs:18](squad-strength.mjs#L18)
    - `adjustment` siempre ≤ 0 (solo descuenta bajas). No puede codificar "este plantel es más talentoso de lo que dice su Elo".
@@ -76,7 +76,7 @@ _Ya cargadas (17): australia, curacao, ecuador, germany, ivory-coast, japan, mex
 
 ### Impacto bajo / robustez
 
-7. **Umbral de EV inconsistente** — [predict.mjs:159](predict.mjs#L159) marca ✓ con `ev>0.03`, pero CLAUDE.md recomienda +5% mínimo en 1X2. Alinear.
+7. ✅ **Umbral de EV inconsistente** — RESUELTO 2026-06-14. `ev>0.03 → ev>0.05` en predict.mjs. Commit: `7f63d5b`
 8. ✅ **halftime.mjs rechazaba minuto ≥90** — RESUELTO 2026-06-14. Ahora acepta hasta 120' con soporte de prórroga (ET_RATE=0.80). Commit: `cfafe1e`
 9. ✅ **halftime.mjs no validaba goles negativos** — RESUELTO 2026-06-14. Commit: `cfafe1e`
 
@@ -84,28 +84,28 @@ _Ya cargadas (17): australia, curacao, ecuador, germany, ivory-coast, japan, mex
 
 ## 🚀 BACKLOG DE MEJORAS (prioridad sugerida)
 
-### A. Unificar el modelo en un núcleo único `predictMatch()` — PARCIALMENTE RESUELTO
-Bugs #3 y #4 ya corregidos individualmente. La tabla de paridad queda:
+### A. ✅ Unificar el modelo en un núcleo único `matchBlendedXg()` — RESUELTO 2026-06-14
 
-| Tool | Dixon-Coles | Squad adj | MV boost | Pi-rating | Venue/ctx |
+`match-core.mjs` implementa el blend completo y lo exportan bet-ev.mjs + stake.mjs. Tabla de paridad:
+
+| Tool | Dixon-Coles | Squad atk+def | MV boost | Pi-rating | Venue/ctx |
 |---|---|---|---|---|---|
-| predict.mjs | ✅ | ✅ (solo ataque) | ✅ | ✅ | ✅ |
-| halftime.mjs | ✅ v5 | ✅ v5 | ✅ v5 | ✅ v5 | ❌ (venue no disponible en live) |
-| bet-ev.mjs | parcial | ✅ v2 | ✅ v2 | ❌ | ✅ |
+| predict.mjs | ✅ | ✅ v3 | ✅ | ✅ | ✅ |
+| halftime.mjs | ✅ v5 | ✅ v6 | ✅ v5 | ✅ v5 | ❌ (venue live no disponible) |
+| bet-ev.mjs | parcial | ✅ v3 via core | ✅ v3 via core | ✅ v3 via core | ✅ |
+| stake.mjs | parcial | ✅ v2 via core | ✅ v2 via core | ✅ v2 via core | ✅ |
 
-Pendiente: extraer `predictMatch()` como módulo para evitar duplicación de código.
-También: bet-ev.mjs falta Pi-rating en el blend.
+Commit: `ef4ea11`
 
 ### B. ✅ Cablear home advantage por equipo + unificar con calibración — RESUELTO 2026-06-14
 predict.mjs y halftime.mjs usan `homeBonus()`. calibrate.mjs corregido para próximo torneo.
 
-### C. Ajuste de plantel sobre defensa + aporte de calidad base
-Resuelve bugs #5 y #6. Requiere calibrar la escala de `elo_impact` primero (Mejora F).
+### C. ✅ Ajuste de plantel sobre defensa — RESUELTO 2026-06-14 (parte del bug #5)
+defense_ratio implementado. Bug #6 (calidad positiva) sigue pendiente (ver más abajo).
 
-### D. Efecto "game state" en vivo
-halftime.mjs y la evaluación en vivo tratan los minutos restantes como continuación neutral con el mismo xG.
-Empíricamente el que pierde ataca más y el que gana se repliega. Añadir multiplicador de hazard por diferencia de gol y minuto.
-Mejora directamente TODA apuesta en vivo (lección de Australia-Turquía: dudábamos a mano de Turquía-0 y Australia-gana-2T).
+### D. ✅ Efecto "game state" en vivo — RESUELTO 2026-06-14
+halftime.mjs v6: multiplicador lineal escala min 30→90. Perdiendo: +12% xG/gol. Ganando: −8% xG/gol. Cap 2 goles.
+Output muestra multiplicadores activos. Commit: `1e67fad`
 
 ### E. ✅ Tamaño de apuesta (Kelly) + detector de correlación — IMPLEMENTADO 2026-06-14
 `stake.mjs`: Kelly f* = EV/(odds-1), Half-Kelly recomendado, cap 5% por apuesta.
@@ -116,12 +116,30 @@ Uso: `node stake.mjs` / `--all` / `--match=ned-jpn`
 ### F. Calibrar la escala de `elo_impact`
 Los valores (crack 30-35, titular clave 18-26, etc.) son a ojo. La suma por equipo varía (~150-190), así que el mismo `ratio` significa cosas distintas en valor absoluto. Anclar a algo medible (valor de mercado, minutos jugados).
 
-### G. EV ajustado por margen de la casa (de-vig)
-El EV (`prob × cuota − 1`) es correcto pero no compara contra la prob justa del mercado sin overround.
-Un "edge vs consenso del mercado" separaría valor real de simple desacuerdo con un mercado afilado (útil con el caveat AFC/UEFA).
+### G. ✅ EV ajustado por margen de la casa (de-vig) — RESUELTO 2026-06-14
+`--overround=1.06` en bet-ev.mjs y stake.mjs calcula `fair_prob = (1/odds)/overround` y muestra
+el edge real vs mercado por boleto. Overround típico: 1.04–1.08. Commit: `ef4ea11`
 
-### H. Tests de consistencia
-Agregar invariantes que verifiquen: predict == halftime == bet-ev para el mismo partido (misma prob 1X2 a t=0); que el home bonus se aplique; que el squad adj fluya a las tres tools.
+### H. ✅ Tests de consistencia — RESUELTO 2026-06-14
+73 tests totales. Nuevos invariantes: homeBonus por equipo (mexico/usa/canada/japan/ecuador),
+attack_ratio y defense_ratio en [0,1] para 6 equipos, matchBlendedXg probs suman 1 y xG > 0. Commit: `ab8451a`
+
+---
+
+## 📌 Estado del proyecto al cierre de sesión — 2026-06-14 (Sonnet, sesión 3)
+
+### Fixes implementados en sesión 3 (2026-06-14 — continuación)
+- ✅ Bug #5: defense_ratio por posición en squad-strength.mjs + aplicado en predict/halftime/match-core (`915ee4d`, `7f63d5b`, `1e67fad`, `ef4ea11`)
+- ✅ Bug #7: umbral EV 3%→5% en predict.mjs (`7f63d5b`)
+- ✅ Mejora A: match-core.mjs — matchBlendedXg() compartido (bet-ev + stake usan Pi-rating ahora) (`ef4ea11`)
+- ✅ Mejora D: game state en halftime.mjs — perdiendo +12%/gol, ganando −8%/gol, escala min 30→90 (`1e67fad`)
+- ✅ Mejora G: de-vig con --overround en bet-ev.mjs y stake.mjs (`ef4ea11`)
+- ✅ Mejora H: 73 tests (antes 42 → ahora 73) — homeBonus, defense_ratio, matchBlendedXg (`ab8451a`)
+- 73/73 tests pasan
+
+### Pendiente después de sesión 3
+- Bug #6: squadAdjustment solo resta (calidad base positiva — diseño complejo, requiere nueva arquitectura)
+- Mejora F: calibrar escala elo_impact (requiere datos externos de rendimiento)
 
 ---
 
