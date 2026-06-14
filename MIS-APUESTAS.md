@@ -10,32 +10,32 @@ _Actualizado: 13 de junio de 2026_
 | Canadá–Bosnia (cerrado) | $20.000 | $10.550 | **−$9.450** |
 | Qatar–Suiza (cerrado) | $8.000 | $0 | **−$8.000** |
 | Brasil–Marruecos (cerrado) | $21.500 | $0 | **−$21.500** |
-| Haití–Escocia (en juego) | $17.270 | — | pendiente |
-| **TOTAL JORNADA** | **$85.320** | **$32.410** | — |
+| Haití–Escocia (cerrado) | $17.270 | $16.770 | **−$500** |
+| **TOTAL JORNADA** | **$85.320** | **$49.180** | **−$36.140** |
 
-> **Capital propio depositado: $52.939 · Saldo libre: ~$29 (casi all-in) · P&L cerrado: −$35.640 (−67,3%)**
+> **Capital propio depositado: $52.939 · Saldo actual: $16.799 · P&L: −$36.140 (−68,3%)**
 
 ---
 
-## 🟢 EN JUEGO — Haití vs Escocia (13 jun, 21:00)
+## 🟡 CERRADO — Haití 0–1 Escocia (13 jun)
 
-_Apuesta a la línea del empate / pocos goles. ⚠️ El modelo da Escocia 73,4% (xG 2,67): todas son −EV. Decisión del usuario._
+_Resultado: gol de Escocia en el 1T, **2º tiempo 0-0**. Total 1 gol. Las 3 apuestas de "pocos goles en el 2T" salvaron casi todo: **−$500** sobre $17.270._
 
-| Cód. | Apuesta | Cuota | Stake | Prob. modelo | EV |
-|---|---|---:|---:|---:|---:|
-| ...6669 | Resultado exacto 1er tiempo 0-0 | 2,90 | $1.700 | 22,0% | −36,2% |
-| ...6588 | 0 goles en el 1er tiempo | 2,90 | $1.730 | 22,0% | −36,3% |
-| ...6590 | 0 goles en el 2do tiempo | 3,90 | $1.730 | 14,7% | −42,7% |
-| ...6587 | Total de goles 0-1 (partido) | 3,75 | $1.730 | 12,9% | −51,7% |
-| ...6584 | Resultado 2do tiempo - Empate | 2,25 | $1.730 | 27,2% | −38,7% |
-| ...6586 | Escocia (visitante) 0 goles | 5,75 | $1.730 | 6,9% | −60,2% |
-| ...6583 | Resultado 1er tiempo - Empate | 2,10 | $1.730 | 33,1% | −30,5% |
-| ...6585 | 0 goles en el partido (0-0) | 12,00 | $1.730 | 3,5% | −58,4% |
-| ...6582 | HT/FT Empate/Empate | 5,75 | $1.730 | 9,0% | −48,2% |
-| ...6581 | Resultado final - Empate | 3,25 | $1.730 | 15,6% | −49,3% |
-| **TOTAL** | | | **$17.270** | | |
+| Cód. | Apuesta | Cuota | Stake | Resultado |
+|---|---|---:|---:|---|
+| ...6590 | 0 goles en el 2do tiempo | 3,90 | $1.730 | ✅ Ganada · $6.610 |
+| ...6587 | Total de goles 0-1 (partido) | 3,75 | $1.730 | ✅ Ganada · $6.350 |
+| ...6584 | Resultado 2do tiempo - Empate | 2,25 | $1.730 | ✅ Ganada · $3.810 |
+| ...6669 | Resultado exacto 1er tiempo 0-0 | 2,90 | $1.700 | ❌ Perdida (1T 0-1) |
+| ...6588 | 0 goles en el 1er tiempo | 2,90 | $1.730 | ❌ Perdida |
+| ...6583 | Resultado 1er tiempo - Empate | 2,10 | $1.730 | ❌ Perdida |
+| ...6582 | HT/FT Empate/Empate | 5,75 | $1.730 | ❌ Perdida |
+| ...6586 | Escocia (visitante) 0 goles | 5,75 | $1.730 | ❌ Perdida |
+| ...6585 | 0 goles en el partido (0-0) | 12,00 | $1.730 | ❌ Perdida |
+| ...6581 | Resultado final - Empate | 3,25 | $1.730 | ❌ Perdida |
+| **TOTAL** | | | **$17.270** | **$16.770 cobrado · −$500** |
 
-_Nota: ...6669 y ...6588 son el **mismo desenlace** (1er tiempo 0-0) a la misma cuota → ganan/pierden juntas ($3.430 sobre el 1T sin goles)._
+_Montos netos estimados (~2% impuesto). 3 ganadas gracias al 2T sin goles; las 7 de la línea del empate puro / 1er tiempo cayeron._
 
 ---
 
