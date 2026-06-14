@@ -92,6 +92,23 @@
         { "name": "Malick Thiaw",         "pos": "DF", "club": "Newcastle",           "number": 15, "elo_impact": 9,  "available": true  },
         { "name": "Waldemar Anton",       "pos": "DF", "club": "Borussia Dortmund",   "number": 5,  "elo_impact": 9,  "available": true  }
       ]
+    },
+    "curacao": {
+      "base_elo": 1581,
+      "players": [
+        { "name": "Tahith Chong",         "pos": "MF", "club": "Luton Town",          "number": 10, "elo_impact": 20, "available": true  },
+        { "name": "Leandro Bacuna",       "pos": "MF", "club": "Almere City",         "number": 8,  "elo_impact": 16, "available": true  },
+        { "name": "Juninho Bacuna",       "pos": "MF", "club": "Sivasspor",           "number": 6,  "elo_impact": 14, "available": true  },
+        { "name": "Rangelo Janga",        "pos": "FW", "club": "FC Eindhoven",        "number": 9,  "elo_impact": 13, "available": true  },
+        { "name": "Jurgen Locadia",       "pos": "FW", "club": "FC Cincinnati",       "number": 17, "elo_impact": 13, "available": true  },
+        { "name": "Eloy Room",            "pos": "GK", "club": "Columbus Crew",       "number": 1,  "elo_impact": 12, "available": true  },
+        { "name": "Kenji Gorre",          "pos": "MF", "club": "Nacional",            "number": 11, "elo_impact": 10, "available": true  },
+        { "name": "Gervane Kastaneer",    "pos": "FW", "club": "PEC Zwolle",          "number": 7,  "elo_impact": 9,  "available": true  },
+        { "name": "Jearl Margaritha",     "pos": "FW", "club": "FC Den Bosch",        "number": 19, "elo_impact": 8,  "available": true  },
+        { "name": "Jurien Gaari",         "pos": "DF", "club": "PEC Zwolle",          "number": 4,  "elo_impact": 8,  "available": true  },
+        { "name": "Roshon van Eijma",     "pos": "DF", "club": "Telstar",            "number": 3,  "elo_impact": 7,  "available": true  },
+        { "name": "Sherel Floranus",      "pos": "DF", "club": "Heracles",           "number": 2,  "elo_impact": 6,  "available": true  }
+      ]
     }
   }
 }
