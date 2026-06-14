@@ -58,8 +58,10 @@ const mvB = marketValueBoost(t2);
 
 const ra = (eloR[t1] ?? 1500) + (useSquad ? sqA.adjustment : 0);
 const rb = (eloR[t2] ?? 1500) + (useSquad ? sqB.adjustment : 0);
-const sqMultA = useSquad ? sqA.ratio : 1;
-const sqMultB = useSquad ? sqB.ratio : 1;
+const sqMultA    = useSquad ? sqA.attack_ratio   : 1;
+const sqMultB    = useSquad ? sqB.attack_ratio   : 1;
+const sqDefMultA = useSquad ? (2 - sqA.defense_ratio) : 1;
+const sqDefMultB = useSquad ? (2 - sqB.defense_ratio) : 1;
 const mvMultA = useMV ? mvA.boost : 1;
 const mvMultB = useMV ? mvB.boost : 1;
 
@@ -69,8 +71,8 @@ let blendFull;
 if (spiR[t1] && spiR[t2]) {
   const sA = spiR[t1], sB = spiR[t2];
   const spiFull = matchProbSPI(
-    sA.attack * sqMultA * mvMultA, sB.defense,
-    sB.attack * sqMultB * mvMultB, sA.defense,
+    sA.attack * sqMultA * mvMultA, sB.defense * sqDefMultB,
+    sB.attack * sqMultB * mvMultB, sA.defense * sqDefMultA,
     hb, 1.0
   );
   if (piR && piR[t1] != null && piR[t2] != null) {
@@ -91,8 +93,23 @@ const etMinutes   = minute > 90 ? Math.max(0, 120 - minute) : 0;
 const etFrac      = etMinutes / 90 * ET_RATE;
 const remainingFrac = regularFrac + etFrac;
 
-const xg1r = fullXg1 * remainingFrac;
-const xg2r = fullXg2 * remainingFrac;
+// Game state: equipo que pierde ataca más, el que gana administra. Escala de min 30 a 90.
+const scoreDiff    = g1 - g2;
+const absDiff      = Math.min(Math.abs(scoreDiff), 2);
+const minuteFactor = Math.min(1, Math.max(0, (minute - 30) / 60));
+const gs1 = scoreDiff < 0
+  ? 1 + absDiff * 0.12 * minuteFactor   // perdiendo: boost ofensivo
+  : scoreDiff > 0
+  ? 1 - absDiff * 0.08 * minuteFactor   // ganando: repliegue
+  : 1;
+const gs2 = scoreDiff > 0
+  ? 1 + absDiff * 0.12 * minuteFactor
+  : scoreDiff < 0
+  ? 1 - absDiff * 0.08 * minuteFactor
+  : 1;
+
+const xg1r = fullXg1 * remainingFrac * gs1;
+const xg2r = fullXg2 * remainingFrac * gs2;
 
 // Distribucion de marcadores adicionales con correccion Dixon-Coles (como matchProb en elo.mjs)
 function dcGrid(lam1, lam2, maxG = 8) {
@@ -147,7 +164,15 @@ if (useSquad) {
   if (sqB.missing.length) console.log(`  ⚠ ${t2} bajas: ${sqB.missing.map(p => p.name).join(', ')}`);
 }
 console.log(`\n  xG restante  :  ${name1} ${xg1r.toFixed(2)}  |  ${name2} ${xg2r.toFixed(2)}  (${Math.round(remainingFrac * 100)}% del partido${isET ? ', incluye ET' : ''})`);
-console.log(`  xG partido   :  ${name1} ${fullXg1.toFixed(2)}  |  ${name2} ${fullXg2.toFixed(2)}\n`);
+console.log(`  xG partido   :  ${name1} ${fullXg1.toFixed(2)}  |  ${name2} ${fullXg2.toFixed(2)}`);
+if (scoreDiff !== 0 && minuteFactor > 0) {
+  const remontaName = scoreDiff < 0 ? name1 : name2;
+  const adminName   = scoreDiff < 0 ? name2 : name1;
+  const gsRemonta = scoreDiff < 0 ? gs1 : gs2;
+  const gsAdmin   = scoreDiff < 0 ? gs2 : gs1;
+  console.log(`  Game state   :  ${remontaName} remonta ×${gsRemonta.toFixed(2)} atk  |  ${adminName} administra ×${gsAdmin.toFixed(2)} atk`);
+}
+console.log('');
 console.log(`  ${name1.padEnd(18)} gana  ${pct(win1).padStart(6)}  ${bar(win1)}`);
 console.log(`  ${'Empate'.padEnd(18)}       ${pct(draw).padStart(6)}  ${bar(draw)}`);
 console.log(`  ${name2.padEnd(18)} gana  ${pct(win2).padStart(6)}  ${bar(win2)}`);
