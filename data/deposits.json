@@ -7,9 +7,9 @@
     { "id": "10431685707", "datetime": "2026-06-13T16:52:36", "amount": 27939, "kind": "abono" }
   ],
   "account_snapshot": {
-    "as_of": "2026-06-13 (2T Brasil-Marruecos)",
-    "saldo_disponible": 17299,
-    "disponible_para_retiro": 860,
-    "comment": "Saldo libre tras 4 apuestas live del 2T ($4.000) descontadas del $21.299 previo. Brasil-Marruecos ($21.500 total) en apuestas abiertas, fuera de este saldo."
+    "as_of": "2026-06-13 (pre Haiti-Escocia)",
+    "saldo_disponible": 29,
+    "disponible_para_retiro": 0,
+    "comment": "Tras Brasil-Marruecos liquidado (todo perdido) el saldo libre era $17.299. Se apostaron $17.270 a Haiti-Escocia (10 apuestas a la linea del empate), dejando ~$29 libres. Casi all-in."
   }
 }
