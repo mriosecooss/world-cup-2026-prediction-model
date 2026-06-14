@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-13",
+  "updated": "2026-06-14",
   "note": "elo_impact = puntos Elo que aporta este jugador al rating base del equipo. available=false si lesionado/suspendido. Escala: crack 30-35, titular clave 18-26, titular sólido 12-17, rotación 6-11.",
   "teams": {
     "usa": {
@@ -311,6 +311,186 @@
         { "name": "Guillermo Varela",     "pos": "DF", "club": "Flamengo",            "number": 22, "elo_impact": 10, "available": true  },
         { "name": "Sebastián Cáceres",    "pos": "DF", "club": "América",             "number": 3,  "elo_impact": 9,  "available": true  },
         { "name": "Fernando Muslera",     "pos": "GK", "club": "Estudiantes",         "number": 1,  "elo_impact": 10, "available": true  }
+      ]
+    },
+    "spain": {
+      "base_elo": 2075,
+      "players": [
+        { "name": "Rodri",                "pos": "MF", "club": "Manchester City",     "number": 5,  "elo_impact": 35, "available": true  },
+        { "name": "Lamine Yamal",         "pos": "FW", "club": "Barcelona",           "number": 19, "elo_impact": 33, "available": true  },
+        { "name": "Pedri",                "pos": "MF", "club": "Barcelona",           "number": 20, "elo_impact": 28, "available": true  },
+        { "name": "Nico Williams",        "pos": "FW", "club": "Athletic Club",       "number": 17, "elo_impact": 26, "available": true  },
+        { "name": "Dani Olmo",            "pos": "MF", "club": "Barcelona",           "number": 10, "elo_impact": 22, "available": true  },
+        { "name": "Gavi",                 "pos": "MF", "club": "Barcelona",           "number": 6,  "elo_impact": 21, "available": true  },
+        { "name": "Fabián Ruiz",          "pos": "MF", "club": "PSG",                 "number": 8,  "elo_impact": 20, "available": true  },
+        { "name": "Martín Zubimendi",     "pos": "MF", "club": "Arsenal",             "number": 14, "elo_impact": 19, "available": true  },
+        { "name": "Pau Cubarsí",          "pos": "DF", "club": "Barcelona",           "number": 4,  "elo_impact": 18, "available": true  },
+        { "name": "Álex Grimaldo",        "pos": "DF", "club": "Bayer Leverkusen",    "number": 3,  "elo_impact": 16, "available": true  },
+        { "name": "Unai Simón",           "pos": "GK", "club": "Athletic Club",       "number": 1,  "elo_impact": 15, "available": true  },
+        { "name": "Marc Cucurella",       "pos": "DF", "club": "Chelsea",             "number": 23, "elo_impact": 14, "available": true  },
+        { "name": "Mikel Merino",         "pos": "MF", "club": "Arsenal",             "number": 22, "elo_impact": 13, "available": true  }
+      ]
+    },
+    "argentina": {
+      "base_elo": 2069,
+      "players": [
+        { "name": "Lionel Messi",         "pos": "FW", "club": "Inter Miami",         "number": 10, "elo_impact": 35, "available": true  },
+        { "name": "Lautaro Martínez",     "pos": "FW", "club": "Inter",               "number": 9,  "elo_impact": 28, "available": true  },
+        { "name": "Julián Álvarez",       "pos": "FW", "club": "Atlético Madrid",     "number": 19, "elo_impact": 26, "available": true  },
+        { "name": "Emiliano Martínez",    "pos": "GK", "club": "Aston Villa",         "number": 23, "elo_impact": 24, "available": true  },
+        { "name": "Rodrigo De Paul",      "pos": "MF", "club": "Atlético Madrid",     "number": 7,  "elo_impact": 22, "available": true  },
+        { "name": "Enzo Fernández",       "pos": "MF", "club": "Chelsea",             "number": 6,  "elo_impact": 22, "available": true  },
+        { "name": "Lisandro Martínez",    "pos": "DF", "club": "Manchester United",   "number": 14, "elo_impact": 20, "available": true  },
+        { "name": "Cristian Romero",      "pos": "DF", "club": "Tottenham",           "number": 13, "elo_impact": 19, "available": true  },
+        { "name": "Paulo Dybala",         "pos": "FW", "club": "Roma",                "number": 21, "elo_impact": 16, "available": true  },
+        { "name": "Nahuel Molina",        "pos": "DF", "club": "Atlético Madrid",     "number": 26, "elo_impact": 14, "available": true  },
+        { "name": "Nicolás González",     "pos": "FW", "club": "Atlético Madrid",     "number": 11, "elo_impact": 13, "available": true  },
+        { "name": "Nicolás Paz",          "pos": "MF", "club": "Como",                "number": 8,  "elo_impact": 13, "available": true  },
+        { "name": "Thiago Almada",        "pos": "MF", "club": "Atlético Madrid",     "number": 15, "elo_impact": 12, "available": true  }
+      ]
+    },
+    "france": {
+      "base_elo": 2046,
+      "players": [
+        { "name": "Kylian Mbappé",        "pos": "FW", "club": "Real Madrid",         "number": 10, "elo_impact": 35, "available": true  },
+        { "name": "Ousmane Dembélé",      "pos": "FW", "club": "PSG",                 "number": 11, "elo_impact": 28, "available": true  },
+        { "name": "Marcus Thuram",        "pos": "FW", "club": "Inter",               "number": 9,  "elo_impact": 24, "available": true  },
+        { "name": "Aurélien Tchouaméni",  "pos": "MF", "club": "Real Madrid",         "number": 14, "elo_impact": 22, "available": true  },
+        { "name": "Bradley Barcola",      "pos": "FW", "club": "PSG",                 "number": 7,  "elo_impact": 22, "available": true  },
+        { "name": "Théo Hernández",       "pos": "DF", "club": "AC Milan",            "number": 22, "elo_impact": 20, "available": true  },
+        { "name": "Mike Maignan",         "pos": "GK", "club": "AC Milan",            "number": 16, "elo_impact": 19, "available": true  },
+        { "name": "William Saliba",       "pos": "DF", "club": "Arsenal",             "number": 5,  "elo_impact": 18, "available": true  },
+        { "name": "Dayot Upamecano",      "pos": "DF", "club": "Bayern München",      "number": 4,  "elo_impact": 17, "available": true  },
+        { "name": "Rayan Cherki",         "pos": "MF", "club": "OL",                  "number": 8,  "elo_impact": 16, "available": true  },
+        { "name": "Désiré Doué",          "pos": "FW", "club": "PSG",                 "number": 17, "elo_impact": 15, "available": true  },
+        { "name": "Michael Olise",        "pos": "FW", "club": "Bayern München",      "number": 15, "elo_impact": 15, "available": true  },
+        { "name": "Adrien Rabiot",        "pos": "MF", "club": "Marseille",           "number": 6,  "elo_impact": 14, "available": true  }
+      ]
+    },
+    "england": {
+      "base_elo": 1998,
+      "players": [
+        { "name": "Jude Bellingham",      "pos": "MF", "club": "Real Madrid",         "number": 10, "elo_impact": 33, "available": true  },
+        { "name": "Harry Kane",           "pos": "FW", "club": "Bayern München",      "number": 9,  "elo_impact": 30, "available": true  },
+        { "name": "Bukayo Saka",          "pos": "FW", "club": "Arsenal",             "number": 7,  "elo_impact": 28, "available": true  },
+        { "name": "Declan Rice",          "pos": "MF", "club": "Arsenal",             "number": 4,  "elo_impact": 26, "available": true  },
+        { "name": "Marcus Rashford",      "pos": "FW", "club": "Barcelona",           "number": 11, "elo_impact": 20, "available": true  },
+        { "name": "John Stones",          "pos": "DF", "club": "Manchester City",     "number": 5,  "elo_impact": 18, "available": true  },
+        { "name": "Jordan Pickford",      "pos": "GK", "club": "Everton",             "number": 1,  "elo_impact": 16, "available": true  },
+        { "name": "Marc Guéhi",           "pos": "DF", "club": "Manchester City",     "number": 6,  "elo_impact": 15, "available": true  },
+        { "name": "Ollie Watkins",        "pos": "FW", "club": "Aston Villa",         "number": 19, "elo_impact": 14, "available": true  },
+        { "name": "Kobbie Mainoo",        "pos": "MF", "club": "Manchester United",   "number": 8,  "elo_impact": 13, "available": true  },
+        { "name": "Eberechi Eze",         "pos": "MF", "club": "Arsenal",             "number": 15, "elo_impact": 13, "available": true  },
+        { "name": "Morgan Rogers",        "pos": "MF", "club": "Aston Villa",         "number": 17, "elo_impact": 13, "available": true  },
+        { "name": "Ivan Toney",           "pos": "FW", "club": "Al-Ahli",             "number": 22, "elo_impact": 12, "available": true  }
+      ]
+    },
+    "brazil": {
+      "base_elo": 1997,
+      "players": [
+        { "name": "Vinicius Jr",          "pos": "FW", "club": "Real Madrid",         "number": 10, "elo_impact": 33, "available": true  },
+        { "name": "Raphinha",             "pos": "FW", "club": "Barcelona",           "number": 11, "elo_impact": 26, "available": true  },
+        { "name": "Alisson Becker",       "pos": "GK", "club": "Liverpool",           "number": 1,  "elo_impact": 22, "available": true  },
+        { "name": "Marquinhos",           "pos": "DF", "club": "PSG",                 "number": 4,  "elo_impact": 22, "available": true  },
+        { "name": "Bruno Guimarães",      "pos": "MF", "club": "Newcastle",           "number": 5,  "elo_impact": 22, "available": true  },
+        { "name": "Neymar",               "pos": "FW", "club": "Santos",              "number": 17, "elo_impact": 20, "available": true  },
+        { "name": "Lucas Paquetá",        "pos": "MF", "club": "Flamengo",            "number": 8,  "elo_impact": 20, "available": true  },
+        { "name": "Gabriel Martinelli",   "pos": "FW", "club": "Arsenal",             "number": 7,  "elo_impact": 18, "available": true  },
+        { "name": "Gabriel Magalhães",    "pos": "DF", "club": "Arsenal",             "number": 3,  "elo_impact": 18, "available": true  },
+        { "name": "Endrick",              "pos": "FW", "club": "Lyon",                "number": 9,  "elo_impact": 16, "available": true  },
+        { "name": "Casemiro",             "pos": "MF", "club": "Manchester United",   "number": 6,  "elo_impact": 15, "available": true  },
+        { "name": "Matheus Cunha",        "pos": "FW", "club": "Manchester United",   "number": 20, "elo_impact": 15, "available": true  },
+        { "name": "Danilo",               "pos": "DF", "club": "Flamengo",            "number": 2,  "elo_impact": 13, "available": true  }
+      ]
+    },
+    "portugal": {
+      "base_elo": 1957,
+      "players": [
+        { "name": "Cristiano Ronaldo",    "pos": "FW", "club": "Al-Nassr",            "number": 7,  "elo_impact": 30, "available": true  },
+        { "name": "Bruno Fernandes",      "pos": "MF", "club": "Manchester United",   "number": 8,  "elo_impact": 28, "available": true  },
+        { "name": "Bernardo Silva",       "pos": "MF", "club": "Manchester City",     "number": 10, "elo_impact": 26, "available": true  },
+        { "name": "Rúben Dias",           "pos": "DF", "club": "Manchester City",     "number": 6,  "elo_impact": 24, "available": true  },
+        { "name": "Pedro Neto",           "pos": "FW", "club": "Chelsea",             "number": 11, "elo_impact": 22, "available": true  },
+        { "name": "Rafael Leão",          "pos": "FW", "club": "AC Milan",            "number": 17, "elo_impact": 22, "available": true  },
+        { "name": "João Neves",           "pos": "MF", "club": "PSG",                 "number": 15, "elo_impact": 20, "available": true  },
+        { "name": "Vitinha",              "pos": "MF", "club": "PSG",                 "number": 20, "elo_impact": 19, "available": true  },
+        { "name": "Nuno Mendes",          "pos": "DF", "club": "PSG",                 "number": 22, "elo_impact": 18, "available": true  },
+        { "name": "Gonçalo Ramos",        "pos": "FW", "club": "PSG",                 "number": 9,  "elo_impact": 17, "available": true  },
+        { "name": "João Félix",           "pos": "FW", "club": "Al-Nassr",            "number": 23, "elo_impact": 16, "available": true  },
+        { "name": "Francisco Conceição",  "pos": "FW", "club": "Juventus",            "number": 16, "elo_impact": 14, "available": true  },
+        { "name": "Diogo Costa",          "pos": "GK", "club": "Porto",               "number": 1,  "elo_impact": 14, "available": true  }
+      ]
+    },
+    "morocco": {
+      "base_elo": 1909,
+      "players": [
+        { "name": "Achraf Hakimi",        "pos": "DF", "club": "PSG",                 "number": 2,  "elo_impact": 30, "available": true  },
+        { "name": "Brahim Díaz",          "pos": "MF", "club": "Real Madrid",         "number": 10, "elo_impact": 26, "available": true  },
+        { "name": "Sofyan Amrabat",       "pos": "MF", "club": "Real Betis",          "number": 6,  "elo_impact": 22, "available": true  },
+        { "name": "Noussair Mazraoui",    "pos": "DF", "club": "Manchester United",   "number": 22, "elo_impact": 20, "available": true  },
+        { "name": "Nayef Aguerd",         "pos": "DF", "club": "Marseille",           "number": 4,  "elo_impact": 19, "available": true  },
+        { "name": "Azzedine Ounahi",      "pos": "MF", "club": "Girona",              "number": 8,  "elo_impact": 17, "available": true  },
+        { "name": "Bilal El Khannouss",   "pos": "MF", "club": "Stuttgart",           "number": 7,  "elo_impact": 17, "available": true  },
+        { "name": "Ayoub El Kaabi",       "pos": "FW", "club": "Olympiacos",          "number": 9,  "elo_impact": 15, "available": true  },
+        { "name": "Ismael Saibari",       "pos": "FW", "club": "PSV",                 "number": 11, "elo_impact": 15, "available": true  },
+        { "name": "Soufiane Rahimi",      "pos": "FW", "club": "Al-Ain",              "number": 19, "elo_impact": 14, "available": true  },
+        { "name": "Abdessamad Ezzalzouli","pos": "FW", "club": "Real Betis",          "number": 17, "elo_impact": 13, "available": true  },
+        { "name": "Yassine Bounou",       "pos": "GK", "club": "Al-Hilal",            "number": 1,  "elo_impact": 13, "available": true  },
+        { "name": "Chadi Riad",           "pos": "DF", "club": "Crystal Palace",      "number": 3,  "elo_impact": 12, "available": true  }
+      ]
+    },
+    "belgium": {
+      "base_elo": 1893,
+      "players": [
+        { "name": "Kevin De Bruyne",      "pos": "MF", "club": "Napoli",              "number": 7,  "elo_impact": 33, "available": true  },
+        { "name": "Romelu Lukaku",        "pos": "FW", "club": "Napoli",              "number": 9,  "elo_impact": 26, "available": true  },
+        { "name": "Thibaut Courtois",     "pos": "GK", "club": "Real Madrid",         "number": 1,  "elo_impact": 24, "available": true  },
+        { "name": "Jeremy Doku",          "pos": "FW", "club": "Manchester City",     "number": 11, "elo_impact": 20, "available": true  },
+        { "name": "Leandro Trossard",     "pos": "FW", "club": "Arsenal",             "number": 8,  "elo_impact": 20, "available": true  },
+        { "name": "Amadou Onana",         "pos": "MF", "club": "Aston Villa",         "number": 5,  "elo_impact": 19, "available": true  },
+        { "name": "Charles De Ketelaere", "pos": "FW", "club": "Atalanta",            "number": 14, "elo_impact": 18, "available": true  },
+        { "name": "Alexis Saelemaekers",  "pos": "FW", "club": "AC Milan",            "number": 22, "elo_impact": 16, "available": true  },
+        { "name": "Youri Tielemans",      "pos": "MF", "club": "Aston Villa",         "number": 6,  "elo_impact": 16, "available": true  },
+        { "name": "Arthur Theate",        "pos": "DF", "club": "Eintracht Frankfurt", "number": 4,  "elo_impact": 15, "available": true  },
+        { "name": "Maxim De Cuyper",      "pos": "DF", "club": "Brighton",            "number": 3,  "elo_impact": 13, "available": true  },
+        { "name": "Zeno Debast",          "pos": "DF", "club": "Sporting CP",         "number": 2,  "elo_impact": 13, "available": true  },
+        { "name": "Axel Witsel",          "pos": "MF", "club": "Girona",              "number": 20, "elo_impact": 12, "available": true  }
+      ]
+    },
+    "colombia": {
+      "base_elo": 1888,
+      "players": [
+        { "name": "Luis Díaz",            "pos": "FW", "club": "Bayern München",      "number": 7,  "elo_impact": 32, "available": true  },
+        { "name": "James Rodríguez",      "pos": "MF", "club": "Minnesota United",    "number": 10, "elo_impact": 26, "available": true  },
+        { "name": "Juan Camilo Hernández","pos": "FW", "club": "Real Betis",          "number": 9,  "elo_impact": 22, "available": true  },
+        { "name": "Davinson Sánchez",     "pos": "DF", "club": "Galatasaray",         "number": 2,  "elo_impact": 19, "available": true  },
+        { "name": "Richard Ríos",         "pos": "MF", "club": "Benfica",             "number": 6,  "elo_impact": 18, "available": true  },
+        { "name": "Jefferson Lerma",      "pos": "MF", "club": "Crystal Palace",      "number": 8,  "elo_impact": 16, "available": true  },
+        { "name": "Daniel Muñoz",         "pos": "DF", "club": "Crystal Palace",      "number": 4,  "elo_impact": 16, "available": true  },
+        { "name": "Jhon Lucumí",          "pos": "DF", "club": "Bologna",             "number": 3,  "elo_impact": 15, "available": true  },
+        { "name": "Jhon Arias",           "pos": "FW", "club": "Palmeiras",           "number": 11, "elo_impact": 14, "available": true  },
+        { "name": "Camilo Vargas",        "pos": "GK", "club": "Atlas",               "number": 1,  "elo_impact": 13, "available": true  },
+        { "name": "Luis Suárez",          "pos": "FW", "club": "Sporting CP",         "number": 17, "elo_impact": 13, "available": true  },
+        { "name": "Juan Fernando Quintero","pos": "MF", "club": "River Plate",        "number": 20, "elo_impact": 12, "available": true  },
+        { "name": "Yerry Mina",           "pos": "DF", "club": "Cagliari",            "number": 5,  "elo_impact": 11, "available": true  }
+      ]
+    },
+    "croatia": {
+      "base_elo": 1869,
+      "players": [
+        { "name": "Luka Modrić",          "pos": "MF", "club": "AC Milan",            "number": 10, "elo_impact": 30, "available": true  },
+        { "name": "Mateo Kovačić",        "pos": "MF", "club": "Manchester City",     "number": 8,  "elo_impact": 26, "available": true  },
+        { "name": "Joško Gvardiol",       "pos": "DF", "club": "Manchester City",     "number": 4,  "elo_impact": 24, "available": true  },
+        { "name": "Andrej Kramarić",      "pos": "FW", "club": "Hoffenheim",          "number": 9,  "elo_impact": 18, "available": true  },
+        { "name": "Ivan Perišić",         "pos": "FW", "club": "PSV Eindhoven",       "number": 11, "elo_impact": 18, "available": true  },
+        { "name": "Dominik Livaković",    "pos": "GK", "club": "Fenerbahçe",          "number": 1,  "elo_impact": 14, "available": true  },
+        { "name": "Mario Pašalić",        "pos": "MF", "club": "Atalanta",            "number": 20, "elo_impact": 15, "available": true  },
+        { "name": "Nikola Vlašić",        "pos": "FW", "club": "Torino",              "number": 7,  "elo_impact": 15, "available": true  },
+        { "name": "Luka Sučić",           "pos": "MF", "club": "Real Sociedad",       "number": 14, "elo_impact": 14, "available": true  },
+        { "name": "Martin Baturina",      "pos": "MF", "club": "Como",                "number": 18, "elo_impact": 14, "available": true  },
+        { "name": "Duje Ćaleta-Car",      "pos": "DF", "club": "Real Sociedad",       "number": 6,  "elo_impact": 13, "available": true  },
+        { "name": "Josip Šutalo",         "pos": "DF", "club": "Ajax",                "number": 3,  "elo_impact": 12, "available": true  },
+        { "name": "Josip Stanišić",       "pos": "DF", "club": "Bayern München",      "number": 2,  "elo_impact": 11, "available": true  }
       ]
     }
   }
