@@ -236,6 +236,25 @@
         { "name": "Israel Reyes",         "pos": "DF", "club": "América",             "number": 2,  "elo_impact": 9,  "available": true  },
         { "name": "Mateo Chávez",         "pos": "DF", "club": "AZ Alkmaar",          "number": 21, "elo_impact": 8,  "available": true  }
       ]
+    },
+    "senegal": {
+      "base_elo": 1823,
+      "players": [
+        { "name": "Sadio Mané",           "pos": "FW", "club": "Al Nassr",            "number": 10, "elo_impact": 24, "available": true  },
+        { "name": "Nicolas Jackson",      "pos": "FW", "club": "Chelsea",             "number": 9,  "elo_impact": 20, "available": true  },
+        { "name": "Ismaïla Sarr",         "pos": "FW", "club": "Crystal Palace",      "number": 18, "elo_impact": 17, "available": true  },
+        { "name": "Pape Matar Sarr",      "pos": "MF", "club": "Tottenham",           "number": 5,  "elo_impact": 17, "available": true  },
+        { "name": "Kalidou Koulibaly",    "pos": "DF", "club": "Al Hilal",            "number": 3,  "elo_impact": 16, "available": true  },
+        { "name": "Idrissa Gana Gueye",   "pos": "MF", "club": "Everton",             "number": 6,  "elo_impact": 15, "available": true  },
+        { "name": "Édouard Mendy",        "pos": "GK", "club": "Al-Ahli",             "number": 16, "elo_impact": 15, "available": true  },
+        { "name": "Iliman Ndiaye",        "pos": "FW", "club": "Everton",             "number": 11, "elo_impact": 14, "available": true  },
+        { "name": "Lamine Camara",        "pos": "MF", "club": "AS Monaco",           "number": 8,  "elo_impact": 13, "available": true  },
+        { "name": "Habib Diarra",         "pos": "MF", "club": "Sunderland",          "number": 17, "elo_impact": 12, "available": true  },
+        { "name": "Pape Gueye",           "pos": "MF", "club": "Villarreal",          "number": 15, "elo_impact": 11, "available": true  },
+        { "name": "Krépin Diatta",        "pos": "DF", "club": "AS Monaco",           "number": 22, "elo_impact": 10, "available": true  },
+        { "name": "Mamadou Sarr",         "pos": "DF", "club": "Chelsea",             "number": 4,  "elo_impact": 10, "available": true  },
+        { "name": "Ismaïl Jakobs",        "pos": "DF", "club": "Galatasaray",         "number": 12, "elo_impact": 9,  "available": true  }
+      ]
     }
   }
 }
