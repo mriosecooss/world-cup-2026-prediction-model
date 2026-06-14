@@ -8,6 +8,35 @@ _Generado: 14 jun 2026 (sesión Opus). Documento de traspaso para continuar en o
 
 ---
 
+## ⭐ TAREA 0 — COMPLETAR PLANTELES (HACER PRIMERO, ANTES QUE TODO LO DEMÁS)
+
+Cargar en `data/players.json` las **31 selecciones que faltan** del Mundial 2026, para que todas las mejoras del modelo se prueben con datos reales.
+
+**Metodología (la misma que se usó para las 17 ya cargadas):** por cada país, en orden →
+1. Buscar en la web el plantel/alineación probable WC2026 (convocatoria de 26 + XI titular).
+2. Cargar ~12-14 jugadores con `elo_impact` según escala: **crack 30-35, titular clave 18-26, titular sólido 12-17, rotación 6-11**. `base_elo` = el de `data/elo-calibrated.json`.
+3. Marcar `available:false` a los lesionados/dudas reales (descuenta Elo). Omisiones de convocatoria (no lesionados) NO se marcan, simplemente no se incluyen.
+4. Validar JSON + `node squad-strength.mjs <slug>`.
+5. **Commit individual por país** + push.
+
+**OJO:** la escala de `elo_impact` es heurística (ver Mejora F) y el ajuste de plantel hoy solo resta y solo toca el ataque (bugs #5, #6). Cargar los planteles es válido igual — el dato queda listo para cuando se arreglen esos bugs.
+
+### Las 31 que faltan (slug + base_elo de elo-calibrated.json)
+
+**Tier alto (Elo ≥1850) — 10:** spain 2075, argentina 2069, france 2046, england 1998, brazil 1997, portugal 1957, morocco 1909, belgium 1893, colombia 1888, croatia 1869.
+
+**Tier medio (1700-1849) — 6:** switzerland 1831, austria 1778, iran 1757, uzbekistan 1725, canada 1714, algeria 1712.
+
+**Tier bajo (<1700) — 15:** dr-congo 1702, egypt 1693, iraq 1682, scotland 1676, saudi-arabia 1650, ghana 1645, cape-verde 1636, czech-republic 1615, qatar 1606, panama 1596, south-africa 1576, bosnia-and-herzegovina 1568, jordan 1558, new-zealand 1552, haiti 1501.
+
+_Total: 31 selecciones. Sugerencia: arrancar por el tier alto (más data pública y más relevantes para apuestas), pero el orden es libre._
+
+_Ya cargadas (17): australia, curacao, ecuador, germany, ivory-coast, japan, mexico, netherlands, norway, paraguay, senegal, south-korea, sweden, tunisia, turkey, uruguay, usa._
+
+> Verificar al cerrar: `node -e "console.log(Object.keys(require('./data/players.json').teams).length)"` debería dar 48.
+
+---
+
 ## 🐞 BUGS CONFIRMADOS (con ubicación)
 
 ### Alto impacto
