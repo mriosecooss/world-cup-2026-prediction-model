@@ -274,6 +274,25 @@
         { "name": "Jens Castrop",         "pos": "MF", "club": "1. FC Nürnberg",      "number": 16, "elo_impact": 9,  "available": true  },
         { "name": "Seol Young-woo",       "pos": "DF", "club": "Red Star Belgrade",   "number": 2,  "elo_impact": 8,  "available": true  }
       ]
+    },
+    "norway": {
+      "base_elo": 1879,
+      "players": [
+        { "name": "Erling Haaland",       "pos": "FW", "club": "Manchester City",     "number": 9,  "elo_impact": 32, "available": true  },
+        { "name": "Martin Ødegaard",      "pos": "MF", "club": "Arsenal",             "number": 10, "elo_impact": 26, "available": true  },
+        { "name": "Alexander Sørloth",    "pos": "FW", "club": "Atlético Madrid",     "number": 11, "elo_impact": 18, "available": true  },
+        { "name": "Antonio Nusa",         "pos": "FW", "club": "RB Leipzig",          "number": 20, "elo_impact": 16, "available": true  },
+        { "name": "Jørgen Strand Larsen", "pos": "FW", "club": "Crystal Palace",      "number": 19, "elo_impact": 13, "available": true  },
+        { "name": "Oscar Bobb",           "pos": "FW", "club": "Fulham",              "number": 17, "elo_impact": 13, "available": true  },
+        { "name": "Sander Berge",         "pos": "MF", "club": "Fulham",              "number": 8,  "elo_impact": 12, "available": true  },
+        { "name": "Kristoffer Ajer",      "pos": "DF", "club": "Brentford",           "number": 5,  "elo_impact": 12, "available": true  },
+        { "name": "Julian Ryerson",       "pos": "DF", "club": "Borussia Dortmund",   "number": 2,  "elo_impact": 12, "available": true  },
+        { "name": "Fredrik Aursnes",      "pos": "MF", "club": "Benfica",             "number": 15, "elo_impact": 12, "available": true  },
+        { "name": "Kristian Thorstvedt",  "pos": "MF", "club": "Sassuolo",            "number": 13, "elo_impact": 10, "available": true  },
+        { "name": "Leo Østigård",         "pos": "DF", "club": "Rennes",              "number": 4,  "elo_impact": 10, "available": true  },
+        { "name": "Andreas Schjelderup",  "pos": "FW", "club": "Benfica",             "number": 21, "elo_impact": 10, "available": true  },
+        { "name": "Ørjan Nyland",         "pos": "GK", "club": "Sevilla",             "number": 1,  "elo_impact": 9,  "available": true  }
+      ]
     }
   }
 }
