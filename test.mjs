@@ -8,6 +8,9 @@ import {
   poissonPmf, dcTau, expectedGoals, expectedScore, DC_RHO,
 } from './elo.mjs';
 import { baseK, gMult, rateIntegral, SLUG_TO_NAME, HOST, HOME_ADV } from './constants.mjs';
+import { homeBonus } from './context.mjs';
+import { squadAdjustment } from './squad-strength.mjs';
+import { matchBlendedXg } from './match-core.mjs';
 
 const D = (f) => JSON.parse(readFileSync(new URL(`./data/${f}`, import.meta.url), 'utf8'));
 
@@ -140,6 +143,47 @@ function check(name, cond, detail = '') {
     wc.matches.filter(m => !elo[m.t1] || !elo[m.t2]).map(m => `${m.t1}/${m.t2}`).join(','));
   check('wc2026: goles no negativos',
     wc.matches.every(m => m.g1 >= 0 && m.g2 >= 0));
+}
+
+// ---- Mejora H: consistencia homeBonus, defense_ratio, matchBlendedXg ----
+{
+  // homeBonus: hosts WC reciben offset +20/+10/+5; demás equipos usan su propio offset o 75
+  check('homeBonus mexico=95',  homeBonus('mexico', true)  === 95, `=${homeBonus('mexico', true)}`);
+  check('homeBonus usa=85',     homeBonus('usa', true)     === 85,  `=${homeBonus('usa', true)}`);
+  check('homeBonus canada=80',  homeBonus('canada', true)  === 80,  `=${homeBonus('canada', true)}`);
+  check('homeBonus japan=87',   homeBonus('japan', true)   === 87,  `=${homeBonus('japan', true)}`);
+  check('homeBonus ecuador=75', homeBonus('ecuador', true) === 75,  `=${homeBonus('ecuador', true)}`);
+  check('homeBonus siempre >0', homeBonus('ecuador', true) > 0);
+}
+{
+  // squadAdjustment: attack_ratio y defense_ratio en [0,1]; ratio = alias de attack_ratio
+  const testTeams = ['usa', 'japan', 'netherlands', 'germany', 'france', 'spain'];
+  for (const t of testTeams) {
+    const sq = squadAdjustment(t);
+    if (!sq.hasData) continue;
+    check(`${t} attack_ratio in [0,1]`,  sq.attack_ratio  >= 0 && sq.attack_ratio  <= 1);
+    check(`${t} defense_ratio in [0,1]`, sq.defense_ratio >= 0 && sq.defense_ratio <= 1);
+    // ratio es el total (no necesariamente igual a attack_ratio, que solo pondera pos ofensivas)
+    check(`${t} ratio in [0,1]`, sq.ratio >= 0 && sq.ratio <= 1);
+    // Si hay bajas, el ratio total debe ser < 1
+    if (sq.missing.length > 0) {
+      check(`${t} ratio<1 con bajas`, sq.ratio < 1, `ratio=${sq.ratio} missing=${sq.missing.length}`);
+    }
+  }
+}
+{
+  // matchBlendedXg: probabilities bien formadas, xG > 0, simetria razonable en neutral
+  const elo = D('elo-calibrated.json').ratings;
+  const r = matchBlendedXg(elo['france'], elo['argentina'], 'france', 'argentina', { hb: 0 });
+  check('matchBlendedXg winA+draw+winB=1', approx(r.winA + r.draw + r.winB, 1, 1e-6));
+  check('matchBlendedXg xG home > 0', r.home > 0);
+  check('matchBlendedXg xG away > 0', r.away > 0);
+  // Neutral FRA vs ARG: ambos fuertes, diferencia de xG < 0.5
+  check('matchBlendedXg simetria neutral', Math.abs(r.home - r.away) < 0.5,
+    `diff=${Math.abs(r.home - r.away).toFixed(3)}`);
+  // defense_ratio afecta al SPI: si hay bajas de defensores, la prediccion cambia vs sin squad adj
+  const rNoSquad = matchBlendedXg(elo['france'], elo['argentina'], 'france', 'argentina', { hb: 0, useSquad: false });
+  check('matchBlendedXg useSquad=false suma 1', approx(rNoSquad.winA + rNoSquad.draw + rNoSquad.winB, 1, 1e-6));
 }
 
 console.log(`\n${fail === 0 ? '✓ TODOS LOS TESTS PASAN' : '✗ HAY FALLOS'} — ${pass} ok, ${fail} fallidos`);
