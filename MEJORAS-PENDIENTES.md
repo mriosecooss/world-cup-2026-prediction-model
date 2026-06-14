@@ -1,0 +1,103 @@
+# 🛠️ Mejoras y bugs pendientes — WC2026 model
+
+_Generado: 14 jun 2026 (sesión Opus). Documento de traspaso para continuar en otro chat sin perder contexto._
+
+> **Cómo usar este archivo:** es el backlog técnico. Atacar en orden de prioridad. Antes de refactorizar,
+> guardar un baseline de salidas (`node predict.mjs` de 4-5 partidos) y comparar exacto después + `npm test` (42 invariantes).
+> Sonnet 4.6 alcanza para todo esto con esa red de seguridad; reservar Opus para la parte estadística delicada (calibración, game-state).
+
+---
+
+## 🐞 BUGS CONFIRMADOS (con ubicación)
+
+### Alto impacto
+
+1. **`HOME_ADV_OFFSET` y `homeBonus()` son código muerto** — [context.mjs:18-22,40-43](context.mjs#L18)
+   - Definen ventaja de localía por equipo (mexico +20, usa +10, canada +5, japan +12, etc.) y la función `homeBonus()`, pero **nadie los llama** en la ruta de predicción.
+   - [predict.mjs:56](predict.mjs#L56) y [halftime.mjs:35](halftime.mjs#L35) hardcodean `±75`.
+   - Efecto: con 3 anfitriones en WC2026, México/USA/Canadá de local reciben +75 en vez de +95/+85/+80. Subvalúa a los hosts.
+   - **Fix:** que predict/halftime usen `homeBonus(home, true)` en lugar del 75 fijo.
+
+2. **Desajuste train/serve del home bonus** — [calibrate.mjs:55](calibrate.mjs#L55) vs [predict.mjs:56](predict.mjs#L56)
+   - Calibración aplica `HOME_ADV/2 = 37.5` y **solo a anfitriones**; predicción aplica `75` a cualquier local.
+   - Los ratings Elo se calibraron con un supuesto de localía distinto al que usa la predicción.
+   - **Fix:** definir UN valor de home advantage y usarlo idéntico en calibración y predicción.
+
+3. **halftime.mjs implementa un modelo distinto al principal** — [halftime.mjs:39,59-63](halftime.mjs#L59)
+   - Sin Dixon-Coles (usa `poissonPmf × poissonPmf` plano) → subestima empates y marcadores bajos (0-0, 1-1).
+   - No importa `squadAdjustment` → ignora lesionados en vivo (ej. la baja de Yıldız NO se reflejó en los recálculos en vivo de Australia-Turquía).
+   - No aplica venue/context.
+   - **Fix:** unificar con el núcleo (ver Mejora A).
+
+4. **bet-ev.mjs no aplica `squadAdjustment`** — [bet-ev.mjs:25-36](bet-ev.mjs#L25)
+   - `matchXg()` usa Elo y SPI crudos sin `sqA.ratio` ni el ajuste de Elo.
+   - Efecto: el EV del tracker mostró Australia 40.6% mientras predict.mjs con plantel daba 42.7%.
+   - **Fix:** unificar con el núcleo (Mejora A).
+
+### Impacto medio
+
+5. **El ajuste de plantel solo toca el ATAQUE, no la defensa** — [predict.mjs:73-74](predict.mjs#L73), [analyze.mjs:45](analyze.mjs#L45)
+   - Hacen `attack * ratio` pero dejan `defense` intacta. Perder un defensor clave (ej. Van Dijk) no empeora la defensa SPI, solo baja el ataque del equipo.
+   - Parcialmente compensado por el ajuste de Elo (simétrico), pero la mitad SPI (65% del peso) ignora la pérdida defensiva.
+   - **Fix:** escalar también `defense` (peor defensa = beta mayor) cuando faltan defensores, idealmente ponderando `elo_impact` por posición.
+
+6. **`squadAdjustment` solo resta, nunca refleja la calidad base** — [squad-strength.mjs:18](squad-strength.mjs#L18)
+   - `adjustment` siempre ≤ 0 (solo descuenta bajas). No puede codificar "este plantel es más talentoso de lo que dice su Elo".
+   - Caso Australia-Turquía: el modelo acertó, pero por la razón equivocada (defensa SPI), ciego a que Güler/Çalhanoğlu inclinaban el talento hacia Turquía.
+
+### Impacto bajo / robustez
+
+7. **Umbral de EV inconsistente** — [predict.mjs:112](predict.mjs#L112) marca ✓ con `ev>0.03`, pero CLAUDE.md recomienda +5% mínimo en 1X2. Alinear.
+8. **halftime.mjs rechaza minuto ≥90** — [halftime.mjs:30](halftime.mjs#L30) (`minute > 89`): no permite recalcular en tiempo de descuento.
+9. **halftime.mjs no valida goles negativos** (solo NaN). Menor.
+
+---
+
+## 🚀 BACKLOG DE MEJORAS (prioridad sugerida)
+
+### A. Unificar el modelo en un núcleo único `predictMatch()` ⭐ PRIMERO
+Hoy **predict.mjs, halftime.mjs y bet-ev.mjs implementan el modelo de 3 formas distintas** (tabla abajo).
+Extraer `predictMatch(a, b, {home, phase, venue, live, squad, scoreNow, minute})` a un módulo y que los tres lo llamen.
+Resuelve bugs #3 y #4 de un golpe. Validar con baseline + `npm test`.
+
+| Tool | Dixon-Coles | Squad adj | Venue/context |
+|---|---|---|---|
+| predict.mjs | ✅ | ✅ (solo ataque) | ✅ |
+| halftime.mjs | ❌ | ❌ | ❌ |
+| bet-ev.mjs | parcial | ❌ | ✅ |
+
+### B. Cablear home advantage por equipo + unificar con calibración
+Resuelve bugs #1 y #2. Decidir valor único, usar `homeBonus()` en todos lados, recalibrar si hace falta.
+
+### C. Ajuste de plantel sobre defensa + aporte de calidad base
+Resuelve bugs #5 y #6. Requiere calibrar la escala de `elo_impact` primero (Mejora F).
+
+### D. Efecto "game state" en vivo
+halftime.mjs y la evaluación en vivo tratan los minutos restantes como continuación neutral con el mismo xG.
+Empíricamente el que pierde ataca más y el que gana se repliega. Añadir multiplicador de hazard por diferencia de gol y minuto.
+Mejora directamente TODA apuesta en vivo (lección de Australia-Turquía: dudábamos a mano de Turquía-0 y Australia-gana-2T).
+
+### E. Tamaño de apuesta (Kelly) + detector de correlación ⭐ MÁS VALOR PARA EL BANKROLL
+El sistema calcula EV por apuesta pero ignora:
+- **Correlación:** los 9 boletos de Australia-Turquía eran la MISMA tesis ("Australia rinde"); tratados como independientes. Salió bien y amplificó la ganancia, pero un 1-1 al 80' los tumbaba casi todos juntos. El CLAUDE.md registra el drawdown de −$36k por all-ins correlacionados.
+- **Stake sizing:** no hay Kelly fraccionario; se apuesta monto fijo.
+- **Fix:** `stake.mjs` con Kelly fraccionario + aviso "estas N apuestas dependen del mismo resultado, exposición efectiva = X".
+
+### F. Calibrar la escala de `elo_impact`
+Los valores (crack 30-35, titular clave 18-26, etc.) son a ojo. La suma por equipo varía (~150-190), así que el mismo `ratio` significa cosas distintas en valor absoluto. Anclar a algo medible (valor de mercado, minutos jugados).
+
+### G. EV ajustado por margen de la casa (de-vig)
+El EV (`prob × cuota − 1`) es correcto pero no compara contra la prob justa del mercado sin overround.
+Un "edge vs consenso del mercado" separaría valor real de simple desacuerdo con un mercado afilado (útil con el caveat AFC/UEFA).
+
+### H. Tests de consistencia
+Agregar invariantes que verifiquen: predict == halftime == bet-ev para el mismo partido (misma prob 1X2 a t=0); que el home bonus se aplique; que el squad adj fluya a las tres tools.
+
+---
+
+## 📌 Estado del proyecto al cierre de esta sesión
+
+- **players.json:** ampliado de 2 → 17 equipos (usa, paraguay, australia, turkey, germany, curacao, netherlands, japan, ivory-coast, sweden, ecuador, tunisia, mexico, senegal, south-korea, norway, uruguay). Bajas marcadas: Yıldız (tur), Xavi Simons (ned), Mitoma/Endo/Minamino (jpn). Escala de `elo_impact` heurística (ver Mejora F).
+- **bet-ev.mjs:** se agregaron market types `team_total_under` / `team_total_over` / `team_total_exact`.
+- **Apuestas:** Australia 2-0 Turquía cerrado: 7 de 8 ganadas (+$33.220); una "siguiente en anotar" @3.90 fue ANULADA por la casa. Saldo casa confirmado $50.019, bankroll cuadra. P&L realizado acumulado −$2.920.
+- **42 tests pasan.** Node: `C:\Program Files\nodejs\node.exe`. Respuestas en español.
