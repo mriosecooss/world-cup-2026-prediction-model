@@ -124,9 +124,39 @@ Agregar invariantes que verifiquen: predict == halftime == bet-ev para el mismo 
 
 ---
 
-## 📌 Estado del proyecto al cierre de esta sesión
+## 📌 Estado del proyecto al cierre de sesión — 2026-06-14 (Sonnet)
 
-- **players.json:** ampliado de 2 → 17 equipos (usa, paraguay, australia, turkey, germany, curacao, netherlands, japan, ivory-coast, sweden, ecuador, tunisia, mexico, senegal, south-korea, norway, uruguay). Bajas marcadas: Yıldız (tur), Xavi Simons (ned), Mitoma/Endo/Minamino (jpn). Escala de `elo_impact` heurística (ver Mejora F).
-- **bet-ev.mjs:** se agregaron market types `team_total_under` / `team_total_over` / `team_total_exact`.
-- **Apuestas:** Australia 2-0 Turquía cerrado: 7 de 8 ganadas (+$33.220); una "siguiente en anotar" @3.90 fue ANULADA por la casa. Saldo casa confirmado $50.019, bankroll cuadra. P&L realizado acumulado −$2.920.
-- **42 tests pasan.** Node: `C:\Program Files\nodejs\node.exe`. Respuestas en español.
+### Bankroll
+- **Saldo casa: ~$49.767**. P&L realizado **−$3.172 (−6.0%)** sobre capital propio $52.939.
+- Historial: Canada-Bosnia −$9.450 · USA-Paraguay +$3.310 · Qatar-Suiza −$8.000 · Brasil-Marruecos −$21.500 · Haití-Escocia −$500 · Australia-Turquía +$33.220 · Alemania-Curazao −$18.351 · **Países Bajos-Japón +$18.099**.
+- **Países Bajos 2-2 Japón — CERRADO. Ganancia neta: +$18.099**
+  - Staked $22.649 (10 boletos, 3 duplicados por error). Cobrado $40.748.
+  - Ganaron: Empate ×2 ($13.500) + HT/FT E/E ×2 ($21.250) + Par ($5.998)
+  - Perdieron: Ninguno + 0:0 exacto + Menos 1.5 ×2 + Menos 0.5 live ($8.649)
+  - Ningún mercado tenía EV positivo pre-partido. Se apostó por criterio propio del usuario viendo en vivo.
+
+### Base de datos WC2026
+- **9 partidos registrados** en `data/wc2026-results.json`:
+  - Jun 11: México 2-0 Sudáfrica · Corea del Sur 2-1 Rep. Checa
+  - Jun 12: Canadá 1-1 Bosnia · USA 4-1 Paraguay
+  - Jun 13: Qatar 1-1 Suiza · Brasil 1-1 Marruecos · Haití 0-1 Escocia · Australia 2-0 Turquía
+  - Jun 14: Alemania 7-1 Curazao
+- **Pendientes del 14 junio** (registrar cuando terminen): Países Bajos vs Japón · Costa de Marfil vs Ecuador · Suecia vs Túnez
+- `elo-live.json` actualizado con K=20 los 9 partidos. Usar `--live` en predict para partidos desde octavos; en fase de grupos `elo-calibrated.json` sigue siendo la referencia principal.
+- **Track record modelo: 5/9 (56%)**, RPS promedio 0.136. (Backtest histórico: 64% / RPS 0.1637)
+
+### players.json
+- **48 equipos cargados** (todos los clasificados al WC2026). Tarea 0 completada en sesión anterior (Opus).
+- Bajas activas marcadas: Yıldız (tur), Xavi Simons (ned), Mitoma/Endo/Minamino (jpn).
+- Escala `elo_impact` heurística (ver Mejora F). Squad adj solo toca ataque, no defensa (Bug #5).
+
+### Infraestructura
+- `bet-ev.mjs`: market types `team_total_under` / `team_total_over` / `team_total_exact` disponibles.
+- `bets.json`: market types disponibles incluyen `exact_score`, `half_total_under`, `odd_even`, `result`, `htft_combo`.
+- 42 tests pasan. Node: `C:\Program Files\nodejs\node.exe`. Respuestas en español.
+
+### Lecciones de esta sesión
+- **Alemania-Curazao:** el modelo marcó EV positivo en "2-3 goles totales" (+16.6%) y "más de 0.5 Curazao" (+6.9%). El partido terminó 7-1 (goleada histórica). La varianza extrema destruyó todas las apuestas de goles salvo Curazao <1.5.
+- **Live odds mejoran el EV:** "Menos 5.5" pasó de 2.90 (EV −0.5%) a 3.10 (EV +6.3%) en vivo. Vale la pena esperar a odds live en mercados de goles para partidos muy asimétricos.
+- **Correlación sigue sin resolverse (Mejora E):** los 11 boletos de Alemania-Curazao y los 9 de NED-JAP son variaciones de la misma tesis. Cuando el resultado va en contra amplifica la pérdida.
+- **NED-JAP:** ningún mercado tenía EV positivo (todos negativos). El modelo y la casa estaban alineados. Se apostó igual por criterio propio del usuario (partido en vivo). Se duplicaron 3 boletos por error (Empate, Menos 1.5, E/E).
