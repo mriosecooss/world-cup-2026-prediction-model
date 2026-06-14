@@ -200,6 +200,23 @@
         { "name": "Jhegson Méndez",       "pos": "MF", "club": "León",                "number": 8,  "elo_impact": 9,  "available": true  },
         { "name": "Kevin Rodríguez",      "pos": "FW", "club": "Union SG",            "number": 9,  "elo_impact": 9,  "available": true  }
       ]
+    },
+    "tunisia": {
+      "base_elo": 1666,
+      "players": [
+        { "name": "Ellyes Skhiri",        "pos": "MF", "club": "Eintracht Frankfurt", "number": 6,  "elo_impact": 20, "available": true  },
+        { "name": "Hannibal Mejbri",      "pos": "MF", "club": "Burnley",             "number": 8,  "elo_impact": 17, "available": true  },
+        { "name": "Elias Achouri",        "pos": "MF", "club": "FC Copenhagen",       "number": 10, "elo_impact": 16, "available": true  },
+        { "name": "Aïssa Laïdouni",       "pos": "MF", "club": "Al-Sadd",             "number": 14, "elo_impact": 14, "available": true  },
+        { "name": "Montassar Talbi",      "pos": "DF", "club": "Lorient",             "number": 3,  "elo_impact": 14, "available": true  },
+        { "name": "Elias Saad",           "pos": "FW", "club": "St. Pauli",           "number": 11, "elo_impact": 12, "available": true  },
+        { "name": "Rani Khedira",         "pos": "MF", "club": "Union Berlin",        "number": 15, "elo_impact": 12, "available": true  },
+        { "name": "Dylan Bronn",          "pos": "DF", "club": "Servette",            "number": 2,  "elo_impact": 11, "available": true  },
+        { "name": "Naïm Sliti",           "pos": "FW", "club": "Al-Ettifaq",          "number": 7,  "elo_impact": 11, "available": true  },
+        { "name": "Youssef Msakni",       "pos": "FW", "club": "Al-Arabi",           "number": 9,  "elo_impact": 10, "available": true  },
+        { "name": "Aymen Dahmen",         "pos": "GK", "club": "Sivasspor",          "number": 1,  "elo_impact": 9,  "available": true  },
+        { "name": "Mohamed Dräger",       "pos": "DF", "club": "FC Lugano",          "number": 5,  "elo_impact": 9,  "available": true  }
+      ]
     }
   }
 }
