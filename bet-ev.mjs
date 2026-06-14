@@ -91,6 +91,9 @@ function modelProb(bet, xg) {
     case 'half_total_atleast': return pAtLeast(half(lamTotal, bet.half), bet.n);
     case 'team_atleast':       return pAtLeast(teamLam, bet.n);
     case 'team_exact':         return pExact(teamLam, bet.n);
+    case 'team_total_over':    return pAtLeast(teamLam, Math.floor(bet.line) + 1);
+    case 'team_total_under':   return 1 - pAtLeast(teamLam, Math.floor(bet.line) + 1);
+    case 'team_total_exact':   return pExact(teamLam, bet.n);
     case 'team_half_atleast':  return pAtLeast(half(teamLam, bet.half), bet.n);
     case 'team_half_exact':    return pExact(half(teamLam, bet.half), bet.n);
     case 'team_win':           return pTeamWins(teamLam, oppLam);

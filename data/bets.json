@@ -66,6 +66,14 @@
     { "id": "2000104166583", "match": "haiti-scotland", "home": "haiti", "away": "scotland", "date": "2026-06-13", "market": "half_result", "half": "1H", "pick": "draw", "odds": 2.10, "stake": 1730, "status": "lost", "desc": "Resultado 1er tiempo - Empate" },
     { "id": "2000104166585", "match": "haiti-scotland", "home": "haiti", "away": "scotland", "date": "2026-06-13", "market": "total_exact", "n": 0, "odds": 12.00, "stake": 1730, "status": "lost", "desc": "0 goles en el partido (0-0)" },
     { "id": "2000104166582", "match": "haiti-scotland", "home": "haiti", "away": "scotland", "date": "2026-06-13", "market": "htft_combo", "ht": "draw", "ft": "draw", "odds": 5.75, "stake": 1730, "status": "lost", "desc": "HT/FT Empate/Empate" },
-    { "id": "2000104166581", "match": "haiti-scotland", "home": "haiti", "away": "scotland", "date": "2026-06-13", "market": "result", "pick": "draw", "odds": 3.25, "stake": 1730, "status": "lost", "desc": "Resultado final - Empate" }
+    { "id": "2000104166581", "match": "haiti-scotland", "home": "haiti", "away": "scotland", "date": "2026-06-13", "market": "result", "pick": "draw", "odds": 3.25, "stake": 1730, "status": "lost", "desc": "Resultado final - Empate" },
+
+    { "id": "2000104169715", "match": "australia-turkey", "home": "australia", "away": "turkey", "date": "2026-06-14", "market": "team_win", "team": "home", "odds": 3.75, "stake": 1500, "status": "open", "desc": "Resultado Final - Australia gana" },
+    { "id": "2000104169716", "match": "australia-turkey", "home": "australia", "away": "turkey", "date": "2026-06-14", "market": "htft_combo", "ht": "home", "ft": "home", "odds": 7.50, "stake": 1500, "status": "open", "desc": "HT/FT Australia/Australia" },
+    { "id": "2000104169717", "match": "australia-turkey", "home": "australia", "away": "turkey", "date": "2026-06-14", "market": "htft_combo", "ht": "draw", "ft": "home", "odds": 8.50, "stake": 1500, "status": "open", "desc": "HT/FT Empate/Australia" },
+    { "id": "2000104169719", "match": "australia-turkey", "home": "australia", "away": "turkey", "date": "2026-06-14", "market": "team_win_half", "team": "home", "half": "1H", "odds": 4.25, "stake": 1500, "status": "open", "desc": "Resultado 1er tiempo - Australia gana" },
+    { "id": "2000104169720", "match": "australia-turkey", "home": "australia", "away": "turkey", "date": "2026-06-14", "market": "team_win_half", "team": "home", "half": "2H", "odds": 3.50, "stake": 1500, "status": "open", "desc": "Resultado 2º tiempo - Australia gana" },
+    { "id": "2000104169718", "match": "australia-turkey", "home": "australia", "away": "turkey", "date": "2026-06-14", "market": "team_total_under", "team": "away", "line": 1.5, "odds": 1.60, "stake": 1500, "status": "open", "desc": "Turquía (visitante) Menos de 1.5 goles" },
+    { "id": "2000104169721", "match": "australia-turkey", "home": "australia", "away": "turkey", "date": "2026-06-14", "market": "team_total_exact", "team": "away", "n": 0, "odds": 3.90, "stake": 1500, "status": "open", "desc": "Turquía (visitante) 0 goles" }
   ]
 }

@@ -12,8 +12,28 @@ _Actualizado: 13 de junio de 2026_
 | Brasil–Marruecos (cerrado) | $21.500 | $0 | **−$21.500** |
 | Haití–Escocia (cerrado) | $17.270 | $16.770 | **−$500** |
 | **TOTAL JORNADA** | **$85.320** | **$49.180** | **−$36.140** |
+| Australia–Turquía (abierto) | $10.500 | — | 🟡 en juego |
 
-> **Capital propio depositado: $52.939 · Saldo actual: $16.799 · P&L: −$36.140 (−68,3%)**
+> **Capital propio depositado: $52.939 · Valor cuenta: $16.799** (disponible $6.299 + $10.500 en apuestas abiertas) · **P&L realizado: −$36.140 (−68,3%)**
+
+---
+
+## 🟡 ABIERTO — Australia vs Turquía (14 jun)
+
+_El modelo da **Australia favorita (39,6%)** mientras la casa la pone a 3,75 (Turquía favorita a 1,48). Las 7 apuestas son la misma tesis correlacionada: "Australia rinde". EV agregado +34,8% según modelo ($10.500 → retorno esperado $14.159)._
+
+| Cód. | Apuesta | Cuota | Stake | Prob modelo | EV | Si gana cobrás |
+|---|---|---:|---:|---:|---:|---:|
+| ...9716 | HT/FT Australia/Australia | 7,50 | $1.500 | 23,4% | +75,3% | $11.250 |
+| ...9715 | Resultado Final - Australia gana | 3,75 | $1.500 | 40,6% | +52,2% | $5.625 |
+| ...9721 | Turquía (visitante) 0 goles | 3,90 | $1.500 | 33,5% | +30,8% | $5.849 |
+| ...9717 | HT/FT Empate/Australia | 8,50 | $1.500 | 15,2% | +29,1% | $12.750 |
+| ...9719 | Resultado 1er tiempo - Australia gana | 4,25 | $1.500 | 29,9% | +27,3% | $6.375 |
+| ...9720 | Resultado 2º tiempo - Australia gana | 3,50 | $1.500 | 33,4% | +16,9% | $5.250 |
+| ...9718 | Turquía (visitante) menos de 1.5 goles | 1,60 | $1.500 | 70,2% | +12,3% | $2.400 |
+| **TOTAL** | | | **$10.500** | | **+34,8%** | |
+
+_Caveat: el favoritismo de Australia sale solo del SPI defensivo (su Elo 1779 es inferior al 1795 de Turquía). Los dos mercados de goles de Turquía están sujetos al sesgo AFC vs UEFA._
 
 ---
 
