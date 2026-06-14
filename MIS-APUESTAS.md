@@ -9,12 +9,18 @@ _Actualizado: 13 de junio de 2026_
 | USA–Paraguay (cerrado) | $18.550 | $21.860 | **+$3.310** |
 | Canadá–Bosnia (cerrado) | $20.000 | $10.550 | **−$9.450** |
 | Qatar–Suiza (cerrado) | $8.000 | $0 | **−$8.000** |
-| Brasil–Marruecos (en juego) | $21.500 | — | pendiente |
-| **TOTAL JORNADA** | **$68.050** | — | — |
+| Brasil–Marruecos (cerrado) | $21.500 | $0 | **−$21.500** |
+| **TOTAL JORNADA** | **$68.050** | **$32.410** | **−$35.640** |
+
+> **Capital propio depositado: $52.939 · Saldo actual: $17.299 · P&L: −$35.640 (−67,3%)**
 
 ---
 
-## 🟢 EN JUEGO — Brasil vs Marruecos (13 jun, 18:00)
+## 🔴 CERRADO — Brasil 1–1 Marruecos (13 jun)
+
+_Resultado: HT 1-1 (20' Ismail, 31' Vini Jr), 2T 0-0. **Las 19 apuestas perdidas → −$21.500.** Todas requerían que Marruecos ganara/marcara más o un líder al descanso._
+
+### Detalle de las apuestas (todas ❌ Perdidas)
 
 | Cód. | Apuesta | Cuota | Stake | Si gana cobrás |
 |---|---|---|---|---|
@@ -38,7 +44,7 @@ _Actualizado: 13 de junio de 2026_
 | live-3 | Resto del partido - Marruecos | 4,10 | $1.000 | $4.100 |
 | live-4 | Marruecos (visitante) +1.5 goles | 2,15 | $1.000 | $2.150 |
 | **TOTAL APOSTADO** | | | **$21.500** | |
-| **TOTAL A COBRAR** (si ganaran todas*) | | | | **$380.674** |
+| **RESULTADO** | | | | **$0 cobrado · −$21.500** |
 
 _Las 4 "live" se agregaron en el 2º tiempo con el partido 1-1._
 
