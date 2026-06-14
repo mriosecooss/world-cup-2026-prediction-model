@@ -41,27 +41,27 @@ _Ya cargadas (17): australia, curacao, ecuador, germany, ivory-coast, japan, mex
 
 ### Alto impacto
 
-1. **`HOME_ADV_OFFSET` y `homeBonus()` son código muerto** — [context.mjs:18-22,40-43](context.mjs#L18)
-   - Definen ventaja de localía por equipo (mexico +20, usa +10, canada +5, japan +12, etc.) y la función `homeBonus()`, pero **nadie los llama** en la ruta de predicción.
-   - [predict.mjs:56](predict.mjs#L56) y [halftime.mjs:35](halftime.mjs#L35) hardcodean `±75`.
-   - Efecto: con 3 anfitriones en WC2026, México/USA/Canadá de local reciben +75 en vez de +95/+85/+80. Subvalúa a los hosts.
-   - **Fix:** que predict/halftime usen `homeBonus(home, true)` en lugar del 75 fijo.
+1. ✅ **`HOME_ADV_OFFSET` y `homeBonus()` eran código muerto** — RESUELTO 2026-06-14
+   - predict.mjs y halftime.mjs ahora llaman `homeBonus(team, true)` de context.mjs.
+   - México +95, USA +85, Canadá +80, otros +75 Elo de localía.
+   - Commit: `185e02d`
 
-2. **Desajuste train/serve del home bonus** — [calibrate.mjs:55](calibrate.mjs#L55) vs [predict.mjs:56](predict.mjs#L56)
-   - Calibración aplica `HOME_ADV/2 = 37.5` y **solo a anfitriones**; predicción aplica `75` a cualquier local.
-   - Los ratings Elo se calibraron con un supuesto de localía distinto al que usa la predicción.
-   - **Fix:** definir UN valor de home advantage y usarlo idéntico en calibración y predicción.
+2. ✅ **Desajuste train/serve del home bonus** — RESUELTO PARCIALMENTE 2026-06-14
+   - calibrate.mjs ahora aplica `HOME_ADV/2` a TODOS los locales (antes solo a WC hosts).
+   - `elo-calibrated.json` está CONGELADO (ratings pre-torneo); el fix aplica en la próxima calibración.
+   - Commit: `185e02d`
 
-3. **halftime.mjs implementa un modelo distinto al principal** — [halftime.mjs:39,59-63](halftime.mjs#L59)
-   - Sin Dixon-Coles (usa `poissonPmf × poissonPmf` plano) → subestima empates y marcadores bajos (0-0, 1-1).
-   - No importa `squadAdjustment` → ignora lesionados en vivo (ej. la baja de Yıldız NO se reflejó en los recálculos en vivo de Australia-Turquía).
-   - No aplica venue/context.
-   - **Fix:** unificar con el núcleo (ver Mejora A).
+3. ✅ **halftime.mjs con modelo distinto al principal** — RESUELTO 2026-06-14 (v5)
+   - DC (dcTau) aplicado a probabilidades de goles restantes.
+   - Squad adjustment + market value boost cableados (igual que predict.mjs).
+   - Pi-rating como 3er blend si disponible.
+   - homeBonus() por equipo (en vez de +75 hardcodeado).
+   - Commit: `cfafe1e`
 
-4. **bet-ev.mjs no aplica `squadAdjustment`** — [bet-ev.mjs:25-36](bet-ev.mjs#L25)
-   - `matchXg()` usa Elo y SPI crudos sin `sqA.ratio` ni el ajuste de Elo.
-   - Efecto: el EV del tracker mostró Australia 40.6% mientras predict.mjs con plantel daba 42.7%.
-   - **Fix:** unificar con el núcleo (Mejora A).
+4. ✅ **bet-ev.mjs no aplicaba `squadAdjustment`** — RESUELTO 2026-06-14
+   - matchXg() ahora aplica squad.ratio + mv.boost sobre ataque SPI.
+   - Elo ajustado por squad.adjustment también.
+   - Commit: `fdda3fa`
 
 ### Impacto medio
 
@@ -76,27 +76,28 @@ _Ya cargadas (17): australia, curacao, ecuador, germany, ivory-coast, japan, mex
 
 ### Impacto bajo / robustez
 
-7. **Umbral de EV inconsistente** — [predict.mjs:112](predict.mjs#L112) marca ✓ con `ev>0.03`, pero CLAUDE.md recomienda +5% mínimo en 1X2. Alinear.
-8. **halftime.mjs rechaza minuto ≥90** — [halftime.mjs:30](halftime.mjs#L30) (`minute > 89`): no permite recalcular en tiempo de descuento.
-9. **halftime.mjs no valida goles negativos** (solo NaN). Menor.
+7. **Umbral de EV inconsistente** — [predict.mjs:159](predict.mjs#L159) marca ✓ con `ev>0.03`, pero CLAUDE.md recomienda +5% mínimo en 1X2. Alinear.
+8. ✅ **halftime.mjs rechazaba minuto ≥90** — RESUELTO 2026-06-14. Ahora acepta hasta 120' con soporte de prórroga (ET_RATE=0.80). Commit: `cfafe1e`
+9. ✅ **halftime.mjs no validaba goles negativos** — RESUELTO 2026-06-14. Commit: `cfafe1e`
 
 ---
 
 ## 🚀 BACKLOG DE MEJORAS (prioridad sugerida)
 
-### A. Unificar el modelo en un núcleo único `predictMatch()` ⭐ PRIMERO
-Hoy **predict.mjs, halftime.mjs y bet-ev.mjs implementan el modelo de 3 formas distintas** (tabla abajo).
-Extraer `predictMatch(a, b, {home, phase, venue, live, squad, scoreNow, minute})` a un módulo y que los tres lo llamen.
-Resuelve bugs #3 y #4 de un golpe. Validar con baseline + `npm test`.
+### A. Unificar el modelo en un núcleo único `predictMatch()` — PARCIALMENTE RESUELTO
+Bugs #3 y #4 ya corregidos individualmente. La tabla de paridad queda:
 
-| Tool | Dixon-Coles | Squad adj | Venue/context |
-|---|---|---|---|
-| predict.mjs | ✅ | ✅ (solo ataque) | ✅ |
-| halftime.mjs | ❌ | ❌ | ❌ |
-| bet-ev.mjs | parcial | ❌ | ✅ |
+| Tool | Dixon-Coles | Squad adj | MV boost | Pi-rating | Venue/ctx |
+|---|---|---|---|---|---|
+| predict.mjs | ✅ | ✅ (solo ataque) | ✅ | ✅ | ✅ |
+| halftime.mjs | ✅ v5 | ✅ v5 | ✅ v5 | ✅ v5 | ❌ (venue no disponible en live) |
+| bet-ev.mjs | parcial | ✅ v2 | ✅ v2 | ❌ | ✅ |
 
-### B. Cablear home advantage por equipo + unificar con calibración
-Resuelve bugs #1 y #2. Decidir valor único, usar `homeBonus()` en todos lados, recalibrar si hace falta.
+Pendiente: extraer `predictMatch()` como módulo para evitar duplicación de código.
+También: bet-ev.mjs falta Pi-rating en el blend.
+
+### B. ✅ Cablear home advantage por equipo + unificar con calibración — RESUELTO 2026-06-14
+predict.mjs y halftime.mjs usan `homeBonus()`. calibrate.mjs corregido para próximo torneo.
 
 ### C. Ajuste de plantel sobre defensa + aporte de calidad base
 Resuelve bugs #5 y #6. Requiere calibrar la escala de `elo_impact` primero (Mejora F).
@@ -106,11 +107,11 @@ halftime.mjs y la evaluación en vivo tratan los minutos restantes como continua
 Empíricamente el que pierde ataca más y el que gana se repliega. Añadir multiplicador de hazard por diferencia de gol y minuto.
 Mejora directamente TODA apuesta en vivo (lección de Australia-Turquía: dudábamos a mano de Turquía-0 y Australia-gana-2T).
 
-### E. Tamaño de apuesta (Kelly) + detector de correlación ⭐ MÁS VALOR PARA EL BANKROLL
-El sistema calcula EV por apuesta pero ignora:
-- **Correlación:** los 9 boletos de Australia-Turquía eran la MISMA tesis ("Australia rinde"); tratados como independientes. Salió bien y amplificó la ganancia, pero un 1-1 al 80' los tumbaba casi todos juntos. El CLAUDE.md registra el drawdown de −$36k por all-ins correlacionados.
-- **Stake sizing:** no hay Kelly fraccionario; se apuesta monto fijo.
-- **Fix:** `stake.mjs` con Kelly fraccionario + aviso "estas N apuestas dependen del mismo resultado, exposición efectiva = X".
+### E. ✅ Tamaño de apuesta (Kelly) + detector de correlación — IMPLEMENTADO 2026-06-14
+`stake.mjs`: Kelly f* = EV/(odds-1), Half-Kelly recomendado, cap 5% por apuesta.
+Detector de correlación agrupa por partido y muestra exposición combinada worst-case.
+Confirmado históricamente: Brasil-Marruecos 19 boletos ($21.500 perdidos), NED-JAP 10 boletos.
+Uso: `node stake.mjs` / `--all` / `--match=ned-jpn`
 
 ### F. Calibrar la escala de `elo_impact`
 Los valores (crack 30-35, titular clave 18-26, etc.) son a ojo. La suma por equipo varía (~150-190), así que el mismo `ratio` significa cosas distintas en valor absoluto. Anclar a algo medible (valor de mercado, minutos jugados).
@@ -124,16 +125,24 @@ Agregar invariantes que verifiquen: predict == halftime == bet-ev para el mismo 
 
 ---
 
-## 📌 Estado del proyecto al cierre de sesión — 2026-06-14 (Sonnet)
+## 📌 Estado del proyecto al cierre de sesión — 2026-06-14 (Sonnet, sesión 2)
 
 ### Bankroll
-- **Saldo casa: ~$49.767**. P&L realizado **−$3.172 (−6.0%)** sobre capital propio $52.939.
+- **Saldo casa: $49.767** (cuadra con bankroll.mjs ✅). P&L realizado **−$3.172 (−6.0%)** sobre capital propio $52.939.
 - Historial: Canada-Bosnia −$9.450 · USA-Paraguay +$3.310 · Qatar-Suiza −$8.000 · Brasil-Marruecos −$21.500 · Haití-Escocia −$500 · Australia-Turquía +$33.220 · Alemania-Curazao −$18.351 · **Países Bajos-Japón +$18.099**.
-- **Países Bajos 2-2 Japón — CERRADO. Ganancia neta: +$18.099**
+- **Países Bajos 2-2 Japón (HT 0-0) — CERRADO. Ganancia neta: +$18.099**
   - Staked $22.649 (10 boletos, 3 duplicados por error). Cobrado $40.748.
   - Ganaron: Empate ×2 ($13.500) + HT/FT E/E ×2 ($21.250) + Par ($5.998)
   - Perdieron: Ninguno + 0:0 exacto + Menos 1.5 ×2 + Menos 0.5 live ($8.649)
-  - Ningún mercado tenía EV positivo pre-partido. Se apostó por criterio propio del usuario viendo en vivo.
+  - Ningún mercado tenía EV positivo pre-partido. Se apostó por criterio propio del usuario.
+- **Sin apuestas abiertas al cierre de esta sesión.**
+
+### Fixes implementados en sesión 2 (2026-06-14)
+- ✅ Bug #1+#2: homeBonus() activo en predict + halftime + calibrate (`185e02d`)
+- ✅ Bug #3+#8: halftime.mjs v5 — DC, squad adj, pi-rating, minuto hasta 120 (`cfafe1e`)
+- ✅ Bug #4: bet-ev.mjs matchXg con squad adj + MV (`fdda3fa`)
+- ✅ Mejora E: stake.mjs — Kelly fraccionario + detector correlación (`a85059b`)
+- ✅ 42/42 tests pasan
 
 ### Base de datos WC2026
 - **9 partidos registrados** en `data/wc2026-results.json`:

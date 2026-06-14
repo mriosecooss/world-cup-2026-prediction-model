@@ -7,9 +7,9 @@
     { "id": "10431685707", "datetime": "2026-06-13T16:52:36", "amount": 27939, "kind": "abono" }
   ],
   "account_snapshot": {
-    "as_of": "2026-06-14 (Australia-Turquia liquidado)",
-    "saldo_disponible": 50019,
-    "disponible_para_retiro": 50019,
-    "comment": "Saldo reportado por la casa: $50.019 (todo disponible para retiro). Australia 2-0 Turquia: 7 de 8 ganadas (+~$33.200 neto). La apuesta 'siguiente en anotar' @3.90 (id 2000104170858) fue ANULADA (barcode invalido) y su stake devuelto — no se registra en bets.json. Payouts exactos tomados de los tickets."
+    "as_of": "2026-06-14 (Países Bajos 2-2 Japón, todo liquidado)",
+    "saldo_disponible": 49767,
+    "disponible_para_retiro": 49767,
+    "comment": "NED-JAP 2-2 (HT 0-0). Won: Empate x2 ($6.750 c/u), HT/FT E/E x2 ($10.625 c/u), Par total ($5.998). Total cobrado NED-JAP $40.748, staked $22.649, net +$18.099. P&L acumulado realizado: −$3.172 (−6% sobre capital $52.939). Snapshot previo (post Alemania 7-1 Curazao): $31.668."
   }
 }
