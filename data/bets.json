@@ -74,6 +74,8 @@
     { "id": "2000104169719", "match": "australia-turkey", "home": "australia", "away": "turkey", "date": "2026-06-14", "market": "team_win_half", "team": "home", "half": "1H", "odds": 4.25, "stake": 1500, "status": "open", "desc": "Resultado 1er tiempo - Australia gana" },
     { "id": "2000104169720", "match": "australia-turkey", "home": "australia", "away": "turkey", "date": "2026-06-14", "market": "team_win_half", "team": "home", "half": "2H", "odds": 3.50, "stake": 1500, "status": "open", "desc": "Resultado 2º tiempo - Australia gana" },
     { "id": "2000104169718", "match": "australia-turkey", "home": "australia", "away": "turkey", "date": "2026-06-14", "market": "team_total_under", "team": "away", "line": 1.5, "odds": 1.60, "stake": 1500, "status": "open", "desc": "Turquía (visitante) Menos de 1.5 goles" },
-    { "id": "2000104169721", "match": "australia-turkey", "home": "australia", "away": "turkey", "date": "2026-06-14", "market": "team_total_exact", "team": "away", "n": 0, "odds": 3.90, "stake": 1500, "status": "open", "desc": "Turquía (visitante) 0 goles" }
+    { "id": "2000104169721", "match": "australia-turkey", "home": "australia", "away": "turkey", "date": "2026-06-14", "market": "team_total_exact", "team": "away", "n": 0, "odds": 3.90, "stake": 1500, "status": "open", "desc": "Turquía (visitante) 0 goles" },
+    { "id": "2000104170856", "match": "australia-turkey", "home": "australia", "away": "turkey", "date": "2026-06-14", "market": "rest_of_match", "pick": "home", "odds": 6.25, "stake": 1500, "status": "open", "desc": "Resultado resto del partido (desde 1-0) - Australia gana (live HT)" },
+    { "id": "at-live-nextscorer-aus", "match": "australia-turkey", "home": "australia", "away": "turkey", "date": "2026-06-14", "market": "first_next_scorer", "team": "home", "odds": 3.75, "stake": 1500, "status": "open", "desc": "Siguiente en anotar - Australia (live HT, 1-0)" }
   ]
 }
