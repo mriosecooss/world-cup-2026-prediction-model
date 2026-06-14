@@ -217,6 +217,25 @@
         { "name": "Aymen Dahmen",         "pos": "GK", "club": "Sivasspor",          "number": 1,  "elo_impact": 9,  "available": true  },
         { "name": "Mohamed Dräger",       "pos": "DF", "club": "FC Lugano",          "number": 5,  "elo_impact": 9,  "available": true  }
       ]
+    },
+    "mexico": {
+      "base_elo": 1845,
+      "players": [
+        { "name": "Santiago Giménez",     "pos": "FW", "club": "AC Milan",            "number": 9,  "elo_impact": 22, "available": true  },
+        { "name": "Edson Álvarez",        "pos": "MF", "club": "Fenerbahçe",          "number": 4,  "elo_impact": 22, "available": true  },
+        { "name": "Raúl Jiménez",         "pos": "FW", "club": "Fulham",              "number": 19, "elo_impact": 18, "available": true  },
+        { "name": "Hirving Lozano",       "pos": "FW", "club": "San Diego FC",        "number": 22, "elo_impact": 16, "available": true  },
+        { "name": "Johan Vásquez",        "pos": "DF", "club": "Genoa",               "number": 3,  "elo_impact": 15, "available": true  },
+        { "name": "Orbelín Pineda",       "pos": "MF", "club": "AEK Athens",          "number": 10, "elo_impact": 14, "available": true  },
+        { "name": "Gilberto Mora",        "pos": "MF", "club": "Club Tijuana",        "number": 26, "elo_impact": 13, "available": true  },
+        { "name": "César Montes",         "pos": "DF", "club": "Lokomotiv Moscow",    "number": 5,  "elo_impact": 13, "available": true  },
+        { "name": "Luis Chávez",          "pos": "MF", "club": "Dynamo Moscow",       "number": 14, "elo_impact": 12, "available": true  },
+        { "name": "Guillermo Ochoa",      "pos": "GK", "club": "AVS",                 "number": 13, "elo_impact": 12, "available": true  },
+        { "name": "Alexis Vega",          "pos": "FW", "club": "Toluca",              "number": 11, "elo_impact": 11, "available": true  },
+        { "name": "Jesús Gallardo",       "pos": "DF", "club": "Toluca",              "number": 23, "elo_impact": 10, "available": true  },
+        { "name": "Israel Reyes",         "pos": "DF", "club": "América",             "number": 2,  "elo_impact": 9,  "available": true  },
+        { "name": "Mateo Chávez",         "pos": "DF", "club": "AZ Alkmaar",          "number": 21, "elo_impact": 8,  "available": true  }
+      ]
     }
   }
 }
