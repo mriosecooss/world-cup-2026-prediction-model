@@ -255,6 +255,25 @@
         { "name": "Mamadou Sarr",         "pos": "DF", "club": "Chelsea",             "number": 4,  "elo_impact": 10, "available": true  },
         { "name": "Ismaïl Jakobs",        "pos": "DF", "club": "Galatasaray",         "number": 12, "elo_impact": 9,  "available": true  }
       ]
+    },
+    "south-korea": {
+      "base_elo": 1759,
+      "players": [
+        { "name": "Son Heung-min",        "pos": "FW", "club": "LAFC",                "number": 7,  "elo_impact": 26, "available": true  },
+        { "name": "Lee Kang-in",          "pos": "MF", "club": "Paris Saint-Germain", "number": 18, "elo_impact": 22, "available": true  },
+        { "name": "Kim Min-jae",          "pos": "DF", "club": "Bayern München",      "number": 4,  "elo_impact": 20, "available": true  },
+        { "name": "Hwang Hee-chan",       "pos": "FW", "club": "Wolves",              "number": 11, "elo_impact": 15, "available": true  },
+        { "name": "Lee Jae-sung",         "pos": "MF", "club": "Mainz 05",            "number": 17, "elo_impact": 14, "available": true  },
+        { "name": "Hwang In-beom",        "pos": "MF", "club": "Feyenoord",           "number": 6,  "elo_impact": 13, "available": true  },
+        { "name": "Cho Gue-sung",         "pos": "FW", "club": "FC Midtjylland",      "number": 9,  "elo_impact": 12, "available": true  },
+        { "name": "Paik Seung-ho",        "pos": "MF", "club": "Birmingham City",     "number": 8,  "elo_impact": 11, "available": true  },
+        { "name": "Oh Hyeon-gyu",         "pos": "FW", "club": "Genk",                "number": 22, "elo_impact": 11, "available": true  },
+        { "name": "Jo Hyeon-woo",         "pos": "GK", "club": "Ulsan HD",            "number": 1,  "elo_impact": 11, "available": true  },
+        { "name": "Bae Jun-ho",           "pos": "MF", "club": "Stoke City",          "number": 14, "elo_impact": 10, "available": true  },
+        { "name": "Cho Yu-min",           "pos": "DF", "club": "Sharjah",             "number": 20, "elo_impact": 9,  "available": true  },
+        { "name": "Jens Castrop",         "pos": "MF", "club": "1. FC Nürnberg",      "number": 16, "elo_impact": 9,  "available": true  },
+        { "name": "Seol Young-woo",       "pos": "DF", "club": "Red Star Belgrade",   "number": 2,  "elo_impact": 8,  "available": true  }
+      ]
     }
   }
 }
