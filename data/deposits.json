@@ -7,9 +7,9 @@
     { "id": "10431685707", "datetime": "2026-06-13T16:52:36", "amount": 27939, "kind": "abono" }
   ],
   "account_snapshot": {
-    "as_of": "2026-06-13 (Haiti-Escocia liquidado)",
-    "saldo_disponible": 16799,
-    "disponible_para_retiro": null,
-    "comment": "Haiti-Escocia cerrado: 3 ganadas (2T 0-0) cobraron ~$16.770 neto sobre $17.270 apostados (-$500). Saldo libre reconstruido $16.799. Payouts netos estimados (~2% impuesto); el exacto lo confirma la casa."
+    "as_of": "2026-06-14 (Australia-Turquia liquidado)",
+    "saldo_disponible": 50019,
+    "disponible_para_retiro": 50019,
+    "comment": "Saldo reportado por la casa: $50.019 (todo disponible para retiro). Australia 2-0 Turquia: 7 de 8 ganadas (+~$33.200 neto). La apuesta 'siguiente en anotar' @3.90 (id 2000104170858) fue ANULADA (barcode invalido) y su stake devuelto — no se registra en bets.json. Payouts exactos tomados de los tickets."
   }
 }

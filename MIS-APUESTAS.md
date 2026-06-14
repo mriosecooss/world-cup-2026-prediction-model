@@ -11,31 +11,31 @@ _Actualizado: 14 de junio de 2026_
 | Qatar–Suiza (cerrado) | $8.000 | $0 | **−$8.000** |
 | Brasil–Marruecos (cerrado) | $21.500 | $0 | **−$21.500** |
 | Haití–Escocia (cerrado) | $17.270 | $16.770 | **−$500** |
-| Australia–Turquía (cerrado) | $13.500 | $50.717 | **+$37.217** |
-| **TOTAL** | **$98.820** | **$99.897** | **+$1.077** |
+| Australia–Turquía (cerrado) | $12.000 | $45.220 | **+$33.220** |
+| **TOTAL** | **$97.320** | **$94.400** | **−$2.920** |
 
-> **Capital propio depositado: $52.939 · Valor cuenta reconstruido: $54.016** · **P&L realizado: +$1.077 (+2,0%)** — el batacazo de Australia recuperó toda la pérdida de la jornada.
+> **Capital propio depositado: $52.939 · Saldo casa (confirmado): $50.019** · **P&L realizado: −$2.920 (−5,5%)** — el batacazo de Australia recuperó casi toda la pérdida de la jornada (venía en −$36.140).
 
 ---
 
 ## 🟢 CERRADO — Australia 2–0 Turquía (14 jun)
 
-_Resultado: 1T 1-0, 2T 1-0, Turquía no marcó. **8 de 9 ganadas → +$37.217.** El modelo daba Australia favorita (42,7% con planteles cargados, Yıldız fuera) mientras la casa la ponía a 3,75. La tesis "Australia rinde" funcionó perfecto: las 3 apuestas del 2T (2T/resto/siguiente gol) entraron porque Australia siguió atacando en vez de defender el 1-0._
+_Resultado: 1T 1-0, 2T 1-0, Turquía no marcó. **7 de 8 ganadas → +$33.220.** El modelo daba Australia favorita (42,7% con planteles cargados, Yıldız fuera) mientras la casa la ponía a 3,75. La tesis "Australia rinde" funcionó perfecto: las apuestas del 2T (2T/resto del partido) entraron porque Australia siguió atacando en vez de defender el 1-0._
 
 | Cód. | Apuesta | Cuota | Stake | Resultado |
 |---|---|---:|---:|---|
-| ...9716 | HT/FT Australia/Australia | 7,50 | $1.500 | ✅ Ganada · $11.025 |
-| ...0856 | Resto del partido → Australia (live) | 6,25 | $1.500 | ✅ Ganada · $9.188 |
-| ...9719 | Resultado 1er tiempo - Australia gana | 4,25 | $1.500 | ✅ Ganada · $6.248 |
-| ...9721 | Turquía (visitante) 0 goles | 3,90 | $1.500 | ✅ Ganada · $5.733 |
-| ...9715 | Resultado Final - Australia gana | 3,75 | $1.500 | ✅ Ganada · $5.513 |
-| live | Siguiente en anotar → Australia (live) | 3,75 | $1.500 | ✅ Ganada · $5.513 |
-| ...9720 | Resultado 2º tiempo - Australia gana | 3,50 | $1.500 | ✅ Ganada · $5.145 |
-| ...9718 | Turquía (visitante) menos de 1.5 goles | 1,60 | $1.500 | ✅ Ganada · $2.352 |
+| ...9716 | HT/FT Australia/Australia | 7,50 | $1.500 | ✅ Ganada · $11.030 |
+| ...0856 | Resto del partido → Australia (live) | 6,25 | $1.500 | ✅ Ganada · $9.190 |
+| ...9719 | Resultado 1er tiempo - Australia gana | 4,25 | $1.500 | ✅ Ganada · $6.250 |
+| ...9721 | Turquía (visitante) 0 goles | 3,90 | $1.500 | ✅ Ganada · $5.730 |
+| ...9715 | Resultado Final - Australia gana | 3,75 | $1.500 | ✅ Ganada · $5.520 |
+| ...9720 | Resultado 2º tiempo - Australia gana | 3,50 | $1.500 | ✅ Ganada · $5.150 |
+| ...9718 | Turquía (visitante) menos de 1.5 goles | 1,60 | $1.500 | ✅ Ganada · $2.350 |
 | ...9717 | HT/FT Empate/Australia | 8,50 | $1.500 | ❌ Perdida (HT no fue empate) |
-| **TOTAL** | | | **$13.500** | **$50.717 cobrado · +$37.217** |
+| ...0858 | Siguiente en anotar → Australia (live) | 3,90 | — | ⚪ ANULADA (barcode inválido, stake devuelto) |
+| **TOTAL** | | | **$12.000** | **$45.220 cobrado · +$33.220** |
 
-_Montos netos (~2% impuesto). Primer partido en que el modelo aplicó ajuste de plantel: la baja de Yıldız subió a Australia de 39,9% → 42,7%. La única perdida fue el HT/FT que requería empate al descanso._
+_Montos netos exactos de los tickets. Primer partido en que el modelo aplicó ajuste de plantel: la baja de Yıldız subió a Australia de 39,9% → 42,7%. La única perdida fue el HT/FT que requería empate al descanso. La de "siguiente en anotar" fue anulada por la casa (no contó)._
 
 ---
 
