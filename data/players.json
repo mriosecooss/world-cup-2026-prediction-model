@@ -146,6 +146,24 @@
         { "name": "Keito Nakamura",       "pos": "FW", "club": "Stade de Reims",      "number": 14, "elo_impact": 11, "available": true  },
         { "name": "Shuto Machino",        "pos": "FW", "club": "Holstein Kiel",       "number": 18, "elo_impact": 9,  "available": true  }
       ]
+    },
+    "ivory-coast": {
+      "base_elo": 1722,
+      "players": [
+        { "name": "Franck Kessié",        "pos": "MF", "club": "Al-Ahli",             "number": 8,  "elo_impact": 24, "available": true  },
+        { "name": "Amad Diallo",          "pos": "FW", "club": "Manchester United",   "number": 7,  "elo_impact": 22, "available": true  },
+        { "name": "Simon Adingra",        "pos": "FW", "club": "Sunderland",          "number": 11, "elo_impact": 18, "available": true  },
+        { "name": "Evan Ndicka",          "pos": "DF", "club": "Roma",                "number": 4,  "elo_impact": 18, "available": true  },
+        { "name": "Wilfried Singo",       "pos": "DF", "club": "Galatasaray",         "number": 3,  "elo_impact": 16, "available": true  },
+        { "name": "Nicolas Pépé",         "pos": "FW", "club": "Villarreal",          "number": 19, "elo_impact": 14, "available": true  },
+        { "name": "Evann Guessand",       "pos": "FW", "club": "Aston Villa",         "number": 9,  "elo_impact": 14, "available": true  },
+        { "name": "Ange-Yoan Bonny",      "pos": "FW", "club": "Inter",               "number": 18, "elo_impact": 13, "available": true  },
+        { "name": "Guéla Doué",           "pos": "DF", "club": "Strasbourg",          "number": 2,  "elo_impact": 11, "available": true  },
+        { "name": "Oumar Diakité",        "pos": "FW", "club": "Reims",               "number": 17, "elo_impact": 10, "available": true  },
+        { "name": "Yan Diomande",         "pos": "FW", "club": "RB Leipzig",          "number": 20, "elo_impact": 10, "available": true  },
+        { "name": "Yahia Fofana",         "pos": "GK", "club": "Angers",              "number": 1,  "elo_impact": 10, "available": true  },
+        { "name": "Ghislain Konan",       "pos": "DF", "club": "Al-Wakrah",           "number": 6,  "elo_impact": 9,  "available": true  }
+      ]
     }
   }
 }
