@@ -3,7 +3,7 @@
 // v2: uses 25k+ match dataset, 12-month half-life time-decay, 5-year hard cutoff.
 //   node calibrate.mjs [--source full]   (default: full dataset)
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
-import { HOST, HOME_ADV, baseK, gMult } from "./constants.mjs";
+import { HOME_ADV, baseK, gMult } from "./constants.mjs";
 
 const D = (f) => new URL(`./data/${f}`, import.meta.url);
 const useFullDataset = !process.argv.includes('--source=original');
@@ -52,7 +52,7 @@ for (const m of matches) {
   if (w === 0) { skipped++; continue; } // beyond hard cutoff
 
   const ra = getR(m.homeSlug, m.homeName), rb = getR(m.awaySlug, m.awayName);
-  const homeBonus = HOST.has(m.homeSlug) ? HOME_ADV / 2 : 0;
+  const homeBonus = HOME_ADV / 2; // todos los locales reciben home advantage (HOME_ADV/2 para no inflarlo en calibración)
   const exp = expectedScore(ra, rb, homeBonus);
   const score = m.hg > m.ag ? 1 : m.hg < m.ag ? 0 : 0.5;
   const k = baseK(m.leagueName) * w * gMult(m.hg - m.ag);

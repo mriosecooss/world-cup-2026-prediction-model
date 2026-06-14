@@ -8,7 +8,7 @@ import { readFileSync, existsSync } from 'node:fs';
 import { matchProb, matchProbSPI, matchProbBlended, matchProbBlended3 } from './elo.mjs';
 import { squadAdjustment } from './squad-strength.mjs';
 import { marketValueBoost } from './squad-market-value.mjs';
-import { phaseMult, venueInfo, venueGoalMult, heatPenalty } from './context.mjs';
+import { phaseMult, venueInfo, venueGoalMult, heatPenalty, homeBonus } from './context.mjs';
 import { pressureBoost, getCoachNote } from './pressure-context.mjs';
 
 const { ratings: eloFrozen } = JSON.parse(readFileSync(new URL('./data/elo-calibrated.json', import.meta.url), 'utf8'));
@@ -68,8 +68,8 @@ const sqB = squadAdjustment(b);
 const raAdj = useSquad ? ra + sqA.adjustment : ra;
 const rbAdj = useSquad ? rb + sqB.adjustment : rb;
 
-// Home bonus
-const hb = home === a ? 75 : home === b ? -75 : 0;
+// Home bonus — usa homeBonus() de context.mjs (respeta offsets: mexico +95, usa +85, canada +80, etc.)
+const hb = home === a ? homeBonus(a, true) : home === b ? -homeBonus(b, true) : 0;
 
 // Context multiplier
 const pm = phaseMult(phase);
