@@ -99,6 +99,19 @@ export function matchProbBlended(eloResult, spiResult, spiWeight = 0.65) {
   };
 }
 
+// 3-way blend: Elo + SPI + Pi-rating.
+// Pesos por defecto: Elo 25% + SPI 45% + Pi 30% (sin optimizar; candidato a grid search).
+export function matchProbBlended3(eloResult, spiResult, piResult, eloW = 0.25, spiW = 0.45, piW = 0.30) {
+  return {
+    winA: eloW*eloResult.winA + spiW*spiResult.winA + piW*piResult.winA,
+    draw: eloW*eloResult.draw + spiW*spiResult.draw + piW*piResult.draw,
+    winB: eloW*eloResult.winB + spiW*spiResult.winB + piW*piResult.winB,
+    expectedGoalsA: eloW*eloResult.expectedGoalsA + spiW*spiResult.expectedGoalsA + piW*piResult.expectedGoalsA,
+    expectedGoalsB: eloW*eloResult.expectedGoalsB + spiW*spiResult.expectedGoalsB + piW*piResult.expectedGoalsB,
+    model: 'blended3',
+  };
+}
+
 // Sample a scoreline (for Monte Carlo). allowDraw=false → penalty shootout nudge toward higher Elo.
 export function sampleMatch(ratingA, ratingB, homeBonusA = 0, allowDraw = true, rng = Math.random) {
   const eA = expectedGoals(ratingA, ratingB, homeBonusA);
