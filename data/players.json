@@ -73,6 +73,25 @@
         { "name": "Eren Elmalı",          "pos": "DF", "club": "Galatasaray",         "number": 12, "elo_impact": 9,  "available": true  },
         { "name": "Yusuf Yazıcı",         "pos": "MF", "club": "Hull City",           "number": 21, "elo_impact": 9,  "available": true  }
       ]
+    },
+    "germany": {
+      "base_elo": 1940,
+      "players": [
+        { "name": "Florian Wirtz",        "pos": "MF", "club": "Liverpool",           "number": 17, "elo_impact": 33, "available": true  },
+        { "name": "Jamal Musiala",        "pos": "MF", "club": "Bayern München",      "number": 10, "elo_impact": 32, "available": true  },
+        { "name": "Joshua Kimmich",       "pos": "MF", "club": "Bayern München",      "number": 6,  "elo_impact": 28, "available": true  },
+        { "name": "Kai Havertz",          "pos": "FW", "club": "Arsenal",             "number": 7,  "elo_impact": 22, "available": true  },
+        { "name": "Antonio Rüdiger",      "pos": "DF", "club": "Real Madrid",         "number": 2,  "elo_impact": 22, "available": true  },
+        { "name": "Manuel Neuer",         "pos": "GK", "club": "Bayern München",      "number": 1,  "elo_impact": 18, "available": true  },
+        { "name": "Jonathan Tah",         "pos": "DF", "club": "Bayern München",      "number": 4,  "elo_impact": 16, "available": true  },
+        { "name": "Serge Gnabry",         "pos": "FW", "club": "Bayern München",      "number": 20, "elo_impact": 14, "available": true  },
+        { "name": "Nick Woltemade",       "pos": "FW", "club": "Newcastle",           "number": 9,  "elo_impact": 13, "available": true  },
+        { "name": "Aleksandar Pavlović",  "pos": "MF", "club": "Bayern München",      "number": 8,  "elo_impact": 12, "available": true  },
+        { "name": "Robert Andrich",       "pos": "MF", "club": "Bayer Leverkusen",    "number": 23, "elo_impact": 10, "available": true  },
+        { "name": "David Raum",           "pos": "DF", "club": "RB Leipzig",          "number": 22, "elo_impact": 10, "available": true  },
+        { "name": "Malick Thiaw",         "pos": "DF", "club": "Newcastle",           "number": 15, "elo_impact": 9,  "available": true  },
+        { "name": "Waldemar Anton",       "pos": "DF", "club": "Borussia Dortmund",   "number": 5,  "elo_impact": 9,  "available": true  }
+      ]
     }
   }
 }
