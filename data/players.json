@@ -127,6 +127,25 @@
         { "name": "Bart Verbruggen",      "pos": "GK", "club": "Brighton",            "number": 1,  "elo_impact": 13, "available": true  },
         { "name": "Jorrel Hato",          "pos": "DF", "club": "Chelsea",             "number": 5,  "elo_impact": 12, "available": true  }
       ]
+    },
+    "japan": {
+      "base_elo": 1847,
+      "players": [
+        { "name": "Takefusa Kubo",        "pos": "MF", "club": "Real Sociedad",       "number": 11, "elo_impact": 24, "available": true  },
+        { "name": "Kaoru Mitoma",         "pos": "FW", "club": "Brighton",            "number": 10, "elo_impact": 22, "available": false },
+        { "name": "Daichi Kamada",        "pos": "MF", "club": "Crystal Palace",      "number": 15, "elo_impact": 17, "available": true  },
+        { "name": "Ritsu Doan",           "pos": "FW", "club": "Eintracht Frankfurt", "number": 8,  "elo_impact": 17, "available": true  },
+        { "name": "Wataru Endo",          "pos": "MF", "club": "Liverpool",           "number": 6,  "elo_impact": 15, "available": false },
+        { "name": "Ko Itakura",           "pos": "DF", "club": "Ajax",                "number": 22, "elo_impact": 15, "available": true  },
+        { "name": "Hiroki Ito",           "pos": "DF", "club": "Bayern München",      "number": 26, "elo_impact": 14, "available": true  },
+        { "name": "Takumi Minamino",      "pos": "FW", "club": "Monaco",              "number": 9,  "elo_impact": 13, "available": false },
+        { "name": "Zion Suzuki",          "pos": "GK", "club": "Parma",               "number": 1,  "elo_impact": 13, "available": true  },
+        { "name": "Ayase Ueda",           "pos": "FW", "club": "Feyenoord",           "number": 19, "elo_impact": 13, "available": true  },
+        { "name": "Takehiro Tomiyasu",    "pos": "DF", "club": "Arsenal",             "number": 16, "elo_impact": 12, "available": true  },
+        { "name": "Ao Tanaka",            "pos": "MF", "club": "Leeds United",        "number": 17, "elo_impact": 12, "available": true  },
+        { "name": "Keito Nakamura",       "pos": "FW", "club": "Stade de Reims",      "number": 14, "elo_impact": 11, "available": true  },
+        { "name": "Shuto Machino",        "pos": "FW", "club": "Holstein Kiel",       "number": 18, "elo_impact": 9,  "available": true  }
+      ]
     }
   }
 }
