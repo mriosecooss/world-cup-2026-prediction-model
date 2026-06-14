@@ -55,6 +55,24 @@
         { "name": "Cameron Burgess",      "pos": "DF", "club": "Ipswich Town",        "number": 5,  "elo_impact": 8,  "available": true  },
         { "name": "Lucas Herrington",     "pos": "DF", "club": "Adelaide United",     "number": 2,  "elo_impact": 6,  "available": true  }
       ]
+    },
+    "turkey": {
+      "base_elo": 1795,
+      "players": [
+        { "name": "Arda Güler",           "pos": "MF", "club": "Real Madrid",         "number": 8,  "elo_impact": 30, "available": true  },
+        { "name": "Hakan Çalhanoğlu",     "pos": "MF", "club": "Inter",               "number": 10, "elo_impact": 30, "available": true  },
+        { "name": "Kenan Yıldız",         "pos": "FW", "club": "Juventus",            "number": 11, "elo_impact": 26, "available": false },
+        { "name": "Orkun Kökçü",          "pos": "MF", "club": "Benfica",             "number": 7,  "elo_impact": 18, "available": true  },
+        { "name": "Merih Demiral",        "pos": "DF", "club": "Al-Ahli",             "number": 3,  "elo_impact": 16, "available": true  },
+        { "name": "Kerem Aktürkoğlu",     "pos": "FW", "club": "Fenerbahçe",          "number": 17, "elo_impact": 15, "available": true  },
+        { "name": "Deniz Gül",            "pos": "FW", "club": "Porto",               "number": 9,  "elo_impact": 14, "available": true  },
+        { "name": "Uğurcan Çakır",        "pos": "GK", "club": "Galatasaray",         "number": 1,  "elo_impact": 13, "available": true  },
+        { "name": "Zeki Çelik",           "pos": "DF", "club": "Roma",                "number": 2,  "elo_impact": 12, "available": true  },
+        { "name": "Abdülkerim Bardakcı",  "pos": "DF", "club": "Galatasaray",         "number": 4,  "elo_impact": 12, "available": true  },
+        { "name": "İsmail Yüksek",        "pos": "MF", "club": "Fenerbahçe",          "number": 6,  "elo_impact": 11, "available": true  },
+        { "name": "Eren Elmalı",          "pos": "DF", "club": "Galatasaray",         "number": 12, "elo_impact": 9,  "available": true  },
+        { "name": "Yusuf Yazıcı",         "pos": "MF", "club": "Hull City",           "number": 21, "elo_impact": 9,  "available": true  }
+      ]
     }
   }
 }
