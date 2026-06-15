@@ -8,8 +8,8 @@
   ],
   "account_snapshot": {
     "as_of": "2026-06-15 (Suecia 5-1 Túnez, todo liquidado)",
-    "saldo_disponible": 53000,
-    "disponible_para_retiro": 53000,
-    "comment": "SWE 5-1 TUN (HT 2-1, 2T 3-0). Staked $9.099 (6 pre + 3 live, 2 anulados devueltos). Cobrado $20.000: L/Gol 1T ($14.700), Igual goles 1T=2T ($2.900), Next scorer SWE live ($2.400). Net +$10.901. P&L acumulado realizado: +$1.016 (+1.9% sobre capital $52.939). Snapshot previo (post CIV-ECU): $42.099."
+    "saldo_disponible": 52939,
+    "disponible_para_retiro": 52939,
+    "comment": "SWE 5-1 TUN (HT 2-1, 2T 3-0). Staked $9.099 (6 pre + 3 live, 2 anulados devueltos). Cobrado: L/Gol 1T ($14.700), Igual goles 1T=2T ($2.900), Next scorer SWE live ($2.400). Net +$10.840. P&L acumulado realizado: $0 (breakeven sobre capital $52.939). Snapshot previo (post CIV-ECU): $42.099."
   }
 }

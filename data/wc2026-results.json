@@ -150,6 +150,36 @@
    "pens2": null,
    "status": "FT",
    "winner": null
+  },
+  {
+   "date": "2026-06-14",
+   "round": "Matchday 1",
+   "group": "",
+   "team1": "Ivory Coast",
+   "team2": "Ecuador",
+   "t1": "ivory-coast",
+   "t2": "ecuador",
+   "g1": 1,
+   "g2": 0,
+   "pens1": null,
+   "pens2": null,
+   "status": "FT",
+   "winner": "ivory-coast"
+  },
+  {
+   "date": "2026-06-14",
+   "round": "Matchday 1",
+   "group": "Group F",
+   "team1": "Sweden",
+   "team2": "Tunisia",
+   "t1": "sweden",
+   "t2": "tunisia",
+   "g1": 5,
+   "g2": 1,
+   "pens1": null,
+   "pens2": null,
+   "status": "FT",
+   "winner": "sweden"
   }
  ]
 }

@@ -70,19 +70,18 @@ EV  = (prob_modelo × cuota) − 1
 
 ## Estado actual del torneo
 - Inicio: 11 junio 2026. Fixture completo en data/fixture-wc2026.json (104 partidos)
-- **9 partidos registrados** en `wc2026-results.json` al 2026-06-14:
+- **12 partidos registrados** en `wc2026-results.json` al 2026-06-15:
   - Jun 11: México 2-0 Sudáfrica (GA) | Corea del Sur 2-1 Rep. Checa (GA)
   - Jun 12: Canadá 1-1 Bosnia (GB) | USA 4-1 Paraguay (GD)
   - Jun 13: Qatar 1-1 Suiza (GE) | Brasil 1-1 Marruecos (GF) | Haití 0-1 Escocia (GH) | Australia 2-0 Turquía (GC)
-  - Jun 14: Alemania 7-1 Curazao (GA) | Países Bajos 2-2 Japón HT 0-0 (GD)
-- **Track record modelo: 5/9 (56%)**, RPS promedio 0.136
+  - Jun 14: Alemania 7-1 Curazao (GA) | Países Bajos 2-2 Japón (GF) | Costa de Marfil 1-0 Ecuador | Suecia 5-1 Túnez (GF)
 - Ver próximos: `node fixture.mjs --next=8`. Registrar resultado: `node add-result.mjs` o pedírmelo
-- **`elo-live.json`** actualizado con los 9 partidos. Usar `--live` en predict desde octavos; en fase de grupos elo-calibrated es la referencia principal
+- **`elo-live.json`** actualizado con los 12 partidos. Usar `--live` en predict desde octavos; en fase de grupos elo-calibrated es la referencia principal
 
 ## Bankroll y apuestas
-- **Sin apuestas abiertas al 2026-06-14**
-- Saldo casa: **$49.767** | Capital propio: $52.939 | P&L realizado: −$3.172 (−6.0%)
-- Historial por partido: Canadá-Bosnia −$9.450 · USA-Paraguay +$3.310 · Qatar-Suiza −$8.000 · Brasil-Marruecos −$21.500 · Haití-Escocia −$500 · Australia-Turquía +$33.220 · Alemania-Curazao −$18.351 · Países Bajos-Japón +$18.099
+- **Sin apuestas abiertas al 2026-06-15**
+- Saldo casa: **$52.939** | Capital propio: $52.939 | P&L realizado: **$0 (breakeven)**
+- Historial por partido: Canadá-Bosnia −$9.450 · USA-Paraguay +$3.310 · Qatar-Suiza −$8.000 · Brasil-Marruecos −$21.500 · Haití-Escocia −$500 · Australia-Turquía +$33.220 · Alemania-Curazao −$18.351 · Países Bajos-Japón +$18.099 · Costa de Marfil-Ecuador −$6.713 · **Suecia-Túnez +$10.840**
 - Ver bankroll: `node bankroll.mjs` | EV apuestas: `node bet-ev.mjs [partido]` | Kelly: `node stake.mjs`
 
 ## Métricas del modelo (backtest sobre 763 partidos)
