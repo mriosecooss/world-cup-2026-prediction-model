@@ -7,9 +7,9 @@
     { "id": "10431685707", "datetime": "2026-06-13T16:52:36", "amount": 27939, "kind": "abono" }
   ],
   "account_snapshot": {
-    "as_of": "2026-06-14 (Costa de Marfil 1-0 Ecuador, todo liquidado)",
-    "saldo_disponible": 42099,
-    "disponible_para_retiro": 42099,
-    "comment": "CIV 1-0 ECU (HT 0-0, gol en 2T). Staked $15.000, cobrado $8.287, net −$6.713. Won: Empate 1T ($1.520), <1.5 total ($2.149), 0-1 gol ($2.149), <1.5 2T ($1.219), <2.5 total ($1.250). P&L acumulado realizado: −$9.885 (−18.7% sobre capital $52.939). Snapshot previo (post NED-JAP): $49.767."
+    "as_of": "2026-06-15 (Suecia 5-1 Túnez, todo liquidado)",
+    "saldo_disponible": 53000,
+    "disponible_para_retiro": 53000,
+    "comment": "SWE 5-1 TUN (HT 2-1, 2T 3-0). Staked $9.099 (6 pre + 3 live, 2 anulados devueltos). Cobrado $20.000: L/Gol 1T ($14.700), Igual goles 1T=2T ($2.900), Next scorer SWE live ($2.400). Net +$10.901. P&L acumulado realizado: +$1.016 (+1.9% sobre capital $52.939). Snapshot previo (post CIV-ECU): $42.099."
   }
 }
