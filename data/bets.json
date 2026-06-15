@@ -165,6 +165,10 @@
     { "id": "2000104228779", "match": "belgium-egypt", "home": "belgium", "away": "egypt", "date": "2026-06-15", "market": "exact_score", "home_score": 2, "away_score": 0, "odds": 6.25, "stake": 1000, "status": "open", "conf": "2944436139", "desc": "Resultado Exacto - 2:0 Bélgica" },
     { "id": "2000104228854", "match": "belgium-egypt", "home": "belgium", "away": "egypt", "date": "2026-06-15", "market": "total_under", "line": 2.5, "odds": 1.55, "stake": 1000, "status": "open", "conf": "2944436214", "desc": "Menos de 2.5 goles (partido)" },
     { "id": "2000104228856", "match": "belgium-egypt", "home": "belgium", "away": "egypt", "date": "2026-06-15", "market": "btts", "pick": "yes", "odds": 1.70, "stake": 1000, "status": "open", "conf": "2944436216", "desc": "Gol - Ambos equipos anotan (BTTS)" },
-    { "id": "2000104228857", "match": "belgium-egypt", "home": "belgium", "away": "egypt", "date": "2026-06-15", "market": "total_exact", "n": 3, "odds": 3.40, "stake": 1000, "status": "open", "conf": "2944436217", "desc": "Suma de goles exactamente 3 (partido)" }
+    { "id": "2000104228857", "match": "belgium-egypt", "home": "belgium", "away": "egypt", "date": "2026-06-15", "market": "total_exact", "n": 3, "odds": 3.40, "stake": 1000, "status": "open", "conf": "2944436217", "desc": "Suma de goles exactamente 3 (partido)" },
+
+    { "id": "2000104232150", "match": "saudi-arabia-uruguay", "home": "saudi-arabia", "away": "uruguay", "date": "2026-06-15", "market": "exact_score", "home_score": 0, "away_score": 0, "odds": 8.25, "stake": 1500, "status": "open", "conf": "2944439510", "desc": "Resultado Exacto - 0:0" },
+    { "id": "2000104232149", "match": "saudi-arabia-uruguay", "home": "saudi-arabia", "away": "uruguay", "date": "2026-06-15", "market": "result", "pick": "draw", "odds": 3.10, "stake": 2000, "status": "open", "conf": "2944439509", "desc": "Resultado Final del Partido - Empate" },
+    { "id": "2000104232148", "match": "saudi-arabia-uruguay", "home": "saudi-arabia", "away": "uruguay", "date": "2026-06-15", "market": "team_win", "team": "home", "odds": 5.25, "stake": 2000, "status": "open", "conf": "2944439508", "desc": "Resultado Final del Partido - Arabia Saudita gana" }
   ]
 }
