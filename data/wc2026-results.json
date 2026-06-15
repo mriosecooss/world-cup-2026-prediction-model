@@ -1,5 +1,5 @@
 {
- "updated": "2026-06-14T19:15:25.441Z",
+ "updated": "2026-06-15T20:10:27.466Z",
  "matches": [
   {
    "date": "2026-06-11",
@@ -180,6 +180,21 @@
    "pens2": null,
    "status": "FT",
    "winner": "sweden"
+  },
+  {
+   "date": "2026-06-15",
+   "round": "",
+   "group": "",
+   "team1": "Spain",
+   "team2": "Cape Verde",
+   "t1": "spain",
+   "t2": "cape-verde",
+   "g1": 0,
+   "g2": 0,
+   "pens1": null,
+   "pens2": null,
+   "status": "FT",
+   "winner": null
   }
  ]
 }
