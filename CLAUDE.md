@@ -79,9 +79,11 @@ EV  = (prob_modelo × cuota) − 1
 - **`elo-live.json`** actualizado con los 12 partidos. Usar `--live` en predict desde octavos; en fase de grupos elo-calibrated es la referencia principal
 
 ## Bankroll y apuestas
-- **Sin apuestas abiertas al 2026-06-15**
-- Saldo casa: **$52.939** | Capital propio: $52.939 | P&L realizado: **$0 (breakeven)**
-- Historial por partido: Canadá-Bosnia −$9.450 · USA-Paraguay +$3.310 · Qatar-Suiza −$8.000 · Brasil-Marruecos −$21.500 · Haití-Escocia −$500 · Australia-Turquía +$33.220 · Alemania-Curazao −$18.351 · Países Bajos-Japón +$18.099 · Costa de Marfil-Ecuador −$6.713 · **Suecia-Túnez +$10.840**
+- **30 apuestas ABIERTAS en España-Cabo Verde (2026-06-15) — $41.199 staked total**
+- Saldo casa pre-apuesta: **$52.939** | Saldo estimado en juego: ~$11.740 | Capital propio: $52.939 | P&L realizado: **$0 (breakeven)**
+- Historial por partido: Canadá-Bosnia −$9.450 · USA-Paraguay +$3.310 · Qatar-Suiza −$8.000 · Brasil-Marruecos −$21.500 · Haití-Escocia −$500 · Australia-Turquía +$33.220 · Alemania-Curazao −$18.351 · Países Bajos-Japón +$18.099 · Costa de Marfil-Ecuador −$6.713 · Suecia-Túnez +$10.840 · **España-Cabo Verde PENDIENTE**
+- España-CV: 30 boletos, mercados: combos L/Más (1.5/2.5/3.5/4.5), goles totales (≥4/=4/≥5), CV goals (=0/=1/≤1/≤0), España goals (≥2/≥3), NoGol, ambos tiempos, HT, HT/FT, HG-1, scorers (Yamal/Torres/Oyarzabal), exacto 5+:0, tiros, portero 7+
+- **Punto de inflexión: necesita ≥4 goles totales para retorno positivo.** Escenario ideal: 5-0 → +$21k (sin goleadores) / +$33k (con los 3). Escenario más probable (3-0 o 2-0) → pérdida −$8k a −$20k.
 - Ver bankroll: `node bankroll.mjs` | EV apuestas: `node bet-ev.mjs [partido]` | Kelly: `node stake.mjs`
 
 ## Métricas del modelo (backtest sobre 763 partidos)
@@ -128,6 +130,7 @@ Todas las tareas están implementadas. Ver `MEJORAS-PENDIENTES.md` para historia
 - **Live odds mejoran EV**: "Menos 5.5" pasó de EV −0.5% a +6.3% en vivo en ese mismo partido.
 - **Correlación**: NED-JAP 10 boletos ($22.649 staked). Brasil-Marruecos 19 boletos ($21.500 perdidos). Usar `stake.mjs` para detectar exposición acumulada.
 - **NED-JAP**: ningún mercado tenía EV positivo pre-partido. Se apostó igual por criterio propio del usuario.
+- **España-Cabo Verde (pendiente)**: 30 boletos, $41.199 staked. Cartera cargada en goles altos (≥4 para ser positivo). Ninguna apuesta con EV positivo según el modelo — overround alto del libro. El usuario tomó la decisión sabiendo el análisis.
 
 ## Dataset: composición efectiva
 Con half-life 12 meses, los 5,298 partidos (últimos 5 años) equivalen a **1,425 partidos de peso pleno**:
