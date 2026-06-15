@@ -1,5 +1,5 @@
 {
- "updated": "2026-06-15T20:10:27.466Z",
+ "updated": "2026-06-15T20:59:37.214Z",
  "matches": [
   {
    "date": "2026-06-11",
@@ -191,6 +191,21 @@
    "t2": "cape-verde",
    "g1": 0,
    "g2": 0,
+   "pens1": null,
+   "pens2": null,
+   "status": "FT",
+   "winner": null
+  },
+  {
+   "date": "2026-06-15",
+   "round": "",
+   "group": "",
+   "team1": "Belgium",
+   "team2": "Egypt",
+   "t1": "belgium",
+   "t2": "egypt",
+   "g1": 1,
+   "g2": 1,
    "pens1": null,
    "pens2": null,
    "status": "FT",

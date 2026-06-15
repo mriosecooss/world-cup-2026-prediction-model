@@ -79,10 +79,10 @@ EV  = (prob_modelo × cuota) − 1
 - **`elo-live.json`** actualizado con los 12 partidos. Usar `--live` en predict desde octavos; en fase de grupos elo-calibrated es la referencia principal
 
 ## Bankroll y apuestas
-- **8 apuestas ABIERTAS: 5 en Bélgica-Egipto + 3 en Arabia Saudita-Uruguay — $10.500 staked total**
+- **3 apuestas ABIERTAS: Arabia Saudita-Uruguay — $5.500 staked total**
 - Saldo casa actual (16:29 del 15 jun): **$9.689** | Capital propio: $52.939
-- Historial por partido: Canadá-Bosnia −$9.450 · USA-Paraguay +$3.310 · Qatar-Suiza −$8.000 · Brasil-Marruecos −$21.500 · Haití-Escocia −$500 · Australia-Turquía +$33.220 · Alemania-Curazao −$18.351 · Países Bajos-Japón +$18.099 · Costa de Marfil-Ecuador −$6.713 · Suecia-Túnez +$10.840 · **España-Cabo Verde −$36.299** (0-0) · **Bélgica-Egipto PENDIENTE** · **Arabia Saudita-Uruguay PENDIENTE**
-- BEL-EGY: 5 boletos — exacto 2:1 @7.00, exacto 2:0 @6.25, <2.5 @1.55, BTTS @1.70, total=3 @3.40. Gana todo con 2-1 BEL (~+$7.099 neto).
+- Historial por partido: Canadá-Bosnia −$9.450 · USA-Paraguay +$3.310 · Qatar-Suiza −$8.000 · Brasil-Marruecos −$21.500 · Haití-Escocia −$500 · Australia-Turquía +$33.220 · Alemania-Curazao −$18.351 · Países Bajos-Japón +$18.099 · Costa de Marfil-Ecuador −$6.713 · Suecia-Túnez +$10.840 · **España-Cabo Verde −$36.299** (0-0) · **Bélgica-Egipto −$1.815** (1-1, ganaron <2.5 y BTTS) · **Arabia Saudita-Uruguay PENDIENTE**
+- BEL-EGY cerrado: FT 1-1. Ganaron <2.5 ($1.519) y BTTS ($1.666) → $3.185 cobrado / −$1.815 neto.
 - KSA-URU: 3 boletos — exacto 0:0 @8.25 ($1.500), Empate @3.10 ($2.000), Arabia Saudita gana @5.25 ($2.000). Gana todo con 0-0 KSA. Empate (no 0-0) gana solo el result draw.
 - Ver bankroll: `node bankroll.mjs` | EV apuestas: `node bet-ev.mjs [partido]` | Kelly: `node stake.mjs`
 
