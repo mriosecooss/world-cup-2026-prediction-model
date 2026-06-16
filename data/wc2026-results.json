@@ -1,5 +1,5 @@
 {
- "updated": "2026-06-15T20:59:37.214Z",
+ "updated": "2026-06-16T00:05:45.014Z",
  "matches": [
   {
    "date": "2026-06-11",
@@ -204,6 +204,21 @@
    "team2": "Egypt",
    "t1": "belgium",
    "t2": "egypt",
+   "g1": 1,
+   "g2": 1,
+   "pens1": null,
+   "pens2": null,
+   "status": "FT",
+   "winner": null
+  },
+  {
+   "date": "2026-06-16",
+   "round": "",
+   "group": "",
+   "team1": "Saudi Arabia",
+   "team2": "Uruguay",
+   "t1": "saudi-arabia",
+   "t2": "uruguay",
    "g1": 1,
    "g2": 1,
    "pens1": null,
