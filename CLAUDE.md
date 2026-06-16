@@ -80,7 +80,7 @@ EV  = (prob_modelo × cuota) − 1
 
 ## Bankroll y apuestas
 - **0 apuestas abiertas — jornada 15 jun cerrada**
-- Saldo casa estimado post-KSA-URU: **~$15.765** | Capital propio: $52.939
+- Saldo casa confirmado post-KSA-URU: **$18.959** | Capital propio: $52.939
 - Historial por partido: Canadá-Bosnia −$9.450 · USA-Paraguay +$3.310 · Qatar-Suiza −$8.000 · Brasil-Marruecos −$21.500 · Haití-Escocia −$500 · Australia-Turquía +$33.220 · Alemania-Curazao −$18.351 · Países Bajos-Japón +$18.099 · Costa de Marfil-Ecuador −$6.713 · Suecia-Túnez +$10.840 · España-Cabo Verde −$36.299 (0-0) · **Bélgica-Egipto −$1.815** (1-1) · **Arabia Saudita-Uruguay +$576** (1-1, ganó el empate)
 - KSA-URU cerrado: FT 1-1. Ganó empate ($6.076) → $6.076 cobrado / +$576 neto sobre $5.500.
 - KSA-URU: 3 boletos — exacto 0:0 @8.25 ($1.500), Empate @3.10 ($2.000), Arabia Saudita gana @5.25 ($2.000). Gana todo con 0-0 KSA. Empate (no 0-0) gana solo el result draw.
