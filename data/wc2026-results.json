@@ -1,5 +1,5 @@
 {
- "updated": "2026-06-16T00:05:45.014Z",
+ "updated": "2026-06-16T03:27:04.428Z",
  "matches": [
   {
    "date": "2026-06-11",
@@ -221,6 +221,21 @@
    "t2": "uruguay",
    "g1": 1,
    "g2": 1,
+   "pens1": null,
+   "pens2": null,
+   "status": "FT",
+   "winner": null
+  },
+  {
+   "date": "2026-06-16",
+   "round": "",
+   "group": "",
+   "team1": "Iran",
+   "team2": "New Zealand",
+   "t1": "iran",
+   "t2": "new-zealand",
+   "g1": 2,
+   "g2": 2,
    "pens1": null,
    "pens2": null,
    "status": "FT",

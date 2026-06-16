@@ -70,11 +70,13 @@ EV  = (prob_modelo × cuota) − 1
 
 ## Estado actual del torneo
 - Inicio: 11 junio 2026. Fixture completo en data/fixture-wc2026.json (104 partidos)
-- **12 partidos registrados** en `wc2026-results.json` al 2026-06-15:
+- **16 partidos registrados** en `wc2026-results.json` al 2026-06-16:
   - Jun 11: México 2-0 Sudáfrica (GA) | Corea del Sur 2-1 Rep. Checa (GA)
   - Jun 12: Canadá 1-1 Bosnia (GB) | USA 4-1 Paraguay (GD)
   - Jun 13: Qatar 1-1 Suiza (GE) | Brasil 1-1 Marruecos (GF) | Haití 0-1 Escocia (GH) | Australia 2-0 Turquía (GC)
   - Jun 14: Alemania 7-1 Curazao (GA) | Países Bajos 2-2 Japón (GF) | Costa de Marfil 1-0 Ecuador | Suecia 5-1 Túnez (GF)
+  - Jun 15: Bélgica 1-1 Egipto | Arabia Saudita 1-1 Uruguay
+  - Jun 16: Irán 2-2 Nueva Zelanda
 - Ver próximos: `node fixture.mjs --next=8`. Registrar resultado: `node add-result.mjs` o pedírmelo
 - **`elo-live.json`** actualizado con los 12 partidos. Usar `--live` en predict desde octavos; en fase de grupos elo-calibrated es la referencia principal
 
