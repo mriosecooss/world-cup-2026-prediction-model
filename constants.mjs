@@ -77,3 +77,25 @@ export const SLUG_TO_NAME = {
   uzbekistan: 'Uzbekistan', iraq: 'Iraq', 'dr-congo': 'DR Congo',
   'cape-verde': 'Cape Verde', curacao: 'Curacao',
 };
+
+// Mapa slug → nombre en español. Usado por track-record.mjs para generar la tabla del README.
+export const SLUG_TO_NAME_ES = {
+  argentina: 'Argentina', france: 'Francia', spain: 'España', brazil: 'Brasil',
+  england: 'Inglaterra', portugal: 'Portugal', netherlands: 'Países Bajos', germany: 'Alemania',
+  belgium: 'Bélgica', italy: 'Italia', colombia: 'Colombia', uruguay: 'Uruguay',
+  croatia: 'Croacia', morocco: 'Marruecos', switzerland: 'Suiza', usa: 'Estados Unidos',
+  mexico: 'México', japan: 'Japón', senegal: 'Senegal', denmark: 'Dinamarca',
+  ecuador: 'Ecuador', australia: 'Australia', 'south-korea': 'Corea del Sur',
+  iran: 'Irán', poland: 'Polonia', canada: 'Canadá', serbia: 'Serbia',
+  wales: 'Gales', ghana: 'Ghana', tunisia: 'Túnez', 'ivory-coast': 'Costa de Marfil',
+  nigeria: 'Nigeria', 'saudi-arabia': 'Arabia Saudita', qatar: 'Catar', egypt: 'Egipto',
+  algeria: 'Argelia', scotland: 'Escocia', cameroon: 'Camerún', paraguay: 'Paraguay',
+  venezuela: 'Venezuela', chile: 'Chile', peru: 'Perú', 'czech-republic': 'República Checa',
+  'bosnia-and-herzegovina': 'Bosnia y Herzegovina', 'south-africa': 'Sudáfrica',
+  'new-zealand': 'Nueva Zelanda', panama: 'Panamá', jamaica: 'Jamaica', honduras: 'Honduras',
+  jordan: 'Jordania', haiti: 'Haití', 'el-salvador': 'El Salvador',
+  'trinidad-and-tobago': 'Trinidad y Tobago', guatemala: 'Guatemala',
+  norway: 'Noruega', sweden: 'Suecia', austria: 'Austria', turkey: 'Turquía',
+  uzbekistan: 'Uzbekistán', iraq: 'Irak', 'dr-congo': 'RD Congo',
+  'cape-verde': 'Cabo Verde', curacao: 'Curazao',
+};
