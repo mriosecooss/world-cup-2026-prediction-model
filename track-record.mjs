@@ -1,14 +1,17 @@
 #!/usr/bin/env node
-// Live 2026 track record — regenerates the "📊 Live track record" section of README.md from
-// data/wc2026-results.json (finished matches) + the model's frozen tournament ratings.
+// Track record en vivo 2026 — regenera la sección "📊 Track record en vivo" del README.md a partir de
+// data/wc2026-results.json (partidos terminados) + los ratings congelados del torneo.
 //   node track-record.mjs
 //
-// HONESTY NOTE: the ratings are frozen for the whole tournament (no mid-tournament re-fit),
-// so the probabilities below are exactly what the model said BEFORE each match — recomputing
-// them after the fact gives the same numbers. Every call is shown, hits and misses alike.
+// NOTA DE HONESTIDAD: los ratings quedan congelados para todo el torneo (sin recalibrar a mitad
+// de camino), así que las probabilidades de abajo son exactamente lo que dijo el modelo ANTES de
+// cada partido — recalcularlas después da los mismos números. Se muestran todos los pronósticos,
+// aciertos y errores por igual.
 import { readFileSync, writeFileSync } from "node:fs";
 import { matchProb, matchProbSPI, matchProbBlended } from "./elo.mjs";
+import { SLUG_TO_NAME_ES } from "./constants.mjs";
 
+const nameEs = (slug, fallback) => SLUG_TO_NAME_ES[slug] ?? fallback;
 const D = (f) => new URL(`./data/${f}`, import.meta.url);
 const { ratings } = JSON.parse(readFileSync(D("elo-calibrated.json"), "utf8"));
 const { ratings: spiR } = JSON.parse(readFileSync(D("spi-ratings.json"), "utf8"));
@@ -43,30 +46,32 @@ for (const m of matches) {
   if (hit) hits++;
   n++;
   rpsSum += rps3(probs, y);
-  const pickLabel = pick === 0 ? m.team1 : pick === 2 ? m.team2 : "Draw";
+  const team1Es = nameEs(m.t1, m.team1);
+  const team2Es = nameEs(m.t2, m.team2);
+  const pickLabel = pick === 0 ? team1Es : pick === 2 ? team2Es : "Empate";
   const pickPct = Math.round(probs[pick] * 100);
-  const score = `${m.g1}–${m.g2}${m.status === "PEN" ? ` (${m.pens1}–${m.pens2} p)` : m.status === "AET" ? " aet" : ""}`;
-  lines.push(`| ${m.date} | ${m.team1} ${score} ${m.team2} | ${pickLabel} ${pickPct}% | ${hit ? "✅" : "❌"} |`);
+  const score = `${m.g1}–${m.g2}${m.status === "PEN" ? ` (${m.pens1}–${m.pens2} p)` : m.status === "AET" ? " prórroga" : ""}`;
+  lines.push(`| ${m.date} | ${team1Es} ${score} ${team2Es} | ${pickLabel} ${pickPct}% | ${hit ? "✅" : "❌"} |`);
 }
 
 const stamp = (updated ?? new Date().toISOString()).slice(0, 10);
 const body = n === 0
-  ? `_The tournament kicked off **Jun 11** — this table fills in automatically as matches finish. Check back after the first matchday._`
+  ? `_El torneo arrancó el **11 de junio** — esta tabla se completa automáticamente a medida que terminan los partidos. Vuelve después de la primera jornada._`
   : [
-      `**${hits}/${n} correct picks (${Math.round((hits / n) * 100)}%) · avg RPS ${(rpsSum / n).toFixed(3)}** (coin-flip ≈ 0.245) · updated ${stamp}`,
+      `**${hits}/${n} pronósticos correctos (${Math.round((hits / n) * 100)}%) · RPS promedio ${(rpsSum / n).toFixed(3)}** (cara o sello ≈ 0.245) · actualizado ${stamp}`,
       ``,
-      `| Date | Result | Model's pick | |`,
+      `| Fecha | Resultado | Pronóstico del modelo | |`,
       `|---|---|---|---|`,
-      ...lines.reverse(), // newest first
+      ...lines.reverse(), // más recientes primero
       ``,
-      `_Every call is listed — hits and misses. Probabilities are the model's frozen pre-match numbers (ratings don't re-fit mid-tournament), so nothing here is retro-fitted. Reproduce with \`node track-record.mjs\`._`
+      `_Se muestran todos los pronósticos — aciertos y errores. Las probabilidades son los números congelados del modelo antes de cada partido (los ratings no se recalibran a mitad de torneo), así que nada acá está ajustado en retrospectiva. Reprodúcelo con \`node track-record.mjs\`._`
     ].join("\n");
 
 const section = `<!-- TRACK-RECORD:START -->\n${body}\n<!-- TRACK-RECORD:END -->`;
 const readme = readFileSync(new URL("./README.md", import.meta.url), "utf8");
 if (!readme.includes("<!-- TRACK-RECORD:START -->")) {
-  console.error("✗ README is missing the TRACK-RECORD markers"); process.exit(1);
+  console.error("✗ Al README le faltan los marcadores TRACK-RECORD"); process.exit(1);
 }
 writeFileSync(new URL("./README.md", import.meta.url),
   readme.replace(/<!-- TRACK-RECORD:START -->[\s\S]*?<!-- TRACK-RECORD:END -->/, section));
-console.log(`✓ README track record updated — ${n} finished match(es)${n ? `, ${hits}/${n} correct` : ""}.`);
+console.log(`✓ Track record del README actualizado — ${n} partido(s) terminado(s)${n ? `, ${hits}/${n} correctos` : ""}.`);
