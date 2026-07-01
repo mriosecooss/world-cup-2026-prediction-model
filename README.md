@@ -1,50 +1,53 @@
-# 🏆 World Cup 2026 Prediction Model
+# 🏆 Modelo de Predicción del Mundial 2026
 
-An open-source statistical model that forecasts **2026 FIFA World Cup** matches and title odds —
-**blended Elo + SPI ratings → Dixon-Coles bivariate Poisson → Monte Carlo simulation**. No
-machine-learning black box, no scraped bookmaker odds: just transparent, reproducible football maths.
+Un modelo estadístico de código abierto que pronostica los partidos y las probabilidades de
+campeón del **Mundial FIFA 2026** — **blend de ratings Elo + SPI → Poisson bivariado de
+Dixon-Coles → simulación Monte Carlo**. Sin caja negra de machine learning, sin cuotas de casas
+de apuestas scrapeadas: solo matemática futbolística transparente y reproducible.
 
-**▶ Live predictions (full 48-team, 50,000-simulation model):** **https://cup26matches.com**
-· [How it works / methodology](https://cup26matches.com/en/methodology/)
-· [Live insight feed](https://cup26matches.com/en/live/)
-· [Interactive bracket simulator](https://cup26matches.com/en/simulator/)
+**▶ Predicciones en vivo (modelo completo de 48 equipos, 50.000 simulaciones):** **https://cup26matches.com**
+· [Cómo funciona / metodología](https://cup26matches.com/en/methodology/)
+· [Feed de insights en vivo](https://cup26matches.com/en/live/)
+· [Simulador interactivo del cuadro](https://cup26matches.com/en/simulator/)
 
-> 🔴 **The tournament is LIVE (Jun 11 – Jul 19).** The production model now **conditions on real
-> results**: finished matches are locked, eliminated teams collapse to 0%, the actual bracket
-> (incl. the new best-third qualification, solved with bipartite matching) is used, and only the
-> remaining matches are simulated — re-run automatically within minutes of every full-time whistle.
+> 🔴 **El torneo está EN VIVO (11 jun – 19 jul).** El modelo de producción ahora **condiciona
+> sobre resultados reales**: los partidos terminados quedan fijos, los equipos eliminados caen
+> a 0%, se usa el cuadro real (incl. la nueva clasificación de mejores terceros, resuelta con
+> matching bipartito), y solo se simulan los partidos restantes — se vuelve a correr
+> automáticamente a los pocos minutos de cada pitazo final.
 >
-> This repo open-sources the **core match model + our honest backtest** so you can run, inspect
-> and reproduce the numbers.
+> Este repo libera el **modelo de partido central + nuestro backtest honesto** para que puedas
+> correrlo, inspeccionarlo y reproducir los números.
 
 ---
 
-## Why it's worth a look
+## Por qué vale la pena mirarlo
 
-It's tested the honest way — **walk-forward, out-of-sample** on **913 real internationals**
-(Oct 2023 – Jun 2026). Every match is predicted using only data available *before* kickoff, then
-scored against the actual result — with **proper scoring rules** (RPS, log-loss, Brier), not just
-accuracy, because accuracy alone rewards lucky guessing. Reproduce it yourself in one command:
+Está probado de forma honesta — **walk-forward, fuera de muestra** sobre **913 partidos
+internacionales reales** (oct 2023 – jun 2026). Cada partido se predice usando solo datos
+disponibles *antes* del pitazo inicial, y luego se evalúa contra el resultado real — con
+**reglas de puntaje propias** (RPS, log-loss, Brier), no solo accuracy, porque el accuracy solo
+premia la suerte. Repruébalo tú mismo con un comando:
 
 ```bash
 node backtest.mjs
 ```
 
-| Metric (763 evaluated, 150 burn-in) | Model | Baseline |
+| Métrica (763 evaluados, 150 de calentamiento) | Modelo | Referencia |
 |---|---|---|
-| **Ranked Probability Score** (the football standard, ↓) | **0.164** | coin-flip 0.241 |
-| Log-loss (↓) | **0.85** | coin-flip 1.10 |
-| Brier score (↓) | **0.50** | coin-flip 0.67 |
-| **Expected Calibration Error** (↓) | **1.9%** | < 5% = well-calibrated |
-| Correct result (win/draw/loss) | **64%** | always-home 49% · coin-flip 33% |
-| When a clear favourite (p ≥ 50%) | **71%** | — |
+| **Ranked Probability Score** (el estándar del fútbol, ↓) | **0.164** | cara o sello 0.241 |
+| Log-loss (↓) | **0.85** | cara o sello 1.10 |
+| Brier score (↓) | **0.50** | cara o sello 0.67 |
+| **Error de Calibración Esperado** (↓) | **1.9%** | < 5% = bien calibrado |
+| Resultado correcto (gana/empata/pierde) | **64%** | siempre-local 49% · cara o sello 33% |
+| Cuando hay un favorito claro (p ≥ 50%) | **71%** | — |
 
-### Is it calibrated? (the chart that matters)
+### ¿Está calibrado? (el gráfico que importa)
 
-A forecaster is honest when the things it calls "70%" happen about 70% of the time. Pooling every
-probability the model issued across the out-of-sample matches:
+Un pronosticador es honesto cuando las cosas que llama "70%" pasan realmente el 70% de las
+veces. Agrupando cada probabilidad que emitió el modelo en los partidos fuera de muestra:
 
-| Model said | Actually happened | n |
+| El modelo dijo | Realmente pasó | n |
 |---|---|---|
 | 6% | 3% | 238 |
 | 15% | 13% | 447 |
@@ -56,145 +59,148 @@ probability the model issued across the out-of-sample matches:
 | 74% | 77% | 123 |
 | 85% | 89% | 101 |
 
-> _**Changelog** — Jun 13, 2026: **v5 core model** — Elo+SPI blend weight optimised to 0.65 via
-> RPS grid search; competition-aware time-decay (World Cup half-life 30mo vs 6mo for friendlies);
-> Dixon-Coles ρ calibrated on this dataset (−0.13→−0.075); backtest now evaluates the real blended
-> model. · Jun 11: Monte Carlo raised to **50,000 trials** (5× lower tail noise); in-tournament
-> conditioning is live; backtest extended with RPS + a reliability curve + ECE; data refreshed
-> through Jun 2026. · Jun 7: goal-model variance denominator 350→400._
+> _**Changelog** — 13 jun 2026: **modelo núcleo v5** — peso del blend Elo+SPI optimizado a 0.65
+> vía grid search sobre RPS; decaimiento temporal según competencia (media vida de 30 meses en
+> Mundial vs 6 en amistosos); ρ de Dixon-Coles calibrado sobre este dataset (−0.13→−0.075); el
+> backtest ahora evalúa el modelo blended real. · 11 jun: Monte Carlo subido a **50.000
+> simulaciones** (5× menos ruido en las colas); el condicionamiento en vivo durante el torneo ya
+> está activo; el backtest se extendió con RPS + curva de confiabilidad + ECE; datos
+> actualizados a jun 2026. · 7 jun: denominador de varianza del modelo de goles 350→400._
 
-No model is a crystal ball — football is high-variance and draws are genuinely hard. These are
-well-calibrated estimates, and we make **no claim to beat the betting market**.
+Ningún modelo es una bola de cristal — el fútbol tiene mucha varianza y los empates son
+genuinamente difíciles. Estas son estimaciones bien calibradas, y no afirmamos **poder ganarle
+al mercado de apuestas**.
 
-## 📊 Live track record (2026)
+## 📊 Track record en vivo (2026)
 
-The model's call on **every finished match** of the tournament, updated as it happens:
+El pronóstico del modelo para **cada partido terminado** del torneo, actualizado a medida que ocurre:
 
 <!-- TRACK-RECORD:START -->
-**50/78 correct picks (64%) · avg RPS 0.144** (coin-flip ≈ 0.245) · updated 2026-07-01
+**50/78 pronósticos correctos (64%) · RPS promedio 0.144** (cara o sello ≈ 0.245) · actualizado 2026-07-01
 
-| Date | Result | Model's pick | |
+| Fecha | Resultado | Pronóstico del modelo | |
 |---|---|---|---|
-| 2026-06-30 | France 3–0 Sweden | France 75% | ✅ |
-| 2026-06-30 | Norway 2–1 Ivory Coast | Norway 42% | ✅ |
-| 2026-06-29 | Netherlands 1–1 (2–3 p) Morocco | Morocco 41% | ❌ |
-| 2026-06-29 | Germany 1–1 (3–4 p) Paraguay | Germany 56% | ❌ |
-| 2026-06-29 | Brazil 2–1 Japan | Brazil 51% | ✅ |
-| 2026-06-28 | Canada 1–0 South Africa | Canada 54% | ✅ |
-| 2026-06-27 | Croatia 2–1 Ghana | Croatia 64% | ✅ |
-| 2026-06-27 | Panama 0–2 England | England 80% | ✅ |
-| 2026-06-23 | Panama 0–1 Croatia | Croatia 66% | ✅ |
-| 2026-06-23 | England 0–0 Ghana | England 78% | ❌ |
-| 2026-06-17 | Ghana 1–0 Panama | Ghana 38% | ✅ |
-| 2026-06-17 | England 4–2 Croatia | England 49% | ✅ |
-| 2026-06-27 | DR Congo 3–1 Uzbekistan | Draw 37% | ❌ |
+| 2026-06-30 | Francia 3–0 Suecia | Francia 75% | ✅ |
+| 2026-06-30 | Noruega 2–1 Costa de Marfil | Noruega 42% | ✅ |
+| 2026-06-29 | Países Bajos 1–1 (2–3 p) Marruecos | Marruecos 41% | ❌ |
+| 2026-06-29 | Alemania 1–1 (3–4 p) Paraguay | Alemania 56% | ❌ |
+| 2026-06-29 | Brasil 2–1 Japón | Brasil 51% | ✅ |
+| 2026-06-28 | Canadá 1–0 Sudáfrica | Canadá 54% | ✅ |
+| 2026-06-27 | Croacia 2–1 Ghana | Croacia 64% | ✅ |
+| 2026-06-27 | Panamá 0–2 Inglaterra | Inglaterra 80% | ✅ |
+| 2026-06-23 | Panamá 0–1 Croacia | Croacia 66% | ✅ |
+| 2026-06-23 | Inglaterra 0–0 Ghana | Inglaterra 78% | ❌ |
+| 2026-06-17 | Ghana 1–0 Panamá | Ghana 38% | ✅ |
+| 2026-06-17 | Inglaterra 4–2 Croacia | Inglaterra 49% | ✅ |
+| 2026-06-27 | RD Congo 3–1 Uzbekistán | Empate 37% | ❌ |
 | 2026-06-27 | Colombia 0–0 Portugal | Portugal 47% | ❌ |
-| 2026-06-23 | Colombia 1–0 DR Congo | Colombia 60% | ✅ |
-| 2026-06-23 | Portugal 5–0 Uzbekistan | Portugal 70% | ✅ |
-| 2026-06-17 | Uzbekistan 1–3 Colombia | Colombia 64% | ✅ |
-| 2026-06-17 | Portugal 1–1 DR Congo | Portugal 65% | ❌ |
-| 2026-06-27 | Jordan 1–3 Argentina | Argentina 82% | ✅ |
-| 2026-06-27 | Algeria 3–3 Austria | Algeria 41% | ❌ |
-| 2026-06-22 | Jordan 1–2 Algeria | Algeria 68% | ✅ |
+| 2026-06-23 | Colombia 1–0 RD Congo | Colombia 60% | ✅ |
+| 2026-06-23 | Portugal 5–0 Uzbekistán | Portugal 70% | ✅ |
+| 2026-06-17 | Uzbekistán 1–3 Colombia | Colombia 64% | ✅ |
+| 2026-06-17 | Portugal 1–1 RD Congo | Portugal 65% | ❌ |
+| 2026-06-27 | Jordania 1–3 Argentina | Argentina 82% | ✅ |
+| 2026-06-27 | Argelia 3–3 Austria | Argelia 41% | ❌ |
+| 2026-06-22 | Jordania 1–2 Argelia | Argelia 68% | ✅ |
 | 2026-06-22 | Argentina 2–0 Austria | Argentina 61% | ✅ |
-| 2026-06-16 | Austria 3–1 Jordan | Austria 64% | ✅ |
-| 2026-06-16 | Argentina 3–0 Algeria | Argentina 54% | ✅ |
-| 2026-06-26 | Senegal 5–0 Iraq | Senegal 55% | ✅ |
-| 2026-06-26 | Norway 1–4 France | France 52% | ✅ |
-| 2026-06-22 | Norway 3–2 Senegal | Norway 50% | ✅ |
-| 2026-06-22 | France 3–0 Iraq | France 76% | ✅ |
-| 2026-06-16 | Iraq 1–4 Norway | Norway 65% | ✅ |
-| 2026-06-16 | France 3–1 Senegal | France 64% | ✅ |
-| 2026-06-26 | Uruguay 0–1 Spain | Spain 54% | ✅ |
-| 2026-06-26 | Cape Verde 0–0 Saudi Arabia | Cape Verde 44% | ❌ |
-| 2026-06-21 | Uruguay 2–2 Cape Verde | Uruguay 58% | ❌ |
-| 2026-06-21 | Spain 4–0 Saudi Arabia | Spain 83% | ✅ |
-| 2026-06-15 | Saudi Arabia 1–1 Uruguay | Uruguay 59% | ❌ |
-| 2026-06-15 | Spain 0–0 Cape Verde | Spain 82% | ❌ |
-| 2026-06-26 | New Zealand 0–5 Belgium | Belgium 81% | ✅ |
-| 2026-06-26 | Egypt 1–1 Iran | Egypt 39% | ❌ |
-| 2026-06-21 | New Zealand 1–3 Egypt | Egypt 53% | ✅ |
-| 2026-06-21 | Belgium 0–0 Iran | Belgium 67% | ❌ |
-| 2026-06-15 | Iran 2–2 New Zealand | Iran 47% | ❌ |
-| 2026-06-15 | Belgium 1–1 Egypt | Belgium 62% | ❌ |
-| 2026-06-25 | Tunisia 1–3 Netherlands | Netherlands 63% | ✅ |
-| 2026-06-25 | Japan 1–1 Sweden | Japan 57% | ❌ |
-| 2026-06-20 | Tunisia 0–4 Japan | Japan 56% | ✅ |
-| 2026-06-20 | Netherlands 5–1 Sweden | Netherlands 64% | ✅ |
-| 2026-06-14 | Sweden 5–1 Tunisia | Sweden 42% | ✅ |
-| 2026-06-14 | Netherlands 2–2 Japan | Netherlands 39% | ❌ |
-| 2026-06-25 | Ecuador 2–1 Germany | Germany 38% | ❌ |
-| 2026-06-25 | Curacao 0–2 Ivory Coast | Ivory Coast 75% | ✅ |
-| 2026-06-20 | Ecuador 0–0 Curacao | Ecuador 74% | ❌ |
-| 2026-06-20 | Germany 2–1 Ivory Coast | Germany 51% | ✅ |
-| 2026-06-14 | Ivory Coast 1–0 Ecuador | Ecuador 39% | ❌ |
-| 2026-06-14 | Germany 7–1 Curacao | Germany 87% | ✅ |
+| 2026-06-16 | Austria 3–1 Jordania | Austria 64% | ✅ |
+| 2026-06-16 | Argentina 3–0 Argelia | Argentina 54% | ✅ |
+| 2026-06-26 | Senegal 5–0 Irak | Senegal 55% | ✅ |
+| 2026-06-26 | Noruega 1–4 Francia | Francia 52% | ✅ |
+| 2026-06-22 | Noruega 3–2 Senegal | Noruega 50% | ✅ |
+| 2026-06-22 | Francia 3–0 Irak | Francia 76% | ✅ |
+| 2026-06-16 | Irak 1–4 Noruega | Noruega 65% | ✅ |
+| 2026-06-16 | Francia 3–1 Senegal | Francia 64% | ✅ |
+| 2026-06-26 | Uruguay 0–1 España | España 54% | ✅ |
+| 2026-06-26 | Cabo Verde 0–0 Arabia Saudita | Cabo Verde 44% | ❌ |
+| 2026-06-21 | Uruguay 2–2 Cabo Verde | Uruguay 58% | ❌ |
+| 2026-06-21 | España 4–0 Arabia Saudita | España 83% | ✅ |
+| 2026-06-15 | Arabia Saudita 1–1 Uruguay | Uruguay 59% | ❌ |
+| 2026-06-15 | España 0–0 Cabo Verde | España 82% | ❌ |
+| 2026-06-26 | Nueva Zelanda 0–5 Bélgica | Bélgica 81% | ✅ |
+| 2026-06-26 | Egipto 1–1 Irán | Egipto 39% | ❌ |
+| 2026-06-21 | Nueva Zelanda 1–3 Egipto | Egipto 53% | ✅ |
+| 2026-06-21 | Bélgica 0–0 Irán | Bélgica 67% | ❌ |
+| 2026-06-15 | Irán 2–2 Nueva Zelanda | Irán 47% | ❌ |
+| 2026-06-15 | Bélgica 1–1 Egipto | Bélgica 62% | ❌ |
+| 2026-06-25 | Túnez 1–3 Países Bajos | Países Bajos 63% | ✅ |
+| 2026-06-25 | Japón 1–1 Suecia | Japón 57% | ❌ |
+| 2026-06-20 | Túnez 0–4 Japón | Japón 56% | ✅ |
+| 2026-06-20 | Países Bajos 5–1 Suecia | Países Bajos 64% | ✅ |
+| 2026-06-14 | Suecia 5–1 Túnez | Suecia 42% | ✅ |
+| 2026-06-14 | Países Bajos 2–2 Japón | Países Bajos 39% | ❌ |
+| 2026-06-25 | Ecuador 2–1 Alemania | Alemania 38% | ❌ |
+| 2026-06-25 | Curazao 0–2 Costa de Marfil | Costa de Marfil 75% | ✅ |
+| 2026-06-20 | Ecuador 0–0 Curazao | Ecuador 74% | ❌ |
+| 2026-06-20 | Alemania 2–1 Costa de Marfil | Alemania 51% | ✅ |
+| 2026-06-14 | Costa de Marfil 1–0 Ecuador | Ecuador 39% | ❌ |
+| 2026-06-14 | Alemania 7–1 Curazao | Alemania 87% | ✅ |
 | 2026-06-25 | Paraguay 0–0 Australia | Australia 38% | ❌ |
-| 2026-06-25 | Turkey 3–2 USA | USA 43% | ❌ |
-| 2026-06-19 | Turkey 1–0 Paraguay | Paraguay 36% | ❌ |
-| 2026-06-19 | USA 2–0 Australia | USA 38% | ✅ |
-| 2026-06-13 | Australia 2–0 Turkey | Australia 40% | ✅ |
-| 2026-06-12 | USA 4–1 Paraguay | USA 41% | ✅ |
-| 2026-06-24 | Morocco 4–2 Haiti | Morocco 87% | ✅ |
-| 2026-06-24 | Scotland 0–3 Brazil | Brazil 67% | ✅ |
-| 2026-06-19 | Brazil 3–0 Haiti | Brazil 89% | ✅ |
-| 2026-06-19 | Scotland 0–1 Morocco | Morocco 56% | ✅ |
-| 2026-06-13 | Haiti 0–1 Scotland | Scotland 73% | ✅ |
-| 2026-06-13 | Brazil 1–1 Morocco | Brazil 42% | ❌ |
-| 2026-06-24 | Bosnia & Herzegovina 3–1 Qatar | Bosnia & Herzegovina 44% | ✅ |
-| 2026-06-24 | Switzerland 2–1 Canada | Switzerland 37% | ✅ |
-| 2026-06-18 | Canada 6–0 Qatar | Canada 70% | ✅ |
-| 2026-06-18 | Switzerland 4–1 Bosnia & Herzegovina | Switzerland 72% | ✅ |
-| 2026-06-13 | Qatar 1–1 Switzerland | Switzerland 79% | ❌ |
-| 2026-06-12 | Canada 1–1 Bosnia & Herzegovina | Canada 62% | ❌ |
-| 2026-06-24 | South Africa 1–0 South Korea | South Korea 49% | ❌ |
-| 2026-06-24 | Czech Republic 0–3 Mexico | Mexico 69% | ✅ |
-| 2026-06-18 | Mexico 1–0 South Korea | Mexico 56% | ✅ |
-| 2026-06-18 | Czech Republic 1–1 South Africa | Czech Republic 42% | ❌ |
-| 2026-06-11 | South Korea 2–1 Czech Republic | South Korea 48% | ✅ |
-| 2026-06-11 | Mexico 2–0 South Africa | Mexico 66% | ✅ |
+| 2026-06-25 | Turquía 3–2 Estados Unidos | Estados Unidos 43% | ❌ |
+| 2026-06-19 | Turquía 1–0 Paraguay | Paraguay 36% | ❌ |
+| 2026-06-19 | Estados Unidos 2–0 Australia | Estados Unidos 38% | ✅ |
+| 2026-06-13 | Australia 2–0 Turquía | Australia 40% | ✅ |
+| 2026-06-12 | Estados Unidos 4–1 Paraguay | Estados Unidos 41% | ✅ |
+| 2026-06-24 | Marruecos 4–2 Haití | Marruecos 87% | ✅ |
+| 2026-06-24 | Escocia 0–3 Brasil | Brasil 67% | ✅ |
+| 2026-06-19 | Brasil 3–0 Haití | Brasil 89% | ✅ |
+| 2026-06-19 | Escocia 0–1 Marruecos | Marruecos 56% | ✅ |
+| 2026-06-13 | Haití 0–1 Escocia | Escocia 73% | ✅ |
+| 2026-06-13 | Brasil 1–1 Marruecos | Brasil 42% | ❌ |
+| 2026-06-24 | Bosnia y Herzegovina 3–1 Catar | Bosnia y Herzegovina 44% | ✅ |
+| 2026-06-24 | Suiza 2–1 Canadá | Suiza 37% | ✅ |
+| 2026-06-18 | Canadá 6–0 Catar | Canadá 70% | ✅ |
+| 2026-06-18 | Suiza 4–1 Bosnia y Herzegovina | Suiza 72% | ✅ |
+| 2026-06-13 | Catar 1–1 Suiza | Suiza 79% | ❌ |
+| 2026-06-12 | Canadá 1–1 Bosnia y Herzegovina | Canadá 62% | ❌ |
+| 2026-06-24 | Sudáfrica 1–0 Corea del Sur | Corea del Sur 49% | ❌ |
+| 2026-06-24 | República Checa 0–3 México | México 69% | ✅ |
+| 2026-06-18 | México 1–0 Corea del Sur | México 56% | ✅ |
+| 2026-06-18 | República Checa 1–1 Sudáfrica | República Checa 42% | ❌ |
+| 2026-06-11 | Corea del Sur 2–1 República Checa | Corea del Sur 48% | ✅ |
+| 2026-06-11 | México 2–0 Sudáfrica | México 66% | ✅ |
 
-_Every call is listed — hits and misses. Probabilities are the model's frozen pre-match numbers (ratings don't re-fit mid-tournament), so nothing here is retro-fitted. Reproduce with `node track-record.mjs`._
+_Se muestran todos los pronósticos — aciertos y errores. Las probabilidades son los números congelados del modelo antes de cada partido (los ratings no se recalibran a mitad de torneo), así que nada acá está ajustado en retrospectiva. Reprodúcelo con `node track-record.mjs`._
 <!-- TRACK-RECORD:END -->
 
-## 🧩 Embeddable widgets & open data
+## 🧩 Widgets embebibles y datos abiertos
 
-Run a blog, forum or fan site? The live model is embeddable — free, auto-updating all tournament:
+¿Tienes un blog, foro o sitio de fans? El modelo en vivo es embebible — gratis, se actualiza
+solo durante todo el torneo:
 
 ```html
-<!-- Live title-race board (top-10 championship odds, 50k sims) -->
+<!-- Tablero en vivo de la carrera por el título (top-10 probabilidades de campeón, 50k sims) -->
 <iframe src="https://cup26matches.com/embed/title-race/" width="100%" height="430"
   style="border:0;border-radius:12px" loading="lazy" title="World Cup 2026 title odds"></iframe>
 
-<!-- Real-time next-match strip (live W/D/L, rotates at kickoff) -->
+<!-- Franja en vivo del próximo partido (G/E/P en vivo, rota al pitazo inicial) -->
 <iframe src="https://cup26matches.com/embed/next-match/" width="100%" height="92"
   style="border:0;border-radius:10px" loading="lazy" title="Next World Cup 2026 match"></iframe>
 ```
 
-More widgets + copy-paste snippets: **[cup26matches.com/en/widgets](https://cup26matches.com/en/widgets/)**
+Más widgets + snippets para copiar y pegar: **[cup26matches.com/en/widgets](https://cup26matches.com/en/widgets/)**
 
-**Open data** (CC BY 4.0 — free to use/quote/chart with a link back): the full per-team tournament
-probabilities, regenerated after every match —
+**Datos abiertos** (CC BY 4.0 — libres de usar/citar/graficar con un link de vuelta): las
+probabilidades completas por equipo para todo el torneo, regeneradas después de cada partido —
 [probabilities.json](https://cup26matches.com/data/probabilities.json) ·
 [probabilities.csv](https://cup26matches.com/data/probabilities.csv)
 
-## Quick start
+## Inicio rápido
 
-No dependencies. Node 18+.
+Sin dependencias. Node 18+.
 
 ```bash
 git clone https://github.com/Hicruben/world-cup-2026-prediction-model.git
 cd world-cup-2026-prediction-model
 
-node predict.mjs brazil argentina               # head-to-head probabilities
-node predict.mjs usa mexico usa                 # 3rd arg = home team (host bonus)
-node predict.mjs brazil morocco --odds=2.2,3.4,3.9   # add expected value vs your odds
-node halftime.mjs brazil morocco 1 0 67         # live recalculation from any minute
-node backtest.mjs                               # reproduce the accuracy numbers
-node calibrate.mjs                              # rebuild ratings from data
+node predict.mjs brazil argentina               # probabilidades cara a cara
+node predict.mjs usa mexico usa                 # 3er argumento = equipo local (bonus de sede)
+node predict.mjs brazil morocco --odds=2.2,3.4,3.9   # agrega valor esperado vs. tus cuotas
+node halftime.mjs brazil morocco 1 0 67         # recálculo en vivo desde cualquier minuto
+node backtest.mjs                               # reproduce los números de accuracy
+node calibrate.mjs                              # reconstruye los ratings desde los datos
 ```
 
-Example:
+Ejemplo:
 
 ```
 $ node predict.mjs spain germany
@@ -208,105 +214,112 @@ $ node predict.mjs spain germany
   xG esperados     :  2.05 – 1.47
 ```
 
-## How it works
+## Cómo funciona
 
-1. **Team strength (Elo + SPI).** Each nation starts from a long-run prior, then is calibrated on
-   recent real internationals — wins over strong sides in important games move a rating more than
-   friendlies, and recent form outweighs old form (competition-aware half-life: 30 months for World
-   Cups down to 6 for friendlies). A second pass derives separate **attack/defense** parameters
-   (SPI-style, Dixon-Coles EM). See [`calibrate.mjs`](./calibrate.mjs) + [`calibrate-spi.mjs`](./calibrate-spi.mjs).
-2. **Each match (Dixon-Coles Poisson).** Ratings → expected goals → a Dixon-Coles bivariate
-   Poisson gives win/draw/loss probabilities. The two views (Elo and SPI) are **blended 35/65**
-   (weight optimised by RPS grid search). The Dixon-Coles correction (ρ = −0.075, MLE-calibrated on
-   this dataset) fixes plain Poisson's under-count of low-scoring draws (0-0, 1-1). See [`elo.mjs`](./elo.mjs).
-3. **The tournament (Monte Carlo).** The live site plays all 104 matches **50,000 times** through
-   the real bracket to get championship & advancement odds — and, now the tournament is underway,
-   **locks every finished result** (real standings, real qualifiers, real bracket slots) and
-   simulates only what's left. Full write-up:
+1. **Fuerza de cada selección (Elo + SPI).** Cada selección parte de un prior de largo plazo, y
+   luego se calibra con partidos internacionales reales recientes — ganarle a rivales fuertes en
+   partidos importantes mueve más el rating que un amistoso, y la forma reciente pesa más que la
+   forma antigua (media vida según competencia: 30 meses en Mundiales, hasta 6 en amistosos).
+   Una segunda pasada deriva parámetros separados de **ataque/defensa** (estilo SPI, EM de
+   Dixon-Coles). Ver [`calibrate.mjs`](./calibrate.mjs) + [`calibrate-spi.mjs`](./calibrate-spi.mjs).
+2. **Cada partido (Poisson de Dixon-Coles).** Ratings → goles esperados → un Poisson bivariado
+   de Dixon-Coles da las probabilidades de ganar/empatar/perder. Las dos miradas (Elo y SPI) se
+   **combinan 35/65** (peso optimizado por grid search sobre RPS). La corrección de Dixon-Coles
+   (ρ = −0.075, calibrado por máxima verosimilitud sobre este dataset) corrige el sub-conteo del
+   Poisson puro en empates de pocos goles (0-0, 1-1). Ver [`elo.mjs`](./elo.mjs).
+3. **El torneo (Monte Carlo).** El sitio en vivo juega los 104 partidos **50.000 veces** a
+   través del cuadro real para obtener las probabilidades de campeón y avance — y, ahora que el
+   torneo está en curso, **fija cada resultado terminado** (posiciones reales, clasificados
+   reales, lugares reales del cuadro) y solo simula lo que queda. Explicación completa:
    [cup26matches.com/methodology](https://cup26matches.com/en/methodology/).
 
-## What's different from the original
+## Qué es distinto respecto al original
 
-This started as a fork of [Hicruben/world-cup-2026-prediction-model](https://github.com/Hicruben/world-cup-2026-prediction-model)
-(Elo-only, 7 files) and has since grown substantially. What changed, one by one:
+Esto empezó como un fork de
+[Hicruben/world-cup-2026-prediction-model](https://github.com/Hicruben/world-cup-2026-prediction-model)
+(solo Elo, 7 archivos) y desde entonces creció bastante. Qué cambió, uno por uno:
 
-**Core model**
-1. Added an **SPI-style attack/defense blend** on top of Elo (65% SPI / 35% Elo, weight chosen by
-   RPS grid search) — the original was Elo-only.
-2. **Dixon-Coles ρ** is now MLE-calibrated on this dataset (`calibrate-rho.mjs`) instead of a fixed
-   generic value.
-3. **Competition-aware time-decay**: half-life now varies by competition (30mo World Cup → 6mo
-   friendlies) instead of one global half-life.
-4. **Per-team home advantage** (`context.mjs`): Mexico +95, USA +85, Canada +80, others +75 Elo —
-   this existed in the schema but was dead code in the original; it's now wired into every predictor.
-5. **Squad adjustment** for missing/injured players now affects both **attack and defense**
-   (`squad-strength.mjs`) — the original only had (dead) attack-side hooks.
-6. **Market-value boost** per squad (`squad-market-value.mjs`) — new.
-7. **Context adjustments** — venue/altitude, tournament phase, rest days, pressure (`context.mjs`,
-   `pressure-context.mjs`) — new.
-8. Backtest improved from **RPS 0.175 → 0.164**, accuracy **62% → 64%**, favourite-pick accuracy
-   **69% → 71%**, ECE **2.3% → 1.9%** on the same 913-match out-of-sample set.
+**Modelo central**
+1. Se agregó un **blend de ataque/defensa estilo SPI** sobre el Elo (65% SPI / 35% Elo, peso
+   elegido por grid search sobre RPS) — el original era solo Elo.
+2. El **ρ de Dixon-Coles** ahora se calibra por máxima verosimilitud sobre este dataset
+   (`calibrate-rho.mjs`) en vez de un valor genérico fijo.
+3. **Decaimiento temporal según competencia**: la media vida ahora varía por competencia (30
+   meses Mundial → 6 meses amistosos) en vez de una única media vida global.
+4. **Ventaja de localía por equipo** (`context.mjs`): México +95, USA +85, Canadá +80, el resto
+   +75 Elo — esto existía en el esquema pero era código muerto en el original; ahora está
+   conectado en todos los predictores.
+5. El **ajuste por plantel** por jugadores ausentes/lesionados ahora afecta tanto **ataque como
+   defensa** (`squad-strength.mjs`) — el original solo tenía hooks (muertos) del lado del ataque.
+6. **Boost por valor de mercado** por plantel (`squad-market-value.mjs`) — nuevo.
+7. **Ajustes de contexto** — sede/altitud, fase del torneo, días de descanso, presión
+   (`context.mjs`, `pressure-context.mjs`) — nuevo.
+8. El backtest mejoró de **RPS 0.175 → 0.164**, accuracy **62% → 64%**, accuracy con favorito
+   **69% → 71%**, ECE **2.3% → 1.9%** sobre el mismo set de 913 partidos fuera de muestra.
 
-**New tooling (didn't exist in the original 7-file repo)**
-9. `halftime.mjs` — live in-match recalculation from any minute, including extra time (up to 120'),
-   with a game-state adjustment (losing/winning teams push xG up/down).
-10. `bet-ev.mjs` — expected value of real bets, with de-vig (`--overround`) to strip the
-    bookmaker's margin.
-11. `stake.mjs` — fractional-Kelly stake sizing + a correlated-exposure detector across bet slips.
-12. `bankroll.mjs` — reconciles deposits against settled bets for real P&L/ROI.
-13. `fixture.mjs` — full 104-match tournament calendar with upcoming-match predictions.
-14. `add-result.mjs` + `update-elo-live.mjs` — record real 2026 results and roll them into a live,
-    incremental Elo (`elo-live.json`, K=20) without touching the frozen pre-tournament ratings.
-15. `nextgoal.mjs` — next-goal probability for live matches.
-16. `build-dataset.mjs` — builds the 25,345-match historical dataset from raw source data.
-17. `match-core.mjs` — single shared blend implementation (`matchBlendedXg`) so `predict`,
-    `halftime`, `bet-ev` and `stake` can no longer drift out of sync with each other.
-18. `test.mjs` — 73-invariant consistency test suite; the original had none.
-19. `data/players.json` — full squads for all 48 qualified teams (feeds the squad adjustment).
+**Herramientas nuevas (no existían en el repo original de 7 archivos)**
+9. `halftime.mjs` — recálculo en vivo desde cualquier minuto, incluyendo prórroga (hasta el
+   120'), con ajuste de game-state (el equipo que va perdiendo/ganando sube/baja su xG).
+10. `bet-ev.mjs` — valor esperado de apuestas reales, con de-vig (`--overround`) para descontar
+    el margen de la casa.
+11. `stake.mjs` — tamaño de apuesta con Kelly fraccionario + detector de exposición
+    correlacionada entre boletos.
+12. `bankroll.mjs` — concilia depósitos contra apuestas cerradas para P&L/ROI real.
+13. `fixture.mjs` — calendario completo del torneo (104 partidos) con predicción de próximos partidos.
+14. `add-result.mjs` + `update-elo-live.mjs` — registra resultados reales de 2026 y los aplica a
+    un Elo incremental en vivo (`elo-live.json`, K=20) sin tocar los ratings congelados
+    pre-torneo.
+15. `nextgoal.mjs` — probabilidad del próximo gol en partidos en vivo.
+16. `build-dataset.mjs` — construye el dataset histórico de 25.345 partidos desde los datos crudos.
+17. `match-core.mjs` — una única implementación compartida del blend (`matchBlendedXg`) para que
+    `predict`, `halftime`, `bet-ev` y `stake` ya no puedan desalinearse entre sí.
+18. `test.mjs` — suite de 73 invariantes de consistencia; el original no tenía ninguno.
+19. `data/players.json` — planteles completos de las 48 selecciones clasificadas (alimenta el
+    ajuste por plantel).
 
-Net effect: `predict.mjs` grew from 30 to 168 lines, `backtest.mjs` from 104 to 171, `elo.mjs` from
-70 to 125, and 19 new modules were added on top of the original's 7 files.
+En números: `predict.mjs` pasó de 30 a 168 líneas, `backtest.mjs` de 104 a 171, `elo.mjs` de 70
+a 125, y se agregaron 19 módulos nuevos sobre los 7 archivos del original.
 
-## Files
+## Archivos
 
-| File | What |
+| Archivo | Qué hace |
 |---|---|
-| `elo.mjs` | The match model — Elo, SPI blend, Dixon-Coles τ, Poisson, `matchProb`, `sampleMatch` |
-| `match-core.mjs` | Single shared blend (`matchBlendedXg`) used by predict/halftime/bet-ev/stake |
-| `constants.mjs` | Shared constants — team slugs, host/home-advantage, K-factor by competition |
-| `context.mjs` | Per-team home advantage, venue/altitude, tournament phase, rest-day effects |
-| `pressure-context.mjs` | Knockout-stage pressure adjustment |
-| `squad-strength.mjs` | Squad adjustment (attack + defense) from missing/injured players |
-| `squad-market-value.mjs` | Market-value boost per squad |
-| `calibrate.mjs` | Build calibrated Elo ratings (competition-aware time-decay) |
-| `calibrate-spi.mjs` | Derive attack/defense (SPI) parameters via Dixon-Coles EM |
-| `calibrate-pi.mjs` | Pi-rating calibration (3-way blend input) |
-| `calibrate-blend.mjs` | Grid search for the optimal Elo/SPI blend weight (by RPS) |
-| `calibrate-rho.mjs` | MLE calibration of the Dixon-Coles ρ on this dataset |
-| `backtest.mjs` | Walk-forward out-of-sample evaluation (RPS, log-loss, Brier, ECE + reliability curve) |
-| `test.mjs` | 73-invariant consistency test suite (`npm test`) |
-| `predict.mjs` | CLI head-to-head predictor (`--odds` for EV, `--live` for in-tournament ratings) |
-| `halftime.mjs` | Live in-match recalculation from any minute & scoreline, incl. extra time |
-| `nextgoal.mjs` | Next-goal probability for live matches |
-| `fixture.mjs` | Full 104-match calendar + upcoming-match predictions |
-| `bet-ev.mjs` | Expected value of real bets, with de-vig (`--overround`) |
-| `stake.mjs` | Fractional-Kelly stake sizing + correlated-exposure detector |
-| `bankroll.mjs` | Reconciles deposits vs settled bets into P&L/ROI |
-| `add-result.mjs` | Append a finished 2026 result and refresh the track record |
-| `update-elo-live.mjs` | Incremental Elo update from 2026 results (K=20) → `elo-live.json` |
-| `track-record.mjs` | Regenerates the live 2026 track-record table in this README |
-| `build-dataset.mjs` | Builds `results-full.json` from the raw historical source |
-| `data/results.json` | 913 real international results (Oct 2023 – Jun 2026) |
-| `data/results-full.json` | 25,345 historical matches post-2000 (source: martj42) |
-| `data/elo-calibrated.json` | Calibrated Elo for the 48 finalists (frozen pre-tournament) |
-| `data/elo-live.json` | Elo incrementally updated with finished 2026 results |
-| `data/spi-ratings.json` | Attack/defense (SPI) parameters per team |
-| `data/players.json` | Squads for all 48 qualified teams (feeds squad adjustment) |
-| `data/fixture-wc2026.json` | Official 104-match fixture — groups + knockout bracket |
-| `data/wc2026-results.json` | Finished 2026 World Cup matches (feeds the track record) |
-| `data/model-backtest.json` | Saved backtest metrics |
+| `elo.mjs` | El modelo de partido — Elo, blend SPI, τ de Dixon-Coles, Poisson, `matchProb`, `sampleMatch` |
+| `match-core.mjs` | Blend único compartido (`matchBlendedXg`) usado por predict/halftime/bet-ev/stake |
+| `constants.mjs` | Constantes compartidas — slugs de equipos, ventaja de local/sede, K-factor por competencia |
+| `context.mjs` | Ventaja de localía por equipo, sede/altitud, fase del torneo, efectos por descanso |
+| `pressure-context.mjs` | Ajuste por presión en fase eliminatoria |
+| `squad-strength.mjs` | Ajuste de plantel (ataque + defensa) por jugadores ausentes/lesionados |
+| `squad-market-value.mjs` | Boost por valor de mercado del plantel |
+| `calibrate.mjs` | Construye los ratings Elo calibrados (decaimiento temporal según competencia) |
+| `calibrate-spi.mjs` | Deriva los parámetros de ataque/defensa (SPI) vía EM de Dixon-Coles |
+| `calibrate-pi.mjs` | Calibración de Pi-rating (input del blend a 3 vías) |
+| `calibrate-blend.mjs` | Grid search del peso óptimo del blend Elo/SPI (por RPS) |
+| `calibrate-rho.mjs` | Calibración por máxima verosimilitud del ρ de Dixon-Coles sobre este dataset |
+| `backtest.mjs` | Evaluación walk-forward fuera de muestra (RPS, log-loss, Brier, ECE + curva de confiabilidad) |
+| `test.mjs` | Suite de 73 invariantes de consistencia (`npm test`) |
+| `predict.mjs` | Predictor CLI cara a cara (`--odds` para EV, `--live` para ratings en torneo) |
+| `halftime.mjs` | Recálculo en vivo desde cualquier minuto y marcador, incl. prórroga |
+| `nextgoal.mjs` | Probabilidad del próximo gol en partidos en vivo |
+| `fixture.mjs` | Calendario completo de 104 partidos + predicción de próximos partidos |
+| `bet-ev.mjs` | Valor esperado de apuestas reales, con de-vig (`--overround`) |
+| `stake.mjs` | Tamaño de apuesta con Kelly fraccionario + detector de exposición correlacionada |
+| `bankroll.mjs` | Concilia depósitos vs. apuestas cerradas en P&L/ROI |
+| `add-result.mjs` | Agrega un resultado terminado de 2026 y refresca el track record |
+| `update-elo-live.mjs` | Actualización incremental de Elo con resultados de 2026 (K=20) → `elo-live.json` |
+| `track-record.mjs` | Regenera la tabla de track record en vivo de 2026 en este README |
+| `build-dataset.mjs` | Construye `results-full.json` a partir de la fuente histórica cruda |
+| `data/results.json` | 913 resultados internacionales reales (oct 2023 – jun 2026) |
+| `data/results-full.json` | 25.345 partidos históricos post-2000 (fuente: martj42) |
+| `data/elo-calibrated.json` | Elo calibrado para los 48 finalistas (congelado pre-torneo) |
+| `data/elo-live.json` | Elo actualizado incrementalmente con resultados de 2026 ya terminados |
+| `data/spi-ratings.json` | Parámetros de ataque/defensa (SPI) por equipo |
+| `data/players.json` | Planteles de las 48 selecciones clasificadas (alimenta el ajuste de plantel) |
+| `data/fixture-wc2026.json` | Fixture oficial de 104 partidos — grupos + cuadro eliminatorio |
+| `data/wc2026-results.json` | Partidos del Mundial 2026 ya terminados (alimenta el track record) |
+| `data/model-backtest.json` | Métricas guardadas del backtest |
 
-## License
+## Licencia
 
-MIT — see [LICENSE](./LICENSE). Built by [Cup26 AI](https://cup26matches.com). If you use it,
-a link back is appreciated. ⭐ the repo if you find it useful!
+MIT — ver [LICENSE](./LICENSE). Construido por [Cup26 AI](https://cup26matches.com). Si lo usas,
+se agradece un link de vuelta. ⭐ dale una estrella al repo si te resulta útil.
