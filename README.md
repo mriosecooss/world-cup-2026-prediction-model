@@ -71,12 +71,86 @@ well-calibrated estimates, and we make **no claim to beat the betting market**.
 The model's call on **every finished match** of the tournament, updated as it happens:
 
 <!-- TRACK-RECORD:START -->
-**3/4 correct picks (75%) · avg RPS 0.165** (coin-flip ≈ 0.245) · updated 2026-06-12
+**50/78 correct picks (64%) · avg RPS 0.144** (coin-flip ≈ 0.245) · updated 2026-07-01
 
 | Date | Result | Model's pick | |
 |---|---|---|---|
+| 2026-06-30 | France 3–0 Sweden | France 75% | ✅ |
+| 2026-06-30 | Norway 2–1 Ivory Coast | Norway 42% | ✅ |
+| 2026-06-29 | Netherlands 1–1 (2–3 p) Morocco | Morocco 41% | ❌ |
+| 2026-06-29 | Germany 1–1 (3–4 p) Paraguay | Germany 56% | ❌ |
+| 2026-06-29 | Brazil 2–1 Japan | Brazil 51% | ✅ |
+| 2026-06-28 | Canada 1–0 South Africa | Canada 54% | ✅ |
+| 2026-06-27 | Croatia 2–1 Ghana | Croatia 64% | ✅ |
+| 2026-06-27 | Panama 0–2 England | England 80% | ✅ |
+| 2026-06-23 | Panama 0–1 Croatia | Croatia 66% | ✅ |
+| 2026-06-23 | England 0–0 Ghana | England 78% | ❌ |
+| 2026-06-17 | Ghana 1–0 Panama | Ghana 38% | ✅ |
+| 2026-06-17 | England 4–2 Croatia | England 49% | ✅ |
+| 2026-06-27 | DR Congo 3–1 Uzbekistan | Draw 37% | ❌ |
+| 2026-06-27 | Colombia 0–0 Portugal | Portugal 47% | ❌ |
+| 2026-06-23 | Colombia 1–0 DR Congo | Colombia 60% | ✅ |
+| 2026-06-23 | Portugal 5–0 Uzbekistan | Portugal 70% | ✅ |
+| 2026-06-17 | Uzbekistan 1–3 Colombia | Colombia 64% | ✅ |
+| 2026-06-17 | Portugal 1–1 DR Congo | Portugal 65% | ❌ |
+| 2026-06-27 | Jordan 1–3 Argentina | Argentina 82% | ✅ |
+| 2026-06-27 | Algeria 3–3 Austria | Algeria 41% | ❌ |
+| 2026-06-22 | Jordan 1–2 Algeria | Algeria 68% | ✅ |
+| 2026-06-22 | Argentina 2–0 Austria | Argentina 61% | ✅ |
+| 2026-06-16 | Austria 3–1 Jordan | Austria 64% | ✅ |
+| 2026-06-16 | Argentina 3–0 Algeria | Argentina 54% | ✅ |
+| 2026-06-26 | Senegal 5–0 Iraq | Senegal 55% | ✅ |
+| 2026-06-26 | Norway 1–4 France | France 52% | ✅ |
+| 2026-06-22 | Norway 3–2 Senegal | Norway 50% | ✅ |
+| 2026-06-22 | France 3–0 Iraq | France 76% | ✅ |
+| 2026-06-16 | Iraq 1–4 Norway | Norway 65% | ✅ |
+| 2026-06-16 | France 3–1 Senegal | France 64% | ✅ |
+| 2026-06-26 | Uruguay 0–1 Spain | Spain 54% | ✅ |
+| 2026-06-26 | Cape Verde 0–0 Saudi Arabia | Cape Verde 44% | ❌ |
+| 2026-06-21 | Uruguay 2–2 Cape Verde | Uruguay 58% | ❌ |
+| 2026-06-21 | Spain 4–0 Saudi Arabia | Spain 83% | ✅ |
+| 2026-06-15 | Saudi Arabia 1–1 Uruguay | Uruguay 59% | ❌ |
+| 2026-06-15 | Spain 0–0 Cape Verde | Spain 82% | ❌ |
+| 2026-06-26 | New Zealand 0–5 Belgium | Belgium 81% | ✅ |
+| 2026-06-26 | Egypt 1–1 Iran | Egypt 39% | ❌ |
+| 2026-06-21 | New Zealand 1–3 Egypt | Egypt 53% | ✅ |
+| 2026-06-21 | Belgium 0–0 Iran | Belgium 67% | ❌ |
+| 2026-06-15 | Iran 2–2 New Zealand | Iran 47% | ❌ |
+| 2026-06-15 | Belgium 1–1 Egypt | Belgium 62% | ❌ |
+| 2026-06-25 | Tunisia 1–3 Netherlands | Netherlands 63% | ✅ |
+| 2026-06-25 | Japan 1–1 Sweden | Japan 57% | ❌ |
+| 2026-06-20 | Tunisia 0–4 Japan | Japan 56% | ✅ |
+| 2026-06-20 | Netherlands 5–1 Sweden | Netherlands 64% | ✅ |
+| 2026-06-14 | Sweden 5–1 Tunisia | Sweden 42% | ✅ |
+| 2026-06-14 | Netherlands 2–2 Japan | Netherlands 39% | ❌ |
+| 2026-06-25 | Ecuador 2–1 Germany | Germany 38% | ❌ |
+| 2026-06-25 | Curacao 0–2 Ivory Coast | Ivory Coast 75% | ✅ |
+| 2026-06-20 | Ecuador 0–0 Curacao | Ecuador 74% | ❌ |
+| 2026-06-20 | Germany 2–1 Ivory Coast | Germany 51% | ✅ |
+| 2026-06-14 | Ivory Coast 1–0 Ecuador | Ecuador 39% | ❌ |
+| 2026-06-14 | Germany 7–1 Curacao | Germany 87% | ✅ |
+| 2026-06-25 | Paraguay 0–0 Australia | Australia 38% | ❌ |
+| 2026-06-25 | Turkey 3–2 USA | USA 43% | ❌ |
+| 2026-06-19 | Turkey 1–0 Paraguay | Paraguay 36% | ❌ |
+| 2026-06-19 | USA 2–0 Australia | USA 38% | ✅ |
+| 2026-06-13 | Australia 2–0 Turkey | Australia 40% | ✅ |
 | 2026-06-12 | USA 4–1 Paraguay | USA 41% | ✅ |
+| 2026-06-24 | Morocco 4–2 Haiti | Morocco 87% | ✅ |
+| 2026-06-24 | Scotland 0–3 Brazil | Brazil 67% | ✅ |
+| 2026-06-19 | Brazil 3–0 Haiti | Brazil 89% | ✅ |
+| 2026-06-19 | Scotland 0–1 Morocco | Morocco 56% | ✅ |
+| 2026-06-13 | Haiti 0–1 Scotland | Scotland 73% | ✅ |
+| 2026-06-13 | Brazil 1–1 Morocco | Brazil 42% | ❌ |
+| 2026-06-24 | Bosnia & Herzegovina 3–1 Qatar | Bosnia & Herzegovina 44% | ✅ |
+| 2026-06-24 | Switzerland 2–1 Canada | Switzerland 37% | ✅ |
+| 2026-06-18 | Canada 6–0 Qatar | Canada 70% | ✅ |
+| 2026-06-18 | Switzerland 4–1 Bosnia & Herzegovina | Switzerland 72% | ✅ |
+| 2026-06-13 | Qatar 1–1 Switzerland | Switzerland 79% | ❌ |
 | 2026-06-12 | Canada 1–1 Bosnia & Herzegovina | Canada 62% | ❌ |
+| 2026-06-24 | South Africa 1–0 South Korea | South Korea 49% | ❌ |
+| 2026-06-24 | Czech Republic 0–3 Mexico | Mexico 69% | ✅ |
+| 2026-06-18 | Mexico 1–0 South Korea | Mexico 56% | ✅ |
+| 2026-06-18 | Czech Republic 1–1 South Africa | Czech Republic 42% | ❌ |
 | 2026-06-11 | South Korea 2–1 Czech Republic | South Korea 48% | ✅ |
 | 2026-06-11 | Mexico 2–0 South Africa | Mexico 66% | ✅ |
 
