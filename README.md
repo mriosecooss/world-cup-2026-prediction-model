@@ -225,24 +225,84 @@ $ node predict.mjs spain germany
    simulates only what's left. Full write-up:
    [cup26matches.com/methodology](https://cup26matches.com/en/methodology/).
 
+## What's different from the original
+
+This started as a fork of [Hicruben/world-cup-2026-prediction-model](https://github.com/Hicruben/world-cup-2026-prediction-model)
+(Elo-only, 7 files) and has since grown substantially. What changed, one by one:
+
+**Core model**
+1. Added an **SPI-style attack/defense blend** on top of Elo (65% SPI / 35% Elo, weight chosen by
+   RPS grid search) — the original was Elo-only.
+2. **Dixon-Coles ρ** is now MLE-calibrated on this dataset (`calibrate-rho.mjs`) instead of a fixed
+   generic value.
+3. **Competition-aware time-decay**: half-life now varies by competition (30mo World Cup → 6mo
+   friendlies) instead of one global half-life.
+4. **Per-team home advantage** (`context.mjs`): Mexico +95, USA +85, Canada +80, others +75 Elo —
+   this existed in the schema but was dead code in the original; it's now wired into every predictor.
+5. **Squad adjustment** for missing/injured players now affects both **attack and defense**
+   (`squad-strength.mjs`) — the original only had (dead) attack-side hooks.
+6. **Market-value boost** per squad (`squad-market-value.mjs`) — new.
+7. **Context adjustments** — venue/altitude, tournament phase, rest days, pressure (`context.mjs`,
+   `pressure-context.mjs`) — new.
+8. Backtest improved from **RPS 0.175 → 0.164**, accuracy **62% → 64%**, favourite-pick accuracy
+   **69% → 71%**, ECE **2.3% → 1.9%** on the same 913-match out-of-sample set.
+
+**New tooling (didn't exist in the original 7-file repo)**
+9. `halftime.mjs` — live in-match recalculation from any minute, including extra time (up to 120'),
+   with a game-state adjustment (losing/winning teams push xG up/down).
+10. `bet-ev.mjs` — expected value of real bets, with de-vig (`--overround`) to strip the
+    bookmaker's margin.
+11. `stake.mjs` — fractional-Kelly stake sizing + a correlated-exposure detector across bet slips.
+12. `bankroll.mjs` — reconciles deposits against settled bets for real P&L/ROI.
+13. `fixture.mjs` — full 104-match tournament calendar with upcoming-match predictions.
+14. `add-result.mjs` + `update-elo-live.mjs` — record real 2026 results and roll them into a live,
+    incremental Elo (`elo-live.json`, K=20) without touching the frozen pre-tournament ratings.
+15. `nextgoal.mjs` — next-goal probability for live matches.
+16. `build-dataset.mjs` — builds the 25,345-match historical dataset from raw source data.
+17. `match-core.mjs` — single shared blend implementation (`matchBlendedXg`) so `predict`,
+    `halftime`, `bet-ev` and `stake` can no longer drift out of sync with each other.
+18. `test.mjs` — 73-invariant consistency test suite; the original had none.
+19. `data/players.json` — full squads for all 48 qualified teams (feeds the squad adjustment).
+
+Net effect: `predict.mjs` grew from 30 to 168 lines, `backtest.mjs` from 104 to 171, `elo.mjs` from
+70 to 125, and 19 new modules were added on top of the original's 7 files.
+
 ## Files
 
 | File | What |
 |---|---|
 | `elo.mjs` | The match model — Elo, SPI blend, Dixon-Coles τ, Poisson, `matchProb`, `sampleMatch` |
+| `match-core.mjs` | Single shared blend (`matchBlendedXg`) used by predict/halftime/bet-ev/stake |
+| `constants.mjs` | Shared constants — team slugs, host/home-advantage, K-factor by competition |
+| `context.mjs` | Per-team home advantage, venue/altitude, tournament phase, rest-day effects |
+| `pressure-context.mjs` | Knockout-stage pressure adjustment |
+| `squad-strength.mjs` | Squad adjustment (attack + defense) from missing/injured players |
+| `squad-market-value.mjs` | Market-value boost per squad |
 | `calibrate.mjs` | Build calibrated Elo ratings (competition-aware time-decay) |
 | `calibrate-spi.mjs` | Derive attack/defense (SPI) parameters via Dixon-Coles EM |
+| `calibrate-pi.mjs` | Pi-rating calibration (3-way blend input) |
 | `calibrate-blend.mjs` | Grid search for the optimal Elo/SPI blend weight (by RPS) |
 | `calibrate-rho.mjs` | MLE calibration of the Dixon-Coles ρ on this dataset |
 | `backtest.mjs` | Walk-forward out-of-sample evaluation (RPS, log-loss, Brier, ECE + reliability curve) |
+| `test.mjs` | 73-invariant consistency test suite (`npm test`) |
 | `predict.mjs` | CLI head-to-head predictor (`--odds` for EV, `--live` for in-tournament ratings) |
-| `halftime.mjs` | Live in-match recalculation from any minute & scoreline |
+| `halftime.mjs` | Live in-match recalculation from any minute & scoreline, incl. extra time |
+| `nextgoal.mjs` | Next-goal probability for live matches |
+| `fixture.mjs` | Full 104-match calendar + upcoming-match predictions |
+| `bet-ev.mjs` | Expected value of real bets, with de-vig (`--overround`) |
+| `stake.mjs` | Fractional-Kelly stake sizing + correlated-exposure detector |
+| `bankroll.mjs` | Reconciles deposits vs settled bets into P&L/ROI |
 | `add-result.mjs` | Append a finished 2026 result and refresh the track record |
 | `update-elo-live.mjs` | Incremental Elo update from 2026 results (K=20) → `elo-live.json` |
 | `track-record.mjs` | Regenerates the live 2026 track-record table in this README |
+| `build-dataset.mjs` | Builds `results-full.json` from the raw historical source |
 | `data/results.json` | 913 real international results (Oct 2023 – Jun 2026) |
-| `data/elo-calibrated.json` | Calibrated Elo for the 48 finalists |
+| `data/results-full.json` | 25,345 historical matches post-2000 (source: martj42) |
+| `data/elo-calibrated.json` | Calibrated Elo for the 48 finalists (frozen pre-tournament) |
+| `data/elo-live.json` | Elo incrementally updated with finished 2026 results |
 | `data/spi-ratings.json` | Attack/defense (SPI) parameters per team |
+| `data/players.json` | Squads for all 48 qualified teams (feeds squad adjustment) |
+| `data/fixture-wc2026.json` | Official 104-match fixture — groups + knockout bracket |
 | `data/wc2026-results.json` | Finished 2026 World Cup matches (feeds the track record) |
 | `data/model-backtest.json` | Saved backtest metrics |
 
