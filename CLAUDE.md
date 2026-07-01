@@ -70,15 +70,15 @@ EV  = (prob_modelo × cuota) − 1
 
 ## Estado actual del torneo
 - Inicio: 11 junio 2026. Fixture completo en data/fixture-wc2026.json (104 partidos)
-- **16 partidos registrados** en `wc2026-results.json` al 2026-06-16:
-  - Jun 11: México 2-0 Sudáfrica (GA) | Corea del Sur 2-1 Rep. Checa (GA)
-  - Jun 12: Canadá 1-1 Bosnia (GB) | USA 4-1 Paraguay (GD)
-  - Jun 13: Qatar 1-1 Suiza (GE) | Brasil 1-1 Marruecos (GF) | Haití 0-1 Escocia (GH) | Australia 2-0 Turquía (GC)
-  - Jun 14: Alemania 7-1 Curazao (GA) | Países Bajos 2-2 Japón (GF) | Costa de Marfil 1-0 Ecuador | Suecia 5-1 Túnez (GF)
-  - Jun 15: Bélgica 1-1 Egipto | Arabia Saudita 1-1 Uruguay
-  - Jun 16: Irán 2-2 Nueva Zelanda
+- **Fase de grupos completa (72 partidos, 11–27 jun) + 6 partidos de Octavos de Final (Round of 32)**
+  registrados en `wc2026-results.json` al 2026-06-30:
+  - Octavos jugados: Canadá 1-0 Sudáfrica · Brasil 2-1 Japón · Alemania 1-1 Paraguay (Paraguay 4-3 pens,
+    Alemania eliminada) · Países Bajos 1-1 Marruecos (Marruecos 3-2 pens, Países Bajos eliminados) ·
+    Noruega 2-1 Costa de Marfil · Francia 3-0 Suecia
+  - Track record del modelo: **50/78 (64%)**, RPS promedio 0.144 (ver tabla en README, se regenera con `node track-record.mjs`)
+  - México vs Ecuador (30 jun) quedó fuera deliberadamente por resultados de fuentes contradictorios al momento de actualizar — verificar y agregar con `add-result.mjs` cuando se confirme
 - Ver próximos: `node fixture.mjs --next=8`. Registrar resultado: `node add-result.mjs` o pedírmelo
-- **`elo-live.json`** actualizado con los 12 partidos. Usar `--live` en predict desde octavos; en fase de grupos elo-calibrated es la referencia principal
+- **`elo-live.json`** actualizado con los 78 partidos (K=20). Usar `--live` en predict desde octavos; en fase de grupos elo-calibrated es la referencia principal
 
 ## Bankroll y apuestas
 - **0 apuestas abiertas — jornada 15 jun cerrada**
